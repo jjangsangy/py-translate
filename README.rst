@@ -1,5 +1,9 @@
 GTranslate
 ===========
+
+.. image:: https://travis-ci.org/jjangsangy/GTranslate.svg?branch=master
+    :target: https://travis-ci.org/jjangsangy/GTranslate
+
 GTranslate is a CLI Tool for Google Translate written in Python!
 
 .. image:: img/alice.gif
