@@ -27,6 +27,10 @@ API documentation. This build target skips that.
 
 You can run ``make help`` to see information on all possible make targets.
 
+.. toctree::
+    :maxdepth: 2
+
+    ../README.rst
 
 API Documentation
 -----------------
