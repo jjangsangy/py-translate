@@ -1,6 +1,6 @@
 language: python
 python:
-    - 3.4
     - 3.3
+    - 3.2
     - 2.7
-script: python setup.py build
+script: python setup.py install
