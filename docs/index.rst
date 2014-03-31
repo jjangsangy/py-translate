@@ -6,6 +6,8 @@
 GTranslate's Docs!
 ======================================
 
+README
+------
 .. toctree::
     README.rst
 
