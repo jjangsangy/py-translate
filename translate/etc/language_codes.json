@@ -1,0 +1,219 @@
+{
+    "data": {
+        "languages": [
+            {
+                "language": "af"
+            },
+            {
+                "language": "ar"
+            },
+            {
+                "language": "az"
+            },
+            {
+                "language": "be"
+            },
+            {
+                "language": "bg"
+            },
+            {
+                "language": "bn"
+            },
+            {
+                "language": "bs"
+            },
+            {
+                "language": "ca"
+            },
+            {
+                "language": "ceb"
+            },
+            {
+                "language": "cs"
+            },
+            {
+                "language": "cy"
+            },
+            {
+                "language": "da"
+            },
+            {
+                "language": "de"
+            },
+            {
+                "language": "el"
+            },
+            {
+                "language": "en"
+            },
+            {
+                "language": "eo"
+            },
+            {
+                "language": "es"
+            },
+            {
+                "language": "et"
+            },
+            {
+                "language": "eu"
+            },
+            {
+                "language": "fa"
+            },
+            {
+                "language": "fi"
+            },
+            {
+                "language": "fr"
+            },
+            {
+                "language": "ga"
+            },
+            {
+                "language": "gl"
+            },
+            {
+                "language": "gu"
+            },
+            {
+                "language": "hi"
+            },
+            {
+                "language": "hmn"
+            },
+            {
+                "language": "hr"
+            },
+            {
+                "language": "ht"
+            },
+            {
+                "language": "hu"
+            },
+            {
+                "language": "id"
+            },
+            {
+                "language": "is"
+            },
+            {
+                "language": "it"
+            },
+            {
+                "language": "iw"
+            },
+            {
+                "language": "ja"
+            },
+            {
+                "language": "jw"
+            },
+            {
+                "language": "ka"
+            },
+            {
+                "language": "km"
+            },
+            {
+                "language": "kn"
+            },
+            {
+                "language": "ko"
+            },
+            {
+                "language": "la"
+            },
+            {
+                "language": "lo"
+            },
+            {
+                "language": "lt"
+            },
+            {
+                "language": "lv"
+            },
+            {
+                "language": "mk"
+            },
+            {
+                "language": "mr"
+            },
+            {
+                "language": "ms"
+            },
+            {
+                "language": "mt"
+            },
+            {
+                "language": "nl"
+            },
+            {
+                "language": "no"
+            },
+            {
+                "language": "pl"
+            },
+            {
+                "language": "pt"
+            },
+            {
+                "language": "ro"
+            },
+            {
+                "language": "ru"
+            },
+            {
+                "language": "sk"
+            },
+            {
+                "language": "sl"
+            },
+            {
+                "language": "sq"
+            },
+            {
+                "language": "sr"
+            },
+            {
+                "language": "sv"
+            },
+            {
+                "language": "sw"
+            },
+            {
+                "language": "ta"
+            },
+            {
+                "language": "te"
+            },
+            {
+                "language": "th"
+            },
+            {
+                "language": "tl"
+            },
+            {
+                "language": "tr"
+            },
+            {
+                "language": "uk"
+            },
+            {
+                "language": "ur"
+            },
+            {
+                "language": "vi"
+            },
+            {
+                "language": "yi"
+            },
+            {
+                "language": "zh"
+            },
+            {
+                "language": "zh-TW"
+            }
+        ]
+    }
+}
