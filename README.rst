@@ -25,7 +25,6 @@ Features
 
 TODO:
 ----------------
-- Sphinx Documentation
 - Installation through pip package manager
 
 
@@ -55,3 +54,8 @@ Usage
 .. image:: img/helloworld.gif
     :alt: Hello
     :align: center
+
+Documentation
+-------------
+
+Documentation is available at https://gtranslate.readthedocs.org/
