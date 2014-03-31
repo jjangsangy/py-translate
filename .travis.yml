@@ -3,6 +3,4 @@ python:
     - 3.4
     - 3.3
     - 2.7
-script: python setup.py test
-install:
-    - pip install . --use-mirror
+script: python setup.py build
