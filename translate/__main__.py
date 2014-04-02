@@ -11,6 +11,8 @@ import sys
 from argparse import ArgumentParser
 from functools import wraps
 
+from .__version__ import __version__, __build__
+
 try:
     from urllib.request import quote, build_opener, urlopen, Request
     from urllib.parse import urlencode
@@ -111,7 +113,7 @@ def main():
             GTranslate is a CLI Tool for Google Translate written in Python! ''')
     parser.add_argument('-V', '--version',
                         action='version',
-                        version="%s v%s" %('translate', '0.0.0'))
+                        version="%s v%s" %(__package__, ''.join([__version__, __package__])))
     parser.add_argument('source',
                         help='''Source language to convert from''',
                         nargs='?',
