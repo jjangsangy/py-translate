@@ -22,7 +22,7 @@ setup(
     packages=['translate'],
     entry_points={
         'console_scripts': [
-            'translate = translate.main:main'
+            'translate = translate.__main__:main'
             ]
         },
 )

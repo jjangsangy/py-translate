@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 '''
 Small command line utility for translating text streams
@@ -11,14 +10,8 @@ import sys
 from argparse import ArgumentParser
 from functools import wraps
 
-try:
-    from urllib.request import quote, build_opener, urlopen, Request
-    from urllib.parse import urlencode
-except ImportError:
-    from urllib2 import quote, build_opener, urlopen, Request
-    from urllib import urlencode
-
-
+from .__version__ import __version__, __build__
+from .translator import push_url, translator
 
 def coroutine(func):
     '''Coroutine decorator primes first call to next'''
@@ -67,41 +60,6 @@ def source(target):
         target.send(line)
     target.close()
 
-
-def push_url(site):
-    'Decorator for functions that return complete urls for HTTP request.'
-    @wraps(site)
-    def connection(*args, **kwargs):
-        # Declare the header and create the Request object.
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:27.0) Gecko/20100101 Firefox/27.0'}
-        url = site(*args, **kwargs)
-        request = Request(url, headers=headers)
-        # Make HTTP Request
-        req = urlopen(request)
-        req_stream = req.read().decode('UTF-8')
-        req.close()
-        return json.loads(req_stream)
-
-    return connection
-
-
-@push_url
-def translator(source, target, phrase):
-    'Assembles the URL for the GET request'
-    base = 'http://translate.google.com/translate_a/t'
-    params = urlencode({
-            'client': 'webapp',
-            'ie': 'UTF-8',
-            'oe': 'UTF-8',
-            'sl': source,
-            'tl': target,
-            'q': phrase
-        })
-    url = '?'.join([base, params])
-    return url
-
-
 def main():
     '''
     Main Entry point for translator
@@ -111,7 +69,7 @@ def main():
             GTranslate is a CLI Tool for Google Translate written in Python! ''')
     parser.add_argument('-V', '--version',
                         action='version',
-                        version="%s v%s" %('translate', '0.0.0'))
+                        version="%s v%s" %(__package__, ''.join([__version__, __package__])))
     parser.add_argument('source',
                         help='''Source language to convert from''',
                         nargs='?',

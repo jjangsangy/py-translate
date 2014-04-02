@@ -11,6 +11,8 @@ build:
 
 clean:
 	rm -rf translate/*.pyc
+	rm -rf __pycache__
+	rm -rf translate/__pycache__
 	rm -rf build
 	rm -rf *egg-info
 	rm -rf dist
