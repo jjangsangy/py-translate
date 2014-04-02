@@ -59,9 +59,8 @@ def translator(source, target, phrase):
     Some source languages are limited in scope of the possible target languages
     that are available.
 
-
-    Usage:
-    ::
+    .. code-block:: python
+        :emphasize-lines: 3
 
         >>> import translate
         >>> translator('en', 'zh-TW', 'Hello World!')

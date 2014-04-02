@@ -1,7 +1,29 @@
 {% extends "!layout.html"%}
+
+{% block header %}
+  {{ super() }}
+  <a href="https://github.com/jjangsangy/GTranslate"
+     class="visible-desktop hidden-xs"><img
+    id="gh-banner"
+    style="position: absolute; top: 50px; right: 0; border: 0;"
+    src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+    alt="Fork me on GitHub"></a>
+  <script>
+    // Adjust banner height.
+    $(function () {
+      var navHeight = $(".navbar .container").css("height");
+      $("#gh-banner").css("top", navHeight);
+    });
+  </script>
+{% endblock %}
+
+{% block navbarextra %}
+{% endblock %}
+
 {% block sidebar1 %}
     {{ sidebar() }}
 {% endblock %}
 
 {% block sidebar2 %}
+    {{ sidebar2 }}
 {% endblock %}

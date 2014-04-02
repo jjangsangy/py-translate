@@ -120,6 +120,7 @@ html_theme_options = {
     'navbar_site_name': "Site",
     'globaltoc_depth': 2,
     'globaltoc_includehidden': "true",
+    'navbar_sidebarrel': "true",
     'navbar_class': "navbar",
     'navbar_fixed_top': "true",
     'source_link_position': "nav",
