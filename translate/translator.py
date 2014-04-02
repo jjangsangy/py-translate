@@ -50,8 +50,13 @@ def translator(source, target, phrase):
     server for parsing.
 
     :param source: Language code for translation source
+    :type source: str
     :param target: Language code that source will be translate into
+    :type target: str
     :param phrase: Text body string that will be url encoded and translated
+    :type phrase: str
+    :returns: url
+    :rtype: str
 
     List of acceptable language codes for source and target languages
     can be found as a JSON file in the etc directory.
