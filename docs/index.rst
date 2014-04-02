@@ -3,41 +3,56 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-GTranslate's Docs!
-======================================
+===========================================
+GTranslate
+===========================================
+**GTranslate is a CLI Tool for Google Translate written in Python!**
 
-README
-------
-.. toctree::
-    README.rst
+------------------------------------------------------------------------
 
-Requirements
+
+:Author: Sang Han, 2014
+:License: `Apache Software License v2 <http://opensource.org/licenses/Apache-2.0>`_
+:Version: v\ |version|
+
+Easy to Use Syntax
+------------------
+.. code-block:: bash
+
+    $ echo 'Hello World!' | translate ko
+    $ 안녕하세요！
+
+
+Features
+---------
+- Simple command line parsing!
+- Written in pure Python!
+- Backwards compatable with Python 2.7
+- Supports all language from Google Translate API
+- Speed: Unix Pipes
+- Native UTF-8 Support
+
+Installation
 ------------
-The following tools are needed to build the documentation:
+Clone the repository
 
-sphinx
+.. code-block:: bash
 
-The documentation gets built using ``make``, and comes in several flavors.
+    $ git clone https://github.com/jjangsangy/GTranslate.git
 
-``make html`` - build the API and narrative documentation web pages, this
-is the the default ``make`` target, so running just ``make`` is equivalent to
-``make html``.
+Install with setup.py
 
-``make html_noapi`` - same as above, but without running the auto-generated
-API docs. When you are working on the narrative documentation, the most time
-consuming portion  of the build process is the processing and rending of the
-API documentation. This build target skips that.
+.. code-block:: bash
 
-``make pdf`` will compile a pdf from the documentation.
-
-You can run ``make help`` to see information on all possible make targets.
-
+    $ python setup.py install
 
 API Documentation
 -----------------
 .. toctree::
     :maxdepth: 2
 
+    usage
+    requirements
     api
 
 
