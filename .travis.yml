@@ -3,4 +3,11 @@ python:
     - 3.3
     - 3.2
     - 2.7
-script: python setup.py install
+    - pypy
+install:
+    - pip install -r requirements.txt
+    - pip install py-translate
+    - python setup.py install
+script:
+    - nosetests
+
