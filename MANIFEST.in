@@ -1,0 +1,5 @@
+include *.rst
+include LICENSE
+include Makefile
+include *.txt
+prune translate/etc/*
