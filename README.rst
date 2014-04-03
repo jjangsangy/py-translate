@@ -62,4 +62,4 @@ Usage
 Documentation
 -------------
 
-Documentation is available at https://gtranslate.readthedocs.org/
+Documentation is available at https://py-translate.readthedocs.org/
