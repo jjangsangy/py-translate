@@ -22,7 +22,7 @@ long_description = '\n\n'.join(
     ])
 
 setup(
-    name='GTranslate',
+    name='py-translate',
     description=description,
     long_description=long_description,
     author='Sang Han',
