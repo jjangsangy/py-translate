@@ -23,4 +23,3 @@ recursive-include docs Makefile
 recursive-include img *.gif
 recursive-include img *.png
 recursive-include translate *.py
-prune translate/etc/*

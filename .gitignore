@@ -18,6 +18,7 @@
 *.jar
 *.rar
 *.tar
+*.tar.gz
 *.zip
 # }}}
 # Logs and databases # {{{
@@ -35,10 +36,12 @@
 ehthumbs.db
 Thumbs.db
 Icon*
-.env
+# }}}
+# Distribution files/folders {{{
 docs/_build
-alice.txt
+.env
 dist/*
 build/*
 *egg-info
+*.whl
 # }}}

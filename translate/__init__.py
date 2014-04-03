@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 '''
-Small command line utility for translating text streams
-using Google Translate v2 API.
+A simple command line utility for translating text
+using Google Translate.
 '''
 
 from .__main__ import *

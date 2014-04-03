@@ -9,6 +9,9 @@ test:
 build:
 	python setup.py build
 
+install:
+	python setup.py install
+
 clean:
 	rm -rf translate/*.pyc
 	rm -rf __pycache__
