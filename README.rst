@@ -1,10 +1,10 @@
-GTranslate
+py-translate
 ===========
 
-.. image:: https://travis-ci.org/jjangsangy/GTranslate.svg?branch=master
-    :target: https://travis-ci.org/jjangsangy/GTranslate
+.. image:: https://travis-ci.org/jjangsangy/py-translate.svg?branch=master
+    :target: https://travis-ci.org/jjangsangy/py-translate
 
-GTranslate is a CLI Tool for Google Translate written in Python!
+py-translate is a CLI Tool for Google Translate written in Python!
 
 .. image:: img/alice.gif
     :alt: alice
@@ -38,7 +38,7 @@ Installation
 
 .. code-block:: bash
 
-    $ git clone https://github.com/jjangsangy/GTranslate.git
+    $ git clone https://github.com/jjangsangy/py-translate.git
 
 * Install with setup.py
 

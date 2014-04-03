@@ -85,17 +85,17 @@ qthelp:
 	@echo
 	@echo "Build finished; now you can run "qcollectiongenerator" with the" \
 	      ".qhcp project file in $(BUILDDIR)/qthelp, like this:"
-	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/GTranslate.qhcp"
+	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/py-translate.qhcp"
 	@echo "To view the help file:"
-	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/GTranslate.qhc"
+	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/py-translate.qhc"
 
 devhelp:
 	$(SPHINXBUILD) -b devhelp $(ALLSPHINXOPTS) $(BUILDDIR)/devhelp
 	@echo
 	@echo "Build finished."
 	@echo "To view the help file:"
-	@echo "# mkdir -p $$HOME/.local/share/devhelp/GTranslate"
-	@echo "# ln -s $(BUILDDIR)/devhelp $$HOME/.local/share/devhelp/GTranslate"
+	@echo "# mkdir -p $$HOME/.local/share/devhelp/py-translate"
+	@echo "# ln -s $(BUILDDIR)/devhelp $$HOME/.local/share/devhelp/py-translate"
 	@echo "# devhelp"
 
 epub:

@@ -4,7 +4,7 @@ Installation
 
 .. code-block:: bash
 
-    $ git clone https://github.com/jjangsangy/GTranslate.git
+    $ git clone https://github.com/jjangsangy/py-translate.git
 
 * Install with setup.py
 

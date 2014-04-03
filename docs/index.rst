@@ -1,12 +1,12 @@
-.. GTranslate documentation master file, created by
+.. py-translate documentation master file, created by
    sphinx-quickstart on Wed Mar 26 13:21:22 2014.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
 ===========================================
-GTranslate
+py-translate
 ===========================================
-**GTranslate is a CLI Tool for Google Translate written in Python!**
+**py-translate is a CLI Tool for Google Translate written in Python!**
 
 ------------------------------------------------------------------------
 
@@ -26,7 +26,7 @@ Clone the repository
 
 .. code-block:: bash
 
-    $ git clone https://github.com/jjangsangy/GTranslate.git
+    $ git clone https://github.com/jjangsangy/py-translate.git
 
 Install with setup.py
 

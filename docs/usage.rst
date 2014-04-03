@@ -2,7 +2,7 @@ Usage
 -----
 :samp:`translate [-h] [-V] [{source}] {dest}`
 
-GTranslate is a CLI Tool for Google Translate written in Python!
+py-translate is a CLI Tool for Google Translate written in Python!
 
 positional arguments::
 
