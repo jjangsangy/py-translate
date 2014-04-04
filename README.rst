@@ -4,6 +4,9 @@ py-translate
 .. image:: https://travis-ci.org/jjangsangy/py-translate.svg?branch=master
     :target: https://travis-ci.org/jjangsangy/py-translate
 
+.. image:: https://badge.fury.io/gh/jjangsangy%2Fpy-translate.png
+    :target: http://badge.fury.io/gh/jjangsangy%2Fpy-translate
+
 .. image:: https://badge.fury.io/py/py-translate.png
     :target: http://badge.fury.io/py/py-translate
 
