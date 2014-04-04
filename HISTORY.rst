@@ -9,7 +9,7 @@ Release History
 ** Bug Fixes **
 
 - Quick fix PyPI distribution (huge package sizes)
-    - MANIFEST.in now does it job
+- MANIFEST.in now does it job
 - PyPy-c v2.2 support
 - Assorted fixes with methods and scope
 
@@ -17,7 +17,7 @@ Release History
 ++++++++++++++++
 
 - GTranslate is taken on PyPI.
-    - Name changed to py-translate
+- Name changed to py-translate
 - Distributed through PyPI and Wheel
 - More documentation and autoparsing for module functions
 - Seperated into logical modules in a package rather than one executable __main__.py
