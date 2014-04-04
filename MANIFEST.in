@@ -3,24 +3,8 @@ include LICENSE
 include Makefile
 include *.txt
 include .travis.yml
-recursive-include docs *.bat
-recursive-include docs *.conf
-recursive-include docs *.css
-recursive-include docs *.css_t
-recursive-include docs *.eot
-recursive-include docs *.html
-recursive-include docs *.js
-recursive-include docs *.js_t
-recursive-include docs *.map
-recursive-include docs *.png
-recursive-include docs *.py
-recursive-include docs *.rst
-recursive-include docs *.svg
-recursive-include docs *.ttf
-recursive-include docs *.txt
-recursive-include docs *.woff
-recursive-include docs Makefile
-recursive-include img *.gif
-recursive-include img *.png
 recursive-include translate *.py
 prune translate/etc
+prune translate/lib
+prune docs
+prune img
