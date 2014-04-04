@@ -27,13 +27,20 @@ Features
 - Speed: Unix Pipes
 - Native UTF-8 Support
 
-TODO:
-----------------
-- Installation through pip package manager
-
-
 Installation
 ------------
+
+From PyPI with pip (easy)
+-------------------------
+
+.. code-block:: bash
+
+    $ pip install py-translate
+
+
+From Source at Github
+---------------------
+
 * Clone the repository
 
 .. code-block:: bash
