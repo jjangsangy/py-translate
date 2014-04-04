@@ -6,11 +6,12 @@ Release History
 0.1.1 (2014-4-3)
 ++++++++++++++++
 
-** Bug Fixes **
+- PyPy-c v2.2 now support
+
+**Bug Fixes**
 
 - Quick fix PyPI distribution (huge package sizes)
 - MANIFEST.in now does it job
-- PyPy-c v2.2 support
 - Assorted fixes with methods and scope
 
 0.1.0 (2014-4-2)
