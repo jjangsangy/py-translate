@@ -31,7 +31,7 @@ Installation
 ------------
 
 From PyPI with pip (easy)
--------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
@@ -39,7 +39,7 @@ From PyPI with pip (easy)
 
 
 From Source at Github
----------------------
+^^^^^^^^^^^^^^^^^^^^^
 
 * Clone the repository
 
