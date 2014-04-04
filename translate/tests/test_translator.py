@@ -18,7 +18,7 @@ class TestTranslator(unittest.TestCase):
 
     def test_love(self):
         love = translator('en', 'zh-TW', 'I love you')
-        self.assertEqual(love['sentences'][0]['trans'], '我愛你')
+        self.assertEqual(love['sentences'][0]['trans'].decode('utf-8'), '我愛你')
 
 if __name__ == '__main__':
     unittest.main()
