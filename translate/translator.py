@@ -117,7 +117,7 @@ def text_sink(source, dest):
         line = (yield)
         translation = translator(source, dest, line)['sentences']
         for line in translation:
-            print(line['trans'], end='')
+            print(line['trans'].encode('utf-8').decode('utf-8'), end='')
 
 
 # Make less http requests by chunking.
