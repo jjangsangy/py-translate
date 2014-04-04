@@ -2,7 +2,7 @@ init:
 	pip install -r requirements.txt
 
 test:
-	py.test
+	nosetests
 
 .PHONY: clean
 
@@ -17,6 +17,10 @@ wheel:
 
 install:
 	python setup.py install
+
+publish:
+	python setup.py sdist upload -r pypi
+	python setup.py bdist_wheel upload -r pypi
 
 clean:
 	rm -rf translate/*.pyc
