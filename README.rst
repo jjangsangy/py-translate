@@ -4,6 +4,9 @@ py-translate
 .. image:: https://travis-ci.org/jjangsangy/py-translate.svg?branch=master
     :target: https://travis-ci.org/jjangsangy/py-translate
 
+.. image:: https://badge.fury.io/py/py-translate.png
+    :target: http://badge.fury.io/py/py-translate
+
 py-translate is a CLI Tool for Google Translate written in Python!
 
 .. image:: img/alice.gif
@@ -14,9 +17,11 @@ py-translate is a CLI Tool for Google Translate written in Python!
 :License: Apache Software License v2
 :Version: 0.1.1
 
-The end goal is a simple application for translating text in the terminal. 
-Text can be generated interactively or programmatically in the shell enviornment. Through command line arguments,
-file descriptors or pipes generating translated output that can be piped to a file or displayed on the terminal.
+The end goal is a simple application for translating text in the terminal.
+Text can be generated interactively or programmatically
+in the shell enviornment. Through command line arguments,
+file descriptors or pipes generating translated output
+that can be piped to a file or displayed on the terminal.
 
 Features
 ---------
