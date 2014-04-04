@@ -4,6 +4,12 @@ py-translate
 .. image:: https://travis-ci.org/jjangsangy/py-translate.svg?branch=master
     :target: https://travis-ci.org/jjangsangy/py-translate
 
+.. image:: https://badge.fury.io/gh/jjangsangy%2Fpy-translate.png
+    :target: http://badge.fury.io/gh/jjangsangy%2Fpy-translate
+
+.. image:: https://badge.fury.io/py/py-translate.png
+    :target: http://badge.fury.io/py/py-translate
+
 py-translate is a CLI Tool for Google Translate written in Python!
 
 .. image:: img/alice.gif
@@ -12,11 +18,13 @@ py-translate is a CLI Tool for Google Translate written in Python!
 
 :Author: Sang Han, 2014
 :License: Apache Software License v2
-:Version: 0.1.1
+:Version: 0.1.2
 
-The end goal is a simple application for translating text in the terminal. 
-Text can be generated interactively or programmatically in the shell enviornment. Through command line arguments,
-file descriptors or pipes generating translated output that can be piped to a file or displayed on the terminal.
+The end goal is a simple application for translating text in the terminal.
+Text can be generated interactively or programmatically
+in the shell enviornment. Through command line arguments,
+file descriptors or pipes generating translated output
+that can be piped to a file or displayed on the terminal.
 
 Features
 ---------
@@ -24,16 +32,23 @@ Features
 - Written in pure Python!
 - Backwards compatable with Python 2.7
 - Supports all language from Google Translate API
-- Speed: Unix Pipes
+- The power of Unix pipes and filters
 - Native UTF-8 Support
-
-TODO:
-----------------
-- Installation through pip package manager
-
 
 Installation
 ------------
+
+From PyPI with pip (easy)
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: bash
+
+    $ pip install py-translate
+
+
+From Source at Github
+~~~~~~~~~~~~~~~~~~~~~
+
 * Clone the repository
 
 .. code-block:: bash
@@ -49,7 +64,6 @@ Installation
 Usage
 -----
 * Default will translate from english to target language
-* Pipe from the shell!
 
 .. code-block:: bash
 

@@ -1,5 +1,7 @@
+=============
 Requirements
-------------
+=============
+
 The following tools are needed to build the documentation:
 
 sphinx

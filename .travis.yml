@@ -1,7 +1,6 @@
 language: python
 python:
     - 3.3
-    - 3.2
     - 2.7
     - pypy
 install:
@@ -9,5 +8,5 @@ install:
     - pip install py-translate
     - python setup.py install
 script:
-    - nosetests
+    - nosetests -v
 
