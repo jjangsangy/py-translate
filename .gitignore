@@ -44,4 +44,5 @@ dist/*
 build/*
 *egg-info
 *.whl
+alice.txt
 # }}}
