@@ -54,7 +54,7 @@ Redirect from File
 .. code-block:: bash
     :emphasize-lines: 3-
 
-    $ translate zh-CN < "alice.txt"
+    $ translate zh-TW < "alice.txt"
 
     阿麗思道：「你不是說你要告訴你的歷史嗎？告訴我你為甚麼恨—那個—那些—C和D，」
     她末了兩個字母輕輕兒地說的，怕回來又得罪了牠。

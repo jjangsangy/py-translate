@@ -6,7 +6,7 @@ from argparse import ArgumentParser
 from functools import wraps
 
 from .__version__ import __version__, __build__
-from .translator import translator
+from .translator import translator, push_url
 
 description = '''A simple command line utility for translating text
     using Google Translate.'''

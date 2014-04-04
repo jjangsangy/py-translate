@@ -1,5 +1,5 @@
 py-translate
-===========
+=============
 
 .. image:: https://travis-ci.org/jjangsangy/py-translate.svg?branch=master
     :target: https://travis-ci.org/jjangsangy/py-translate

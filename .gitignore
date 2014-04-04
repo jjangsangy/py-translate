@@ -43,6 +43,7 @@ docs/_build
 dist/*
 build/*
 *egg-info
+alice.txt
 *.whl
 alice.txt
 # }}}
