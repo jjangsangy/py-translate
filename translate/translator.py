@@ -9,31 +9,33 @@ module deals with the client side logic of pushing the translation request
 to the the server.
 '''
 
+import sys
 import json
 from functools import wraps
 
 try:
-    from urllib.request import quote, build_opener, urlopen, Request
+    from urllib.request import urlopen, Request
     from urllib.parse import urlencode
 except ImportError:
-    from urllib2 import quote, build_opener, urlopen, Request
+    from urllib2 import urlopen, Request
     from urllib import urlencode
 
 
 def push_url(site):
     '''
-    Decorator that wraps the translator method and performs the GET HTTP request.
+    Decorator that wraps the translator method and performs
+    the GET HTTP request.
 
     Returns a dict response object from the server containing the translated
     text and metadata of the request body
     '''
     @wraps(site)
     def connection(*args, **kwargs):
-        # Declare the header and create the Request object.
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:27.0) Gecko/20100101 Firefox/27.0'}
+        agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:27.0) Gecko/20100101 Firefox/27.0'
+        headers = {'User-Agent': agent}
         url = site(*args, **kwargs)
         request = Request(url, headers=headers)
+
         # Make HTTP Request
         req = urlopen(request)
         req_stream = req.read().decode('UTF-8')
@@ -74,12 +76,61 @@ def translator(source, target, phrase):
     '''
     base = 'http://translate.google.com/translate_a/t'
     params = urlencode({
-            'client': 'webapp',
-            'ie': 'UTF-8',
-            'oe': 'UTF-8',
-            'sl': source,
-            'tl': target,
-            'q': phrase
-        })
+        'client': 'webapp',
+        'ie': 'UTF-8',
+        'oe': 'UTF-8',
+        'sl': source,
+        'tl': target,
+        'q': phrase
+    })
     url = '?'.join([base, params])
     return url
+
+
+def coroutine(func):
+    '''Coroutine decorator primes first call to next'''
+    @wraps(func)
+    def initialization(*args, **kwargs):
+        start = func(*args, **kwargs)
+        try:
+            start.__next__()
+        except AttributeError:
+            start.next()
+        return start
+    return initialization
+
+
+@coroutine
+def text_sink(source, dest):
+    '''Coroutine end-point. Outputs text stream into translator'''
+    while True:
+        line = (yield)
+        translation = translator(source, dest, line)['sentences']
+        for line in translation:
+            print(line['trans'], end='')
+
+
+# Make less http requests by chunking.
+# Google maxes chunks sizes around 2k characters
+@coroutine
+def spooler(iterable):
+    '''Consumes text stream and spools into larger chunk for processing'''
+    try:
+        while True:
+            wordcount, spool = 0, str()
+            while wordcount < 1000:
+                stream = (yield)
+                spool += stream
+                wordcount += len(stream)
+            else:
+                iterable.send(spool)
+    finally:
+        iterable.send(spool)
+        sys.stdout.write('\n')
+
+
+def source(target):
+    '''Coroutine start point. Produces text stream and forwards to consumers'''
+    for line in sys.stdin:
+        target.send(line)
+    target.close()
