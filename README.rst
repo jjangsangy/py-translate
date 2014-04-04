@@ -4,7 +4,7 @@ py-translate
 .. image:: https://travis-ci.org/jjangsangy/py-translate.svg?branch=master
     :target: https://travis-ci.org/jjangsangy/py-translate
 
-.. image:: https://badge.fury.io/py/py-translate.svg
+.. image:: https://badge.fury.io/py/py-translate.png
     :target: http://badge.fury.io/py/py-translate
 
 py-translate is a CLI Tool for Google Translate written in Python!
