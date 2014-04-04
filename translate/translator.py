@@ -9,6 +9,8 @@ module deals with the client side logic of pushing the translation request
 to the the server.
 '''
 
+from __future__ import print_function, unicode_literals
+
 import sys
 import json
 from functools import wraps
