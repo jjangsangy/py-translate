@@ -2,7 +2,10 @@
 TODO
 ========
 
-- Catch no stdin exception
-- Add index.rst documentation intro
-- Implement Unit Testing
-- Use twine for publishing
+.. hlist::
+    :columns: 2
+
+    - Raise exception if nothing is entered into stdin
+    - Write documentation for intro
+    - Implement Unit Testing framework with nose
+    - Use twine for publishing to PyPI

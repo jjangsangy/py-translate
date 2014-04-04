@@ -20,24 +20,15 @@ py-translate
 
 ------------------------------------------------------------------------
 
-Features
----------
-- Simple command line parsing!
-- Written in pure Python!
-- Backwards compatable with Python 2.7
-- Supports all language from Google Translate API
-- The power of Unix pipes and filters
-- Native UTF-8 Support
-
-------------------------------------------------------------------------
-
-Quickstart
-----------
+Quickstart Guide
+----------------
 .. toctree::
     :maxdepth: 2
 
-    install
-    usage
+    users/install
+    users/features
+    users/usage
+    users/examples
 
 
 API Documentation
@@ -45,8 +36,8 @@ API Documentation
 .. toctree::
     :maxdepth: 2
 
-    interface
-    docs
+    /devs/interface
+    /devs/docs
 
 Notes
 ------
@@ -54,6 +45,7 @@ Notes
     :maxdepth: 2
 
     HISTORY
+    TODO
 
 
 

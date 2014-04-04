@@ -76,7 +76,6 @@ def translator(source, target, phrase):
     that are available.
 
     .. code-block:: python
-        :emphasize-lines: 3
 
         >>> import translate
         >>> translator('en', 'zh-TW', 'Hello World!')
