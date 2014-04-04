@@ -9,6 +9,12 @@ test:
 build:
 	python setup.py build
 
+dist:
+	python setup.py sdist
+
+wheel:
+	python setup.py bdist_wheel
+
 install:
 	python setup.py install
 
