@@ -4,7 +4,7 @@ A simple command line utility for translating text
 using Google Translate.
 '''
 
-from .__main__ import *
+from .translator import *
 from .__version__ import __version__, __build__
 
 __title__ = 'translate'

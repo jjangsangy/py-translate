@@ -20,27 +20,50 @@ py-translate
 
 ------------------------------------------------------------------------
 
+Features
+---------
+- Simple command line parsing!
+- Written in pure Python!
+- Backwards compatable with Python 2.7
+- Supports all language from Google Translate API
+- The power of Unix pipes and filters
+- Native UTF-8 Support
+
+------------------------------------------------------------------------
+
 Installation
 ------------
-Clone the repository
+
+From PyPI with pip (easy)
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: bash
+
+    $ pip install py-translate
+
+
+From Source at Github
+~~~~~~~~~~~~~~~~~~~~~
+
+* Clone the repository
 
 .. code-block:: bash
 
     $ git clone https://github.com/jjangsangy/py-translate.git
 
-Install with setup.py
+* Install with setup.py
 
 .. code-block:: bash
 
     $ python setup.py install
 
+------------------------------------------------------------------------
+
 Easy to Use Syntax
 ------------------
-
 Unix Pipes
-~~~~~~~~~~
+~~~~~~~~~~~~
 .. code-block:: bash
-    :emphasize-lines: 2, 5
 
     $ echo 'Hello World!' | translate zh-TW
     你好世界！
@@ -50,9 +73,8 @@ Unix Pipes
 
 
 Redirect from File
-~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
 .. code-block:: bash
-    :emphasize-lines: 3-
 
     $ translate zh-TW < "alice.txt"
 
@@ -65,15 +87,6 @@ Redirect from File
     她就一頭聽著那老鼠說話，一頭在在心上納悶，所以她聽的那老鼠講的「尾曲」
     的歷史是差不多像這個樣了的
 
-Features
----------
-- Simple command line parsing!
-- Written in pure Python!
-- Backwards compatable with Python 2.7
-- Supports all language from Google Translate API
-- Speed: Unix Pipes
-- Native UTF-8 Support
-
 API Documentation
 -----------------
 .. toctree::
@@ -81,7 +94,7 @@ API Documentation
 
     usage
     requirements
-    api
+    interface
 
 
 Indices and tables
@@ -90,4 +103,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-

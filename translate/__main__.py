@@ -7,6 +7,7 @@ from argparse import ArgumentParser
 from .__version__ import __version__, __build__
 from .translator import (text_sink, spooler, source)
 
+__all__ = []
 
 description = '''A simple command line utility for translating text
     using Google Translate.'''

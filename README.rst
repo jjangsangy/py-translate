@@ -39,7 +39,7 @@ Installation
 ------------
 
 From PyPI with pip (easy)
-^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: bash
 
@@ -47,7 +47,7 @@ From PyPI with pip (easy)
 
 
 From Source at Github
-^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~
 
 * Clone the repository
 
@@ -64,7 +64,6 @@ From Source at Github
 Usage
 -----
 * Default will translate from english to target language
-* Pipe from the shell!
 
 .. code-block:: bash
 
