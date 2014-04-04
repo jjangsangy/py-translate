@@ -49,7 +49,7 @@ def push_url(site):
 
         # Make HTTP Request
         req = urlopen(request)
-        req_stream = req.read().decode('UTF-8')
+        req_stream = req.read().decode('utf-8')
         req.close()
         return json.loads(req_stream)
 
@@ -87,8 +87,8 @@ def translator(source, target, phrase):
     base = 'http://translate.google.com/translate_a/t'
     params = urlencode({
         'client': 'webapp',
-        'ie': 'UTF-8',
-        'oe': 'UTF-8',
+        'ie': 'utf-8',
+        'oe': 'utf-8',
         'sl': source,
         'tl': target,
         'q': phrase

@@ -5,7 +5,6 @@ using Google Translate.
 '''
 
 from .translator import *
-from .__main__ import *
 from .__version__ import __version__, __build__
 
 __title__ = 'translate'
