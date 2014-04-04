@@ -18,8 +18,12 @@ class TestTranslator(unittest.TestCase):
         self.assertIsInstance(instance['sentences'][0]['trans'], str)
 
     def test_love(self):
-        love = translator('en', 'zh-TW', 'I love you')
-        self.assertEqual(love['sentences'][0]['trans'].encode('utf-8'), '我愛你')
+        love = translator('en', 'zh-TW', 'I love you')['sentences'][0]['trans']
+        if isinstance(love, str):
+            self.assertEqual(love, '我愛你')
+        else:
+            self.assertEqual(love.encode('utf-8'), '我愛你')
+
 
 if __name__ == '__main__':
     unittest.main()
