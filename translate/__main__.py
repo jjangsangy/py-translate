@@ -15,28 +15,43 @@ def main():
     '''
     Main Entry point for translator and argument parser
     '''
+    version = ''.join([__version__, __build__])
+
     # Argument Parser
     parser = ArgumentParser(description=description)
 
     # Version
     parser.add_argument(
-        '--version',
-        action='version',
-        version="%s v%s" % (
-            'translate',
-            ''.join([__version__, __build__])))
+        '-v', '--version', action='version',
+        version="%s v%s" % ('translate', version))
+
+    # Languages
+    parser.add_argument(
+        '-l', '--languages',
+        dest='languages',
+        action='store_true',
+        default=False,
+        help='List out available languages codes')
 
     # Source Language
-    parser.add_argument('source', help='Source language to convert from',
-                        nargs='?', default='en')
+    parser.add_argument(
+        'source',
+        help='Source language code',
+        nargs='?',
+        default='en')
 
     # Destination Language
-    parser.add_argument('dest', help='Destination language to convert into')
+    parser.add_argument(
+        'dest',
+        help='Destination language code')
 
-    # Parse Args
     args = parser.parse_args()
 
-    # Run Main
+    if args.languages:
+        from .languages import language_codes
+        language_codes()
+        sys.exit(0)
+
     source(spooler(text_sink(args.source, args.dest)))
 
 if __name__ == '__main__':
