@@ -46,6 +46,7 @@ Notes
 
     HISTORY
     TODO
+    sidebar
 
 
 
