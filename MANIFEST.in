@@ -8,3 +8,4 @@ prune translate/etc
 prune translate/lib
 prune docs
 prune img
+include translate/etc/supported_translations.json
