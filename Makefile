@@ -16,7 +16,12 @@ wheel:
 	python setup.py bdist_wheel
 
 install:
-	python setup.py install
+	pip2 install py-translate
+	pip3 install py-translate
+
+uninstall:
+	pip3 uninstall py-translate
+	pip2 uninstall py-translate
 
 publish:
 	python setup.py sdist upload -r pypi
