@@ -3,6 +3,8 @@
 import json
 from os.path import dirname, abspath, join
 
+__all__ = ['load_codes', 'language_codes']
+
 
 def load_codes(file):
     '''
@@ -20,4 +22,4 @@ def language_codes(lang):
     '''
     codes = load_codes('supported_translations.json')[lang]
     for code in codes:
-        print(code['language'], '\t', code['name'])
+        print(code['name'].ljust(23), code['language'].ljust(5))

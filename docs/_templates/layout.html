@@ -17,6 +17,9 @@
   </script>
 {% endblock %}
 
+{# Custom CSS overrides #}
+{% set bootswatch_css_custom = ['_static/custom.css'] %}
+
 {% block navbarextra %}
 {%- block sidebar1 %}{{ bsidebar() }}{% endblock %}
 {% endblock %}

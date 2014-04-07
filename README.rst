@@ -18,7 +18,7 @@ py-translate is a CLI Tool for Google Translate written in Python!
 
 :Author: Sang Han, 2014
 :License: Apache Software License v2
-:Version: 0.1.2
+:Version: 0.1.3
 
 The end goal is a simple application for translating text in the terminal.
 Text can be generated interactively or programmatically
