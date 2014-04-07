@@ -22,4 +22,4 @@ def language_codes(lang):
     '''
     codes = load_codes('supported_translations.json')[lang]
     for code in codes:
-        print(code['name'].ljust(23), code['language'].ljust(5))
+        print(code['name'].ljust(23), '\t', code['language'].ljust(5))
