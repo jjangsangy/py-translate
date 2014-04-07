@@ -2,6 +2,10 @@
 
 Release History
 ---------------
+0.1.3 (2014-4-7)
+++++++++++++++++
+- Implemented language discovery arg
+- Bug Fixes
 
 0.1.2 (2014-4-4)
 ++++++++++++++++
