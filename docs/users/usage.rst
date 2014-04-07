@@ -1,10 +1,12 @@
+.. _usage:
+
 ==============
 Usage
 ==============
 
 ------------------------------------------------------------------------
 
-:command:`translate [-h] [-V] [source] dest`
+:command:`translate [-h] [-V] [-l [code]] [source] dest`
 """"""""""""""""""""""""""""""""""""""""""""""""
 
 .. describe:: py-translate
@@ -17,10 +19,14 @@ positional arguments
 
 .. option:: source
 
-    Source language to convert from
+    Source language code
+
 .. option:: dest
 
-    Destination language to convert into
+    Destination language code
+
+    If only 1 positional argument is specified, it will be assumed
+    to be dest and source will default to english
 
 ------------------------------------------------------------------------
 
@@ -33,3 +39,7 @@ optional arguments
 .. option:: -v, --version
 
     show program's version number and exit
+
+.. option:: -l, --langs [code]
+
+   List out available language codes [can output in different languages]

@@ -1,3 +1,5 @@
+.. _examples:
+
 ================================================
 Examples
 ================================================
@@ -27,4 +29,26 @@ Redirect from File
     阿麗思聽了，瞧著那老鼠的尾巴說，「你這尾是曲啊﹗可是為甚麼又叫它苦呢﹗」
     她就一頭聽著那老鼠說話，一頭在在心上納悶，所以她聽的那老鼠講的「尾曲」
     的歷史是差不多像這個樣了的
+
+Language Codes
+~~~~~~~~~~~~~~
+Requires at least one command line argument for the destination language.
+If no command line arguments are passed, an error message will be passed.
+
+.. code-block:: bash
+
+   $ echo 'No output language' | translate
+
+.. describe::
+   usage: translate [-h] [-v] [-l [code]] [source] dest
+   translate: error: the following arguments are required: dest
+
+See :ref:`usage` section for more examples
+
+Use the -l, or --langs option to see all the possible language codes.
+
+.. code-block:: bash
+
+   $ translate --langs
+
 

@@ -24,20 +24,17 @@ Quickstart Guide
 ----------------
 .. toctree::
     :maxdepth: 2
+    :glob:
 
-    users/install
-    users/features
-    users/usage
-    users/examples
-
+    users/*
 
 API Documentation
 -----------------
 .. toctree::
     :maxdepth: 2
+    :glob:
 
-    /devs/interface
-    /devs/docs
+    /devs/*
 
 Notes
 ------
@@ -46,7 +43,6 @@ Notes
 
     HISTORY
     TODO
-    sidebar
 
 
 

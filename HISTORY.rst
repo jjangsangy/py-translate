@@ -3,6 +3,15 @@
 Release History
 ---------------
 
+0.1.2 (2014-4-4)
+++++++++++++++++
+
+- Documentation reorganization
+
+**Bug Fixes**
+
+- Fixed unicode encode/decode errors
+
 0.1.1 (2014-4-3)
 ++++++++++++++++
 

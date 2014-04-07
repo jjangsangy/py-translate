@@ -10,6 +10,9 @@ __all__ = []
 description = '''A simple command line utility for translating text
     using Google Translate.'''
 
+epilog = '''If only 1 positional argument is specified, it will be assumed
+    to be dest and source will default to english.'''
+
 
 def main():
     '''
@@ -17,30 +20,35 @@ def main():
     '''
     version = ''.join([__version__, __build__])
 
+    langs = ArgumentParser(add_help=False)
+    # Languages
+    langs.add_argument(
+        '-l', '--languages',
+        nargs='?',
+        default=False,
+        const='en',
+        metavar='code',
+        help='List out available languages codes')
+
+    codes = langs.parse_known_args()
+
+    # Parse Languages
+    if codes[0].languages:
+        from .languages import language_codes
+        language_codes(codes[0].languages)
+        sys.exit(0)
+
     # Argument Parser
-    parser = ArgumentParser(prog='translate', description=description)
+    parser = ArgumentParser(
+        parents=[langs],
+        prog='translate',
+        description=description,
+        epilog=epilog)
 
     # Version
     parser.add_argument(
         '-v', '--version', action='version',
         version="%s v%s" % ('translate', version))
-
-    # Languages
-    parser.add_argument(
-        '-l', '--languages',
-        nargs='?',
-        default=False,
-        const='en',
-        metavar='lang',
-        help='List out available languages codes')
-
-    # Parse Languages
-    langs = parser.parse_known_args()
-    if langs[0].languages:
-        from .languages import language_codes
-        language_codes(langs[0].languages)
-        sys.exit(0)
-
 
     # Source Language
     parser.add_argument(
@@ -55,7 +63,6 @@ def main():
         help='Destination language code')
 
     args = parser.parse_args()
-    print(args)
 
     source(spooler(text_sink(args.source, args.dest)))
 
