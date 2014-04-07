@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
-from os.path import abspath
+from os.path import dirname, abspath, join
 
 import requests
 
@@ -33,18 +33,33 @@ def discover_languages(target):
     return requests.get(base, params=params).json(encoding='ascii')
 
 
-def load_json(file):
-    path = abspath(file)
-    with open(path, 'rt') as json_file:
-        data = json.load(json_file)
-        return data
+def load_languages(file):
+    '''
+    Opens up file located under the etc directory conaining language
+    codes and prints them out
+    '''
+    filepath = abspath(join(dirname(__file__), file))
+    with open(filepath, 'rt') as data:
+        return json.load(data)
+
+
+def language_codes():
+    '''
+    Prints out the language codes available.
+    '''
+    codes = load_languages('language_codes.json')
+    for code in codes:
+        print(code['language'], '\t', code['name'])
+
+
+def supported_language(language):
+    codes = load_languages('supported_translations.json')[language]
+    for code in codes:
+        print(code['language'], '\t', code['name'])
 
 
 def main():
-    codes = load_json('language_codes.json')['data']['languages']
-    for code in codes:
-        print(code['language'], code['name'])
-
+    supported_language('zh-TW')
 
 if __name__ == '__main__':
     main()

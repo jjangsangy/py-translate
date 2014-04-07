@@ -18,7 +18,7 @@ def main():
     version = ''.join([__version__, __build__])
 
     # Argument Parser
-    parser = ArgumentParser(description=description)
+    parser = ArgumentParser(prog='translate', description=description)
 
     # Version
     parser.add_argument(
@@ -28,10 +28,19 @@ def main():
     # Languages
     parser.add_argument(
         '-l', '--languages',
-        dest='languages',
-        action='store_true',
+        nargs='?',
         default=False,
+        const='en',
+        metavar='lang',
         help='List out available languages codes')
+
+    # Parse Languages
+    langs = parser.parse_known_args()
+    if langs[0].languages:
+        from .languages import language_codes
+        language_codes(langs[0].languages)
+        sys.exit(0)
+
 
     # Source Language
     parser.add_argument(
@@ -46,11 +55,7 @@ def main():
         help='Destination language code')
 
     args = parser.parse_args()
-
-    if args.languages:
-        from .languages import language_codes
-        language_codes()
-        sys.exit(0)
+    print(args)
 
     source(spooler(text_sink(args.source, args.dest)))
 
