@@ -11,3 +11,12 @@ Main Interface
 .. autofunction:: translate.spooler
 .. autofunction:: translate.text_sink
 .. autofunction:: translate.coroutine
+.. autofunction:: translate.load_codes
+.. autofunction:: translate.language_codes
+
+.. glossary::
+
+    translate
+        Access to library is done primarily through the application called
+        translate which will be installed and accessed through a directory
+        under users $PATH envar.

@@ -121,10 +121,11 @@ html_theme_options = {
     'navbar_title': "py-translate",
     'navbar_site_name': "Site",
     'globaltoc_depth': 2,
-    'globaltoc_includehidden': "true",
-    'navbar_sidebarrel': "true",
+    'globaltoc_includehidden': True,
+    'navbar_sidebarrel': True,
     'navbar_class': "navbar",
-    'navbar_fixed_top': "true",
+    'navbar_pagenav': True,
+    'navbar_fixed_top': True,
     'source_link_position': "nav",
     'bootswatch_theme': "flatly",
     'bootstrap_version': "3",
@@ -206,6 +207,8 @@ htmlhelp_basename = 'py-translatedoc'
 # -- Options for LaTeX output ---------------------------------------------
 
 latex_elements = {
+    'classoptions': ',oneside',
+    'babel': '\\usepackage[english]{babel}',
     'papersize': 'letterpaper',
     'pointsize': '12pt',
     'preamble': '''

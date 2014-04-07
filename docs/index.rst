@@ -1,7 +1,4 @@
-.. py-translate documentation master file, created by
-   sphinx-quickstart on Wed Mar 26 13:21:22 2014.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. :index:
 
 ===========================================
 py-translate
@@ -24,20 +21,17 @@ Quickstart Guide
 ----------------
 .. toctree::
     :maxdepth: 2
+    :glob:
 
-    users/install
-    users/features
-    users/usage
-    users/examples
-
+    users/*
 
 API Documentation
 -----------------
 .. toctree::
     :maxdepth: 2
+    :glob:
 
-    /devs/interface
-    /devs/docs
+    /devs/*
 
 Notes
 ------
