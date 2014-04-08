@@ -141,6 +141,9 @@ def spooler(iterable):
 
 def source(target):
     '''Coroutine start point. Produces text stream and forwards to consumers'''
-    for line in sys.stdin:
-        target.send(line)
+    stripper = (
+        line.replace('\\n', ' ').replace('\\t', ' ').replace('\\r', '')
+        for line in sys.stdin)
+    for strip in stripper:
+        target.send(strip)
     target.close()
