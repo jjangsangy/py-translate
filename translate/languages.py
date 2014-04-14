@@ -18,7 +18,7 @@ def load_codes(file):
 
 def language_codes(lang):
     '''
-    Prints out the language codes available.
+    Prints out formatted language code pair for requested language.
     '''
     codes = load_codes('supported_translations.json')[lang]
     for code in codes:

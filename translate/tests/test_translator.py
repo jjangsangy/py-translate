@@ -4,8 +4,16 @@ try:
 except ImportError:
     import unittest
 
+import os
+import sys
 from nose.tools import *
-from translate import translator
+
+sys.path.insert(0, os.path.abspath('..'))
+
+try:
+    from translator import translator
+except ImportError:
+    from translate import translator
 
 
 class TestTranslator(unittest.TestCase):
