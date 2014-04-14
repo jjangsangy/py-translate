@@ -20,6 +20,13 @@ def language_codes(lang):
     '''
     Prints out formatted language code pair for requested language.
     '''
+    table = {}
     codes = load_codes('supported_translations.json')[lang]
     for code in codes:
-        print(code['name'].ljust(23), '\t', code['language'].ljust(5))
+        table[code['name']] = code['language']
+        print(
+            '{language:<8} {name:\u3000<20}'.format(
+                name=code['name'],
+                language=code['language'])
+        )
+    return table
