@@ -41,8 +41,6 @@ Notes
     HISTORY
     TODO
 
-
-
 Indices and tables
 ==================
 

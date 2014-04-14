@@ -6,7 +6,6 @@ Installation
 
 From PyPI
 ~~~~~~~~~
-
 * To install py-translate, simply:
 
 .. code-block:: bash
@@ -16,7 +15,6 @@ From PyPI
 
 From Source
 ~~~~~~~~~~~
-
 * Installation from the Git source repository.
 
 .. code-block:: bash
@@ -28,3 +26,7 @@ From Source
 .. code-block:: bash
 
     $ python setup.py install
+
+OS X Installation
+~~~~~~~~~~~~~~~~~
+For full installation instructions for OS X, please visit :ref:`osx`

@@ -128,7 +128,7 @@ def spooler(iterable):
     try:
         while True:
             wordcount, spool = 0, str()
-            while wordcount < 1000:
+            while wordcount < 200:
                 stream = (yield)
                 spool += stream
                 wordcount += len(stream)
