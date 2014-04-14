@@ -34,8 +34,8 @@ def main():
 
     # Parse Languages
     if codes[0].languages:
-        from .languages import language_codes
-        language_codes(codes[0].languages)
+        from .languages import print_table
+        print_table(codes[0].languages)
         sys.exit(0)
 
     # Argument Parser

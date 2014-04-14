@@ -18,15 +18,24 @@ def load_codes(file):
 
 def language_codes(lang):
     '''
-    Prints out formatted language code pair for requested language.
+    Returns a dict corresponding to the language codes available for source lang
     '''
     table = {}
     codes = load_codes('supported_translations.json')[lang]
     for code in codes:
-        table[code['name']] = code['language']
+        table[code['language']] = code['name']
+    return table
+
+def print_table(lang):
+    '''
+    Generates a formatted table of language codes
+    '''
+    table = {}
+    codes = load_codes('supported_translations.json')[lang]
+    for code in codes:
         print(
             '{language:<8} {name:\u3000<20}'.format(
                 name=code['name'],
                 language=code['language'])
         )
-    return table
+    return

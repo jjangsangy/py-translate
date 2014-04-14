@@ -28,6 +28,10 @@ class TestLanguages(unittest.TestCase):
 
         self.assertEqual(ko_codes.get('en'), u'영어')
 
+    def test_codes(self):
+        table = language_codes('ko')
+        self.assertEqual(table['en'], u'영어')
+
 
 if __name__ == '__main__':
     unittest.main()
