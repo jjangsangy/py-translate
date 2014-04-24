@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 translator
 ~~~~~~~~~~
 
-Definies the interaction with the translation service.
+Defines the interaction with the translation service.
 Since the program interfaces with the google web service, this
 module deals with the client side logic of pushing the translation request
 to the the server.
-'''
+"""
 
 from __future__ import print_function, unicode_literals
 
@@ -58,7 +58,7 @@ def push_url(site):
 
 @push_url
 def translator(source, target, phrase):
-    '''
+    """
     Returns the url encoded string that will be pushed to the translation
     server for parsing.
 
@@ -83,7 +83,7 @@ def translator(source, target, phrase):
         >>> translator('en', 'zh-TW', 'Hello World!')
             '你好世界！'
 
-    '''
+    """
     base = 'http://translate.google.com/translate_a/t'
     params = urlencode({
         'client': 'webapp',
@@ -98,7 +98,7 @@ def translator(source, target, phrase):
 
 
 def coroutine(func):
-    '''Coroutine decorator primes first call to next'''
+    """Coroutine decorator primes first call to next"""
     @wraps(func)
     def initialization(*args, **kwargs):
         start = func(*args, **kwargs)
@@ -112,7 +112,7 @@ def coroutine(func):
 
 @coroutine
 def text_sink(source, dest):
-    '''Coroutine end-point. Outputs text stream into translator'''
+    """Coroutine end-point. Outputs text stream into translator"""
     while True:
         line = (yield)
         translation = translator(source, dest, line)['sentences']
@@ -124,7 +124,7 @@ def text_sink(source, dest):
 # Google maxes chunks sizes around 2k characters
 @coroutine
 def spooler(iterable):
-    '''Consumes text stream and spools into larger chunk for processing'''
+    """Consumes text stream and spools into larger chunk for processing"""
     try:
         while True:
             wordcount, spool = 0, str()
@@ -140,7 +140,7 @@ def spooler(iterable):
 
 
 def source(target):
-    '''Coroutine start point. Produces text stream and forwards to consumers'''
+    """Coroutine start point. Produces text stream and forwards to consumers"""
     stripper = (
         '{}'.format(
             line.replace(r'\n', r' ').replace(r'\t', r' ').replace(r'\r', r' ')
