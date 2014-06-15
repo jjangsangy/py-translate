@@ -6,6 +6,7 @@ except ImportError:
 
 import os
 import sys
+
 from nose.tools import *
 
 sys.path.insert(0, os.path.abspath('..'))
@@ -14,6 +15,7 @@ try:
     from languages import load_codes, language_codes
 except ImportError:
     from translate import load_codes, language_codes
+
 
 class TestLanguages(unittest.TestCase):
 

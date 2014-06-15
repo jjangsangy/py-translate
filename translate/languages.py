@@ -8,7 +8,7 @@ __all__ = ['load_codes', 'language_codes']
 
 def load_codes(file):
     '''
-    Opens up file located under the etc directory conaining language
+    Opens up file located under the etc directory containing language
     codes and prints them out
     '''
     filepath = abspath(join(dirname(__file__), 'etc', file))
