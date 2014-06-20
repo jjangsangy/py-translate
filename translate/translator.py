@@ -148,7 +148,7 @@ def source(target):
         '{}'.format(
             line.replace(r'\n', r' ').replace(r'\t', r' ').replace(r'\r', r' ')
         )
-        for line in sys.stdin:
-            for strip in stripper:
-                target.send(strip)
+        for line in sys.stdin)
+    for strip in stripper:
+        target.send(strip)
     target.close()
