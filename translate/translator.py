@@ -146,9 +146,7 @@ def source(target):
     """Coroutine start point. Produces text stream and forwards to consumers"""
     stripper = (
         '{}'.format(
-            line.replace(r'\n', r' ').\
-                 replace(r'\t', r' ').\
-                 replace(r'\r', r' ')
+            line.replace(r'\n', r' ').replace(r'\t', r' ').replace(r'\r', r' ')
         )
         for line in sys.stdin:
             for strip in stripper:
