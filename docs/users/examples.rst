@@ -48,17 +48,17 @@ See :ref:`usage` section for usage information
 Language Codes
 ~~~~~~~~~~~~~~
 
-Use the -l, or --langs option to see all the possible language codes.
+Use the -l, or --lang option to see all the possible language codes.
 
 .. code-block:: bash
 
-   $ translate --langs
+   $ translate --lang
 
 Specify the output format by language code
 
 .. code-block:: bash
 
-   $ translate --langs zh-TW
+   $ translate --lang zh-TW
 
 
 .. hlist::

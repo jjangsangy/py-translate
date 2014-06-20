@@ -40,6 +40,7 @@ def push_url(site):
     Returns a dict response object from the server containing the translated
     text and metadata of the request body
     '''
+
     @wraps(site)
     def connection(*args, **kwargs):
         agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:27.0) Gecko/20100101 Firefox/27.0'
@@ -99,6 +100,7 @@ def translator(source, target, phrase):
 
 def coroutine(func):
     """Coroutine decorator primes first call to next"""
+
     @wraps(func)
     def initialization(*args, **kwargs):
         start = func(*args, **kwargs)
@@ -107,6 +109,7 @@ def coroutine(func):
         except AttributeError:
             start.next()
         return start
+
     return initialization
 
 
@@ -143,9 +146,11 @@ def source(target):
     """Coroutine start point. Produces text stream and forwards to consumers"""
     stripper = (
         '{}'.format(
-            line.replace(r'\n', r' ').replace(r'\t', r' ').replace(r'\r', r' ')
+            line.replace(r'\n', r' ').\
+                 replace(r'\t', r' ').\
+                 replace(r'\r', r' ')
         )
-        for line in sys.stdin)
-    for strip in stripper:
-        target.send(strip)
+        for line in sys.stdin:
+            for strip in stripper:
+                target.send(strip)
     target.close()

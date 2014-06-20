@@ -6,9 +6,8 @@ try:
 except ImportError:
     from distutils.core import setup
 
-
 def read(path):
-    '''Build a file path from *paths* and return the contents.'''
+    """Build a file path from *paths* and return the contents."""
     with open(path) as f:
         return f.read()
 

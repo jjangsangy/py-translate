@@ -40,6 +40,6 @@ optional arguments
 
     show program's version number and exit
 
-.. option:: -l, --langs [code]
+.. option:: -l, --lang [code]
 
    List out available language codes [can output in different languages]
