@@ -73,6 +73,15 @@ Usage
     :alt: Hello
     :align: center
 
+* Just as easily specify a source language by providing it as first
+  argument
+
+.. code-block:: bash
+
+   $ echo 'Bonjour, comment allez-vous!' | translate fr en
+
+   Hello, how are you?
+
 Documentation
 -------------
 
