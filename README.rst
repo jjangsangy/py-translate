@@ -68,8 +68,7 @@ Usage
 .. code-block:: bash
 
     $ echo 'Hello World!' | translate zh-TW
-
-        你好世界！
+    你好世界！
 
 .. image:: img/helloworld.gif
     :alt: Hello
@@ -81,8 +80,7 @@ Usage
 .. code-block:: bash
 
    $ echo 'Bonjour, comment allez-vous!' | translate fr en
-
-       Hello, how are you?
+   Hello, how are you?
 
 Documentation
 -------------
