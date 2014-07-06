@@ -74,6 +74,8 @@ Usage
     :alt: Hello
     :align: center
 
+Examples
+--------
 * Just as easily specify a source language by providing it as first
   argument
 
@@ -83,16 +85,16 @@ Usage
    $ translate fr en <<< 'Bonjour, comment allez-vous!' 
    Hello, how are you?
 
-* Chaining together
-
+Chaining together
+~~~~~~~~~~~~~~~~~
 .. code-block:: bash
 
    # Translate Telephone!
    $ echo 'What is love?' | translate zh-TW | translate ko | translate fr | translate en
    What is love?
 
-* Be Creative!
-
+Be Creative!
+~~~~~~~~~~~~
 .. code-block:: bash
 
    # A "Here-String" Grocery List
