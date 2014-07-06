@@ -37,7 +37,6 @@ Unix Pipes!
 
    $ python --help | translate fr
 
-    .......
    D'autres variables d'environnement:
    PYTHONSTARTUP: le fichier exécuté au démarrage interactif (pas par défaut)
    PYTHONPATH: ':'-liste de répertoires séparés préfixés à la
