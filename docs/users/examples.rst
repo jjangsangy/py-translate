@@ -74,6 +74,14 @@ Be Creative
    빵
    시리얼
 
+Chaining together Pipes
+~~~~~~~~~~~~~~~~~~~~~~~
+.. code-block:: bash
+
+   # Translate Telephone!
+   $ echo 'What is love?' | translate zh-TW | translate ko | translate fr | translate en
+   What is love?
+
 
 
 Arguments
