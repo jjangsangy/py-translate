@@ -33,7 +33,7 @@ Redirect from File
 
 Unix Pipes!
 ~~~~~~~~~~~
-.. code-block:: bash
+.. code-block::
 
    $ python --help | translate fr
 
