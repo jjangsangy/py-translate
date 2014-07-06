@@ -83,6 +83,14 @@ Usage
    $ translate fr en <<< 'Bonjour, comment allez-vous!' 
    Hello, how are you?
 
+* Chaining together
+
+.. code-block:: bash
+
+   # Translate Telephone!
+   $ echo 'What is love?' | translate zh-TW | translate ko | translate fr | translate en
+   What is love?
+
 * Be Creative!
 
 .. code-block:: bash
