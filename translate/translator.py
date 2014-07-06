@@ -16,10 +16,10 @@ import json
 from functools import wraps
 
 try:
-    from urllib.request import urlopen, Request
+    from urllib.request import urlopen, Request, quote
     from urllib.parse import urlencode
 except ImportError:
-    from urllib2 import urlopen, Request
+    from urllib2 import urlopen, Request, quote
     from urllib import urlencode
 
 __all__ = [
@@ -120,7 +120,7 @@ def text_sink(source, dest):
         line = (yield)
         translation = translator(source, dest, line)['sentences']
         for line in translation:
-            print(line['trans'].encode('utf-8').decode('utf-8'), end='')
+            print(line['trans'], end='')
 
 
 # Make less http requests by chunking.
@@ -131,10 +131,10 @@ def spooler(iterable):
     try:
         while True:
             wordcount, spool = 0, str()
-            while wordcount < 200:
+            while wordcount < 1500:
                 stream = (yield)
                 spool += stream
-                wordcount += len(stream)
+                wordcount += len(quote(stream).encode('utf-8'))
             else:
                 iterable.send(spool)
     finally:
@@ -144,11 +144,6 @@ def spooler(iterable):
 
 def source(target):
     """Coroutine start point. Produces text stream and forwards to consumers"""
-    stripper = (
-        '{}'.format(
-            line.replace(r'\n', r' ').replace(r'\t', r' ').replace(r'\r', r' ')
-        )
-        for line in sys.stdin)
-    for strip in stripper:
-        target.send(strip)
+    for line in sys.stdin:
+        target.send(line)
     target.close()
