@@ -67,8 +67,7 @@ Usage
 
 .. code-block:: bash
 
-    # Translate Hello World in Chinese
-    $ echo 'Hello World!' | translate zh-TW
+    $ translate zh-TW <<< "Hello World!"
     你好世界！
 
 .. image:: img/helloworld.gif
@@ -81,7 +80,7 @@ Usage
 .. code-block:: bash
 
    # Translate Hello from French to English
-   $ echo 'Bonjour, comment allez-vous!' | translate fr en
+   $ translate fr en <<< 'Bonjour, comment allez-vous!' 
    Hello, how are you?
 
 Documentation

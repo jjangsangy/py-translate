@@ -8,10 +8,10 @@ Unix Pipes
 ~~~~~~~~~~~~
 .. code-block:: bash
 
-    $ echo 'Hello World!' | translate zh-TW
+    $ translate zh-TW <<< "Hello World!"
     你好世界！
 
-    $ echo 'Goodbye!' | translate ko
+    $ translate ko <<< "Goodbye!"
     안녕히 가세요!
 
 
@@ -37,7 +37,7 @@ If no command line arguments are passed, an error message will be passed.
 
 .. code-block:: bash
 
-   $ echo 'No output language' | translate
+   $ translate | "Error! No Arguments"
 
 .. describe::
    usage: translate [-h] [-v] [-l [code]] [source] dest
