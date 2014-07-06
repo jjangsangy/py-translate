@@ -37,18 +37,23 @@ Unix Pipes!
 
    $ python --help | translate fr
 
-   D'autres variables d'environnement:
+   D'autres variables d'environnement
+
    PYTHONSTARTUP: le fichier exécuté au démarrage interactif (pas par défaut)
-   PYTHONPATH: ':'-liste de répertoires séparés préfixés à la
-   module par défaut chemin de recherche. Le résultat est sys.path.
+   PYTHONPATH: '\:'-liste de répertoires séparés préfixés à la
+      module par défaut chemin de recherche. Le résultat est sys.path.
    PYTHONHOME: Annuaire <prefix> suppléant (ou <prefix>: <exec_prefix>).
+
    Le chemin de recherche par défaut du module utilise <prefix> / pythonX.X.
+
    PYTHONCASEOK: ignorer la casse dans les états «d'importation» (Windows).
    PYTHONIOENCODING: Codage [: erreurs] utilisés pour stdin / stdout / stderr.
    PYTHONHASHSEED: si cette variable est définie à «aléatoire», l'effet est le même
       comme spécifiant l'option-R: une valeur aléatoire est utilisée pour ensemencer les hashs de
       str, octets et objets datetime. Il peut également être défini à un nombre entier
       dans l'intervalle [0,4294967295] pour obtenir des valeurs de hachage avec une graine prévisible.
+
+::
 
 Arguments
 ~~~~~~~~~
