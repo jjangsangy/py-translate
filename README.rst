@@ -83,6 +83,25 @@ Usage
    $ translate fr en <<< 'Bonjour, comment allez-vous!' 
    Hello, how are you?
 
+* Be Creative!
+
+.. code-block:: bash
+
+   # A "Here-String" Grocery List
+   $ cat <<- GROCERY_LIST | translate ko
+        Celery
+        Milk
+        Eggs
+        Bread
+        Cereal
+   GROCERY_LIST
+
+   셀러리
+   우유
+   달걀
+   빵
+   시리얼
+
 Documentation
 -------------
 
