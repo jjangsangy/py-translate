@@ -4,7 +4,7 @@
 Examples
 ================================================
 
-Unix Pipes
+Basic Usage
 ~~~~~~~~~~~~
 .. code-block:: bash
 
@@ -33,9 +33,12 @@ Redirect from File
 
 Unix Pipes!
 ~~~~~~~~~~~
-.. code-block::
+.. code-block:: bash
 
+   # Redirect any output through a unix pipe.
    $ python --help | translate fr
+
+.. code-block::
 
    D'autres variables d'environnement
 
@@ -51,6 +54,27 @@ Unix Pipes!
       dans l'intervalle [0,4294967295] pour obtenir des valeurs de hachage avec une graine prévisible.
 
 ::
+
+Be Creative
+~~~~~~~~~~~
+.. code-block:: bash
+
+   # A "Here-String" Grocery List
+   $ cat <<- GROCERY_LIST | translate ko
+   $    Celery
+   $    Milk
+   $    Eggs
+   $    Bread
+   $    Cereal
+   $ GROCERY_LIST
+
+   셀러리
+   우유
+   달걀
+   빵
+   시리얼
+
+
 
 Arguments
 ~~~~~~~~~
