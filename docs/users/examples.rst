@@ -43,7 +43,6 @@ Unix Pipes!
    PYTHONPATH: ':'-liste de répertoires séparés préfixés à la
       module par défaut chemin de recherche. Le résultat est sys.path.
    PYTHONHOME: Annuaire <prefix> suppléant (ou <prefix> <exec_prefix>).
-   Le chemin de recherche par défaut du module utilise <prefix>pythonX.X.
    PYTHONCASEOK: ignorer la casse dans les états d'importation» (Windows).
    PYTHONIOENCODING: Codage [: erreurs] utilisés pour stdin / stdout / stderr.
    PYTHONHASHSEED: si cette variable est définie à aléatoire, l'effet est le même
