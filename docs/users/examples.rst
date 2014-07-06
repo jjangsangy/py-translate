@@ -61,12 +61,12 @@ Be Creative
 
    # A "Here-String" Grocery List
    $ cat <<- GROCERY_LIST | translate ko
-   $    Celery
-   $    Milk
-   $    Eggs
-   $    Bread
-   $    Cereal
-   $ GROCERY_LIST
+        Celery
+        Milk
+        Eggs
+        Bread
+        Cereal
+   GROCERY_LIST
 
    셀러리
    우유
