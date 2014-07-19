@@ -34,7 +34,7 @@ def print_table(lang):
     codes = load_codes('supported_translations.json')[lang]
     for code in codes:
         print(
-            '{language:<8} {name:\u3000<20}'.format(
+            u'{language:<8} {name:\u3000<20}'.format(
                 name=code['name'],
                 language=code['language'])
         )
