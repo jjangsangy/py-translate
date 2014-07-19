@@ -106,7 +106,7 @@ Chaining together Pipes
 .. code-block:: bash
 
    # Translate Telephone!
-   $ echo 'What is love?' | translate zh-TW | translate zh-TW ko | translate ko fr | translate ko en
+   $ echo 'What is love?' | translate zh-TW | translate zh-TW ko | translate ko fr | translate fr en
    What is love?
 
 Be Creative!
