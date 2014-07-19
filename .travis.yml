@@ -6,7 +6,7 @@ python:
     - pypy
 install:
     - pip install -r requirements.txt
-    - pip install py-translate
+    - pip install -r test_requirements.txt
     - python setup.py install
 script:
     - nosetests -v

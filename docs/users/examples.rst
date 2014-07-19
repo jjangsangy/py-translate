@@ -4,14 +4,14 @@
 Examples
 ================================================
 
-Unix Pipes
+Basic Usage
 ~~~~~~~~~~~~
 .. code-block:: bash
 
-    $ echo 'Hello World!' | translate zh-TW
+    $ translate zh-TW <<< "Hello World!"
     你好世界！
 
-    $ echo 'Goodbye!' | translate ko
+    $ translate ko <<< "Goodbye!"
     안녕히 가세요!
 
 
@@ -30,6 +30,60 @@ Redirect from File
     她就一頭聽著那老鼠說話，一頭在在心上納悶，所以她聽的那老鼠講的「尾曲」
     的歷史是差不多像這個樣了的
 
+
+Unix Pipes!
+~~~~~~~~~~~
+.. code-block:: bash
+
+   # Redirect any output through a unix pipe.
+   $ python --help | translate fr
+
+.. code-block::
+
+   D'autres variables d'environnement
+
+   PYTHONSTARTUP: le fichier exécuté au démarrage interactif (pas par défaut)
+   PYTHONPATH: ':'-liste de répertoires séparés préfixés à la
+      module par défaut chemin de recherche. Le résultat est sys.path.
+   PYTHONHOME: Annuaire <prefix> suppléant (ou <prefix> <exec_prefix>).
+   PYTHONCASEOK: ignorer la casse dans les états d'importation» (Windows).
+   PYTHONIOENCODING: Codage [: erreurs] utilisés pour stdin / stdout / stderr.
+   PYTHONHASHSEED: si cette variable est définie à aléatoire, l'effet est le même
+      comme spécifiant l'option-R: une valeur aléatoire est utilisée pour ensemencer les hashs de
+      str, octets et objets datetime. Il peut également être défini à un nombre entier
+      dans l'intervalle [0,4294967295] pour obtenir des valeurs de hachage avec une graine prévisible.
+
+::
+
+Be Creative
+~~~~~~~~~~~
+.. code-block:: bash
+
+   # A "Here-String" Grocery List
+   $ cat <<- GROCERY_LIST | translate ko
+        Celery
+        Milk
+        Eggs
+        Bread
+        Cereal
+   GROCERY_LIST
+
+   셀러리
+   우유
+   달걀
+   빵
+   시리얼
+
+Chaining together Pipes
+~~~~~~~~~~~~~~~~~~~~~~~
+.. code-block:: bash
+
+   # Translate Telephone!
+   $ echo 'What is love?' | translate zh-TW | translate ko | translate fr | translate en
+   What is love?
+
+
+
 Arguments
 ~~~~~~~~~
 Requires at least one command line argument for the destination language.
@@ -37,7 +91,7 @@ If no command line arguments are passed, an error message will be passed.
 
 .. code-block:: bash
 
-   $ echo 'No output language' | translate
+   $ translate | "Error! No Arguments"
 
 .. describe::
    usage: translate [-h] [-v] [-l [code]] [source] dest

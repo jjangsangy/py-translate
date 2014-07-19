@@ -2,6 +2,13 @@
 
 Release History
 ---------------
+0.1.4 (2-14-7-5)
+++++++++++++++++
+- General Bug Fixes
+- Speed Improvements
+- Length of multibyte characters correctly represented by spooler
+- Better support for utf-8.
+
 0.1.3 (2014-4-7)
 ++++++++++++++++
 - Implemented language discovery arg
