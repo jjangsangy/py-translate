@@ -1,14 +1,21 @@
 language: python
 python:
-    - "3.4"
-    - "3.3"
-    - "2.7"
-    - "pypy"
-    - "pypy3"
+- '3.4'
+- '3.3'
+- '2.7'
+- pypy
+- pypy3
 install:
-    - pip install -r requirements.txt
-    - pip install -r test_requirements.txt
-    - python setup.py install
+- pip install -r requirements.txt
+- pip install -r test_requirements.txt
+- python setup.py install
 script:
-    - nosetests -v
-
+- nosetests -v
+deploy:
+  provider: pypi
+  user: jjangsangy
+  password:
+    secure: O8T+PYUPg6HoOuK1GN84qGhdxu4nCsseweby4qPz5MXWrVIvqOp4fLIA4MK6d/apD0PhJnjBiMFCkK4GlSqCg2NK7wivTb0O/HuCJ/Zcz4MvxHYARgryDgGfgS2MTm3QBkPXrflLokJrRCO3HMoCMJGpvaZVcq5pVDTmJ/r5CYU=
+  on:
+    tags: true
+    repo: jjangsangy/py-translate
