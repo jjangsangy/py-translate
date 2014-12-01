@@ -1,14 +1,13 @@
 py-translate
 ------------
 
-|Documentation Status| |image| |image| |image|
+|Documentation Status| |github| |travis| |pypi|
 
 Py-translate is an easy to use translation tool for the command line.
 
 .. figure:: https://raw.githubusercontent.com/jjangsangy/py-translate/master/img/alice.gif
    :alt: Translate Lewis Carroll: Alice in Wonderland
 
-   Translate Lewis Carroll: Alice in Wonderland
 The end goal is a simple application for translating text in the
 terminal. Text can be generated interactively or programmatically in the
 shell environment. Through command line arguments, file descriptors or
@@ -31,7 +30,7 @@ Installation
 From PyPI with pip (easy)
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code:: sh
+.. code-block:: sh
 
     $ pip install py-translate
 
@@ -40,13 +39,13 @@ From Source at Github
 
 -  Clone the repository
 
-.. code:: sh
+.. code-block:: sh
 
     $ git clone https://github.com/jjangsangy/py-translate.git
 
 -  Install with setup.py
 
-.. code:: sh
+.. code-block:: sh
 
     $ python setup.py install
 
@@ -55,7 +54,7 @@ Usage
 
 -  Default will translate from english to target language
 
-.. code:: sh
+.. code-block:: sh
 
     $ translate zh-TW <<< 'Hello World!'
     你好世界！
@@ -63,14 +62,13 @@ Usage
 .. figure:: https://raw.githubusercontent.com/jjangsangy/py-translate/master/img/helloworld.gif
    :alt: Hello World
 
-   Hello World
 Examples
 --------
 
 -  Just as easily specify a source language by providing it as first
    argument
 
-.. code:: sh
+.. code-block:: sh
 
     # Translate Hello from French to English
     $ translate fr en <<< 'Bonjour, comment allez-vous!'
@@ -79,7 +77,7 @@ Examples
 Redirect from File
 ~~~~~~~~~~~~~~~~~~
 
-.. code:: sh
+.. code-block:: sh
 
     $ translate zh-TW < 'alice.txt'
 
@@ -96,7 +94,7 @@ Redirect from File
 Chaining together Pipes
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code:: sh
+.. code-block:: sh
 
     # Multiple Chaining
     $ echo 'What is love?' | translate zh-TW | translate zh-TW ko | translate ko fr | translate fr en
@@ -105,7 +103,7 @@ Chaining together Pipes
 Be Creative!
 ~~~~~~~~~~~~
 
-.. code:: sh
+.. code-block:: sh
 
     # Grocery List
     $ cat << BUY | translate ko
@@ -129,9 +127,9 @@ Find the latest documentation http://pythonhosted.org//py-translate/
 
 .. |Documentation Status| image:: https://readthedocs.org/projects/py-translate/badge/?version=master
    :target: https://readthedocs.org/projects/py-translate/?badge=master
-.. |image| image:: https://badge.fury.io/gh/jjangsangy%2Fpy-translate.svg
+.. |github| image:: https://badge.fury.io/gh/jjangsangy%2Fpy-translate.svg
    :target: http://badge.fury.io/gh/jjangsangy%2Fpy-translate
-.. |image| image:: https://travis-ci.org/jjangsangy/py-translate.svg?branch=master
+.. |travis| image:: https://travis-ci.org/jjangsangy/py-translate.svg?branch=master
    :target: https://travis-ci.org/jjangsangy/py-translate
-.. |image| image:: https://badge.fury.io/py/py-translate.svg
+.. |pypi| image:: https://badge.fury.io/py/py-translate.svg
    :target: http://badge.fury.io/py/py-translate
