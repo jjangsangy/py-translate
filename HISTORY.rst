@@ -2,6 +2,13 @@
 Release History
 =================
 
+0.2.0 (2014-11-30)
+------------------
+
+- Bug fixes
+- Implmented concurrency based on Asyncronous threads and coroutines
+- Up to 10x performance speedup
+
 0.1.6 (2014-11-30)
 -------------------
 
