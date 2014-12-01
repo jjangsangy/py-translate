@@ -11,14 +11,19 @@ to the the server.
 
 import sys
 import json
-from functools import wraps
+
+from multiprocessing.dummy import Pool as ThreadPool
+from functools import wraps, partial
 
 try:
     from urllib.request import urlopen, Request, quote
     from urllib.parse import urlencode
+    from queue import Queue
 except ImportError:
     from urllib2 import urlopen, Request, quote
     from urllib import urlencode
+    from Queue import Queue
+
 
 __all__ = [
     'push_url',
@@ -122,12 +127,26 @@ def coroutine(func):
 
 @coroutine
 def text_sink(source, dest):
-    """Coroutine end-point. Outputs text stream into translator"""
-    while True:
-        line = (yield)
-        translation = translator(source, dest, line)['sentences']
-        for line in translation:
-            sys.stdout.write(line['trans'])
+    """
+    Coroutine end-point. Outputs text stream into translator
+    """
+    task_queue = []
+    pool = ThreadPool(8)
+    try:
+        while True:
+            line = (yield)
+            task_queue.append(line)
+    finally:
+        result = pool.map(partial(translator, source, dest), task_queue)
+
+        pool.close()
+        pool.join()
+
+        for trans in result:
+            for line in trans['sentences']:
+                sys.stdout.write(line['trans'])
+        sys.stdout.write('\n')
+
 
 
 @coroutine
@@ -157,4 +176,3 @@ def source(target):
 
     for line in sys.stdin:
         target.send(line)
-    target.close()
