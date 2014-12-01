@@ -1,16 +1,32 @@
-.. _interface:
+.. _api:
 
-Main Interface
---------------
+Python API
+=============
 
 .. codeauthor:: Sang Han <jjangsangy@gmail.com>
 
+Translator Co-Routine
+-----------------------
+
 .. autofunction:: translate.translator
+.. autofunction:: translate.coroutine
+
+HTTP Delegation
+----------------
+
 .. autofunction:: translate.push_url
+
+String Cache
+----------------
+
 .. autofunction:: translate.source
 .. autofunction:: translate.spooler
 .. autofunction:: translate.text_sink
-.. autofunction:: translate.coroutine
+
+
+Language Code Generation
+----------------------------
+
 .. autofunction:: translate.load_codes
 .. autofunction:: translate.language_codes
 

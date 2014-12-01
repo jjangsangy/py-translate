@@ -18,6 +18,13 @@ py-translate
 ------------------------------------------------------------------------
 
 Quickstart Guide
+--------------------
+.. toctree::
+    :maxdepth: 1
+
+    README.rst
+
+Overview
 ----------------
 .. toctree::
     :maxdepth: 2

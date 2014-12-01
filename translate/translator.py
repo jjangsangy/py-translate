@@ -9,8 +9,6 @@ module deals with the client side logic of pushing the translation request
 to the the server.
 """
 
-from __future__ import print_function, unicode_literals
-
 import sys
 import json
 from functools import wraps
@@ -85,21 +83,25 @@ def translator(source, target, phrase):
             '你好世界！'
 
     """
+
     base = 'http://translate.google.com/translate_a/t'
-    params = urlencode({
+    params = urlencode(
+    {
         'client': 'webapp',
-        'ie': 'utf-8',
-        'oe': 'utf-8',
-        'sl': source,
-        'tl': target,
-        'q': phrase
+            'ie': 'utf-8',
+            'oe': 'utf-8',
+            'sl': source,
+            'tl': target,
+             'q': phrase,
     })
     url = '?'.join([base, params])
     return url
 
 
 def coroutine(func):
-    """Coroutine decorator primes first call to next"""
+    """
+    Co-routine decorator primes first call to next
+    """
 
     @wraps(func)
     def initialization(*args, **kwargs):
@@ -120,7 +122,7 @@ def text_sink(source, dest):
         line = (yield)
         translation = translator(source, dest, line)['sentences']
         for line in translation:
-            print(line['trans'], end='')
+            sys.stdout.write(line['trans'])
 
 
 # Make less http requests by chunking.
@@ -144,6 +146,12 @@ def spooler(iterable):
 
 def source(target):
     """Coroutine start point. Produces text stream and forwards to consumers"""
+
+    # TODO: Implement FileIO
+    if sys.stdin.isatty():
+        # target.send(args.file)
+        return
+
     for line in sys.stdin:
         target.send(line)
     target.close()

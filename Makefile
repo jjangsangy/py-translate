@@ -1,31 +1,24 @@
 init:
-	pip install -r requirements.txt
+	pip3 install -r requirements.txt
 
 test:
-	nosetests
+	nosetests -v
 
 .PHONY: clean
 
 build:
-	python setup.py build
+	python3 setup.py build
 
 dist:
-	python setup.py sdist
+	python3 setup.py sdist
 
 wheel:
-	python setup.py bdist_wheel
-
-install:
-	pip2 install py-translate
-	pip3 install py-translate
-
-uninstall:
-	pip3 uninstall py-translate
-	pip2 uninstall py-translate
+	python3 setup.py bdist_wheel
 
 publish:
-	python setup.py sdist upload -r pypi
-	python setup.py bdist_wheel upload -r pypi
+	pandoc README.md --from=markdown --to=rst -o README.rst
+	python3 setup.py sdist upload -r pypi
+	python3 setup.py bdist_wheel upload -r pypi
 
 clean:
 	rm -rf translate/*.pyc

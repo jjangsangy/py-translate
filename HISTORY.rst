@@ -3,6 +3,13 @@
 Release History
 ---------------
 
+0.1.6 (2014-11-30)
+++++++++++++++++++
+- Bug Fixes
+- Re-implmenenting concurrency models
+- Python 3 is now the base implemntation
+
+
 0.1.5 (2014-07-18)
 ++++++++++++++++++
 - Language Code Generator Fix

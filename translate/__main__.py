@@ -20,7 +20,9 @@ def main():
     '''
     version = ''.join([__version__, __build__])
 
+    # Language Code Parser
     langs = ArgumentParser(add_help=False)
+
     # Languages
     langs.add_argument(
         '-l', '--languages',

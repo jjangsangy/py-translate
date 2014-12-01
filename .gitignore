@@ -48,4 +48,5 @@ build/*
 
 # Repository specific files {{{
 texts/**
+.idea/**
 # }}}
