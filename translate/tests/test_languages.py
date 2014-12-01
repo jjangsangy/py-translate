@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.abspath('..'))
 try:
     from languages import load_codes, language_codes
 except ImportError:
-    from translate import load_codes, language_codes
+    from translate import load_codes, code_map
 
 
 class TestLanguages(unittest.TestCase):
@@ -31,7 +31,7 @@ class TestLanguages(unittest.TestCase):
         self.assertEqual(ko_codes.get('en'), u'영어')
 
     def test_codes(self):
-        table = language_codes('ko')
+        table = code_map('ko')
         self.assertEqual(table['en'], u'영어')
 
 

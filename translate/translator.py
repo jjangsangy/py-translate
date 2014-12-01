@@ -32,11 +32,16 @@ __all__ = [
 
 def push_url(site):
     '''
-    Decorator that wraps the translator method and performs
-    the GET HTTP request.
+    Decorates a function returning the url of translation API.
+    Creates and maintains HTTP connection state
 
     Returns a dict response object from the server containing the translated
     text and metadata of the request body
+
+    :param site: translator
+    :type site: function
+    :return: HTTP Response
+    :rtype: json
     '''
 
     @wraps(site)
@@ -67,7 +72,7 @@ def translator(source, target, phrase):
     :type target: str
     :param phrase: Text body string that will be url encoded and translated
     :type phrase: str
-    :returns: url
+    :return: url
     :rtype: str
 
     List of acceptable language codes for source and target languages
@@ -79,7 +84,7 @@ def translator(source, target, phrase):
     .. code-block:: python
 
         >>> import translate
-        >>> translator('en', 'zh-TW', 'Hello World!')
+        >>> translate.translator('en', 'zh-TW', 'Hello World!')
             '你好世界！'
 
     """
@@ -125,8 +130,6 @@ def text_sink(source, dest):
             sys.stdout.write(line['trans'])
 
 
-# Make less http requests by chunking.
-# Google maxes chunks sizes around 2k characters
 @coroutine
 def spooler(iterable):
     """Consumes text stream and spools into larger chunk for processing"""

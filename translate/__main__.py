@@ -3,70 +3,68 @@ import sys
 from argparse import ArgumentParser
 
 from .__version__ import __version__, __build__
-from .translator import (text_sink, spooler, source)
+from .translator import text_sink, spooler, source
+from .languages import print_table, translation_table
 
 __all__ = []
 
-description = '''A simple command line utility for translating text
-    using Google Translate.'''
 
-epilog = '''If only 1 positional argument is specified, it will be assumed
-    to be dest and source will default to english.'''
+def command_line():
+
+    description = 'A simple command line utility for translating text using Google Translate.'
+    epilog      = ' '.join(sorted(translation_table('en').keys()))
+    version     = ' '.join([__version__, __build__])
+
+    codes = ArgumentParser(add_help=False)
+    codes.add_argument(
+        '-l',
+        nargs='?',
+        default=False,
+        const='en',
+        metavar='code',
+        dest='code',
+        help='Enumerate the name of country and language code pair. Optionally specify output language'
+    )
+
+    language,_ = codes.parse_known_args()
+    if language.code:
+        print_table(language.code)
+        sys.exit(0)
+
+    # Main Parser
+    parser = ArgumentParser(
+        parents=[codes],
+        prog='translate',
+        description=description,
+        epilog=epilog
+    )
+    parser.add_argument(
+        '-v', '--version',
+        action='version',
+        version="%s v%s" % ('translate', version)
+    )
+
+    # Source and Target Language
+    parser.add_argument(
+        'source',
+        help='Source language code',
+    )
+    parser.add_argument(
+        'dest',
+        help='Destination language code'
+    )
+
+    return parser.parse_args()
 
 
 def main():
     '''
     Main Entry point for translator and argument parser
     '''
-    version = ''.join([__version__, __build__])
-
-    # Language Code Parser
-    langs = ArgumentParser(add_help=False)
-
-    # Languages
-    langs.add_argument(
-        '-l', '--languages',
-        nargs='?',
-        default=False,
-        const='en',
-        metavar='code',
-        help='List out available languages codes')
-
-    codes = langs.parse_known_args()
-
-    # Parse Languages
-    if codes[0].languages:
-        from .languages import print_table
-        print_table(codes[0].languages)
-        sys.exit(0)
-
-    # Argument Parser
-    parser = ArgumentParser(
-        parents=[langs],
-        prog='translate',
-        description=description,
-        epilog=epilog)
-
-    # Version
-    parser.add_argument(
-        '-v', '--version', action='version',
-        version="%s v%s" % ('translate', version))
-
-    # Source Language
-    parser.add_argument(
-        'source',
-        help='Source language code',
-        nargs='?',
-        default='en')
-
-    # Destination Language
-    parser.add_argument(
-        'dest',
-        help='Destination language code')
-
-    args = parser.parse_args()
-
+    args = command_line()
     source(spooler(text_sink(args.source, args.dest)))
+
+    return
 
 if __name__ == '__main__':
     sys.exit(main())
