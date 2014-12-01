@@ -11,10 +11,8 @@ from nose.tools import *
 
 sys.path.insert(0, os.path.abspath('..'))
 
-try:
-    from languages import load_codes, language_codes
-except ImportError:
-    from translate import load_codes, code_map
+from ..languages import translation_table, print_table
+
 
 
 class TestLanguages(unittest.TestCase):
