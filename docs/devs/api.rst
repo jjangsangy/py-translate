@@ -27,8 +27,8 @@ String Cache
 Language Code Generation
 ----------------------------
 
-.. autofunction:: translate.load_codes
-.. autofunction:: translate.language_codes
+.. autofunction:: translate.translation_table
+.. autofunction:: translate.print_table
 
 .. glossary::
 

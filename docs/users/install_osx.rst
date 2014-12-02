@@ -24,7 +24,7 @@ Before we can get hacking. We will need to do 3 things
    * Install pip
 
 1. Installing XCode or Command Line Tools
-----------------------------------------
+-------------------------------------------
 By default, Apple does not package OS X with it's own C Compiler.
 
 The default way would be to download and install `XCode <https://developer.apple.com/xcode>`_.

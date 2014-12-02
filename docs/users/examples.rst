@@ -6,7 +6,7 @@ Examples
 
 Basic Usage
 ~~~~~~~~~~~~
-.. code-block:: bash
+.. code-block:: sh
 
     $ translate zh-TW <<< "Hello World!"
     你好世界！
@@ -17,7 +17,7 @@ Basic Usage
 
 Redirect from File
 ~~~~~~~~~~~~~~~~~~
-.. code-block:: bash
+.. code-block:: sh
 
     $ translate zh-TW < "alice.txt"
 
@@ -33,12 +33,12 @@ Redirect from File
 
 Unix Pipes!
 ~~~~~~~~~~~
-.. code-block:: bash
+.. code-block:: sh
 
    # Redirect any output through a unix pipe.
    $ python --help | translate fr
 
-.. code-block::
+.. code:: sh
 
    D'autres variables d'environnement
 
@@ -57,7 +57,7 @@ Unix Pipes!
 
 Be Creative
 ~~~~~~~~~~~
-.. code-block:: bash
+.. code-block:: sh
 
    # A "Here-String" Grocery List
    $ cat <<- GROCERY_LIST | translate ko
@@ -76,7 +76,7 @@ Be Creative
 
 Chaining together Pipes
 ~~~~~~~~~~~~~~~~~~~~~~~
-.. code-block:: bash
+.. code-block:: sh
 
    # Translate Telephone!
    $ echo 'What is love?' | translate zh-TW | translate ko | translate fr | translate en
@@ -89,7 +89,7 @@ Arguments
 Requires at least one command line argument for the destination language.
 If no command line arguments are passed, an error message will be passed.
 
-.. code-block:: bash
+.. code-block:: sh
 
    $ translate | "Error! No Arguments"
 
@@ -104,13 +104,13 @@ Language Codes
 
 Use the -l, or --lang option to see all the possible language codes.
 
-.. code-block:: bash
+.. code-block:: sh
 
    $ translate --lang
 
 Specify the output format by language code
 
-.. code-block:: bash
+.. code-block:: sh
 
    $ translate --lang zh-TW
 
