@@ -7,13 +7,11 @@ except ImportError:
     from distutils.core import setup
 
 def read(path):
-    """Build a file path from *paths* and return the contents."""
+    'Helper reader function to extact content from documents'
     with open(path) as f:
         return f.read()
 
 
-description = '''A simple command line utility for translating text
-    using Google Translate.'''
 long_description = '\n\n'.join(
     [
         read('README.rst'),
@@ -21,16 +19,16 @@ long_description = '\n\n'.join(
     ])
 
 setup(
-    name='py-translate',
-    description=description,
+    name=translate.__title__,
+    description=translate.__doc__.strip(),
     long_description=long_description,
-    author='Sang Han',
+    author=translate.__author__,
     license=translate.__license__,
     url='https://github.com/jjangsangy/py-translate',
     download_url='https://github.com/jjangsangy/py-translate.git',
     author_email='jjangsangy@gmail.com',
     include_package_data=True,
-    packages=['translate'],
+    packages=[translate.__name__],
     version=translate.__version__,
     tests_require=['nose'],
     entry_points={
