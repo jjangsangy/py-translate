@@ -3,7 +3,7 @@ import sys
 from argparse import ArgumentParser
 
 from .__version__ import __version__, __build__
-from .translator import text_sink, spooler, source
+from .translator import text_sink, spooler, source, task
 from .languages import print_table, translation_table
 
 __all__ = []
@@ -62,7 +62,7 @@ def main():
     Main Entry point for translator and argument parser
     '''
     args = command_line()
-    source(spooler(text_sink(args.source, args.dest)))
+    source(spooler(text_sink(task(args.source, args.dest))))
 
     return
 

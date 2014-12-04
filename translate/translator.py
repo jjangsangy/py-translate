@@ -13,6 +13,7 @@ import sys
 import json
 
 from multiprocessing.dummy import Pool as ThreadPool
+from multiprocessing import JoinableQueue
 from functools import wraps, partial
 
 try:
@@ -24,16 +25,9 @@ except ImportError:
     from urllib import urlencode
     from Queue import Queue
 
+__all__ = ['push_url', 'translator', 'coroutine', 'text_sink', 'spooler', 'source', 'task', ]
 
-__all__ = [
-    'push_url',
-    'translator',
-    'coroutine',
-    'text_sink',
-    'spooler',
-    'source'
-]
-
+MAX_WORK = 10
 
 def push_url(site):
     '''
@@ -94,17 +88,9 @@ def translator(source, target, phrase):
 
     """
 
-    base = 'http://translate.google.com/translate_a/t'
-    params = urlencode(
-    {
-        'client': 'webapp',
-            'ie': 'utf-8',
-            'oe': 'utf-8',
-            'sl': source,
-            'tl': target,
-             'q': phrase,
-    })
-    url = '?'.join([base, params])
+    base   = 'http://translate.google.com/translate_a/t'
+    params = urlencode({'client': 'webapp', 'ie': 'utf-8', 'oe': 'utf-8', 'sl': source, 'tl': target, 'q': phrase, })
+    url    = '?'.join([base, params])
     return url
 
 
@@ -125,28 +111,44 @@ def coroutine(func):
     return initialization
 
 
+def bitstream_writer(script):
+    for trans in script:
+        for line in trans['sentences']:
+            sys.stdout.write(line['trans'])
+        sys.stdout.write('\n')
+    return
+
+
 @coroutine
-def text_sink(source, dest):
-    """
-    Coroutine end-point. Outputs text stream into translator
-    """
-    task_queue = []
-    pool = ThreadPool(8)
+def task(source, dest):
+    pool, tasks = ThreadPool(MAX_WORK), []
+    interpreter = partial(translator, source, dest)
     try:
         while True:
-            line = (yield)
-            task_queue.append(line)
-    finally:
-        result = pool.map(partial(translator, source, dest), task_queue)
-
+            tasks = (yield)
+            bitstream_writer(pool.map(interpreter, tasks))
+    except GeneratorExit:
+        bitstream_writer(pool.map(interpreter, tasks))
         pool.close()
         pool.join()
 
-        for trans in result:
-            for line in trans['sentences']:
-                sys.stdout.write(line['trans'])
-        sys.stdout.write('\n')
 
+@coroutine
+def text_sink(task):
+    """
+    Coroutine end-point. Outputs text stream into translator
+    """
+    task_queue = list()
+    try:
+        while True:
+            while len(task_queue) < MAX_WORK:
+                line = (yield)
+                task_queue.append(line)
+            task.send(task_queue)
+            task_queue = list()
+    except GeneratorExit:
+        task.send(task_queue)
+        task.close()
 
 
 @coroutine
@@ -161,9 +163,9 @@ def spooler(iterable):
                 wordcount += len(quote(stream).encode('utf-8'))
             else:
                 iterable.send(spool)
-    finally:
+    except GeneratorExit:
         iterable.send(spool)
-        sys.stdout.write('\n')
+        iterable.close()
 
 
 def source(target):
@@ -176,3 +178,4 @@ def source(target):
 
     for line in sys.stdin:
         target.send(line)
+    target.close()

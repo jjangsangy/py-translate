@@ -4,8 +4,6 @@ include Makefile
 include *.txt
 include .travis.yml
 recursive-include translate *.py
-prune translate/etc
-prune translate/lib
 prune docs
 prune img
 include translate/etc/supported_translations.json

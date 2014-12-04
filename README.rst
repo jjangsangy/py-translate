@@ -31,7 +31,7 @@ Installation
 From PyPI with pip (easy)
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: sh
+.. code:: sh
 
     $ pip install py-translate
 
@@ -40,13 +40,13 @@ From Source at Github
 
 -  Clone the repository
 
-.. code-block:: sh
+.. code:: sh
 
     $ git clone https://github.com/jjangsangy/py-translate.git
 
 -  Install with setup.py
 
-.. code-block:: sh
+.. code:: sh
 
     $ python setup.py install
 
@@ -55,7 +55,7 @@ Usage
 
 -  Default will translate from english to target language
 
-.. code-block:: sh
+.. code:: sh
 
     $ translate zh-TW <<< 'Hello World!'
     你好世界！
@@ -70,7 +70,7 @@ Examples
 -  Just as easily specify a source language by providing it as first
    argument
 
-.. code-block:: sh
+.. code:: sh
 
     # Translate Hello from French to English
     $ translate fr en <<< 'Bonjour, comment allez-vous!'
@@ -79,7 +79,7 @@ Examples
 Redirect from File
 ~~~~~~~~~~~~~~~~~~
 
-.. code-block:: sh
+.. code:: sh
 
     $ translate zh-TW < 'alice.txt'
 
@@ -96,7 +96,7 @@ Redirect from File
 Chaining together Pipes
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: sh
+.. code:: sh
 
     # Multiple Chaining
     $ echo 'What is love?' | translate zh-TW | translate zh-TW ko | translate ko fr | translate fr en
@@ -105,7 +105,7 @@ Chaining together Pipes
 Be Creative!
 ~~~~~~~~~~~~
 
-.. code-block:: sh
+.. code:: sh
 
     # Grocery List
     $ cat << BUY | translate ko
