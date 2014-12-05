@@ -2,6 +2,12 @@
 Release History
 =================
 
+0.2.1 (2014-12-04)
+------------------
+- Added Output Buffer Streaming
+- Utilized Cooperative Multitasking for Coroutines
+- Updated Documentation on API
+
 0.2.0 (2014-11-30)
 ------------------
 
