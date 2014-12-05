@@ -131,7 +131,7 @@ html_theme_options = {
     'navbar_pagenav': True,
     'navbar_fixed_top': True,
     'source_link_position': "nav",
-    'bootswatch_theme': "Paper",
+    'bootswatch_theme': "flatly",
     'bootstrap_version': "3",
         }
 
