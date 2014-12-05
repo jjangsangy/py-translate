@@ -3,7 +3,7 @@ py-translate
 
 [![Documentation Status](https://readthedocs.org/projects/py-translate/badge/?version=master)](https://readthedocs.org/projects/py-translate/?badge=master) [![github](https://badge.fury.io/gh/jjangsangy%2Fpy-translate.svg)](http://badge.fury.io/gh/jjangsangy%2Fpy-translate) [![travis](https://travis-ci.org/jjangsangy/py-translate.svg?branch=master)](https://travis-ci.org/jjangsangy/py-translate) [![pypi](https://badge.fury.io/py/py-translate.svg)](http://badge.fury.io/py/py-translate)
 
-Py-translate is an easy to use translation tool for the command line.
+A simple translation command line utility
 
 ![Translate Lewis Carroll: Alice in Wonderland][alice]
 

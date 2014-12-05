@@ -2,7 +2,7 @@
 """
 py-translate
 ============
-A simple command line utility for translating text using Google Translate.
+A simple translation command line utility
 
 :copyright: (c) 2014 Sang Han
 """
@@ -33,8 +33,8 @@ setup(
     entry_points={
         'console_scripts': [
             'translate = translate.__main__:main'
-                ]
-            },
+            ]
+        },
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Console',

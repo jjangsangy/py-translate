@@ -1,9 +1,7 @@
-include *.rst
 include LICENSE
-include Makefile
-include *.txt
 include .travis.yml
-recursive-include translate *.py
-prune docs
-prune img
+include requirements.txt
+include test_requirements.txt
 include translate/etc/supported_translations.json
+
+recursive-include translate *.py

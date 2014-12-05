@@ -2,6 +2,13 @@
 Release History
 =================
 
+0.2.2 (2014-12-XX)
+-------------------
+
+- Bug fixes
+- Decreased package size
+
+
 0.2.1 (2014-12-04)
 ------------------
 - Added Output Buffer Streaming
