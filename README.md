@@ -1,5 +1,5 @@
 py-translate
--------------
+=============
 
 [![Documentation Status](https://readthedocs.org/projects/py-translate/badge/?version=master)](https://readthedocs.org/projects/py-translate/?badge=master) [![github](https://badge.fury.io/gh/jjangsangy%2Fpy-translate.svg)](http://badge.fury.io/gh/jjangsangy%2Fpy-translate) [![travis](https://travis-ci.org/jjangsangy/py-translate.svg?branch=master)](https://travis-ci.org/jjangsangy/py-translate) [![pypi](https://badge.fury.io/py/py-translate.svg)](http://badge.fury.io/py/py-translate)
 
@@ -46,20 +46,30 @@ $ git clone https://github.com/jjangsangy/py-translate.git
 $ python setup.py install
 ```
 
-Usage
------
+## `usage: translate [-h] [-l [code]] [-v] source dest`
+
+| __Positional__ |                                                       |
+|----------------|-------------------------------------------------------|
+| dest           | Destination language code                             |
+| source         | Source language code                                  |
+| __Optional__   |                                                       |
+| -h, --help     | Show this help message and exit                       |
+| -l  _[code]_   | Enumerate the name of country and language code pair. |
+|                | [_Optionally specify output language format_]         |
+| -v, --version  | Show program’s version number and exit                |
+
+Examples
+--------
 
 - Default will translate from english to target language
 
 ```sh
 $ translate zh-TW <<< 'Hello World!'
 你好世界！
+
 ```
 
 ![Hello World][hello]
-
-Examples
---------
 
 - Just as easily specify a source language by providing it as first argument
 

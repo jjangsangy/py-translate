@@ -102,17 +102,17 @@ See :ref:`usage` section for usage information
 Language Codes
 ~~~~~~~~~~~~~~
 
-Use the -l, or --lang option to see all the possible language codes.
+Use the -l option to see all the possible language codes.
 
 .. code-block:: sh
 
-   $ translate --lang
+   $ translate -l
 
 Specify the output format by language code
 
 .. code-block:: sh
 
-   $ translate --lang zh-TW
+   $ translate -l zh-TW
 
 
 .. hlist::
