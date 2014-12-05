@@ -13,11 +13,11 @@ import json
 import functools
 
 try:
-    from urllib.request import urlopen, Request, quote
+    from urllib.request import urlopen, Request
     from urllib.parse import urlencode
 
 except ImportError:
-    from urllib2 import urlopen, Request, quote
+    from urllib2 import urlopen, Request
     from urllib import urlencode
 
 from .__version__ import __version__ as version
