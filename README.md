@@ -46,7 +46,7 @@ $ git clone https://github.com/jjangsangy/py-translate.git
 $ python setup.py install
 ```
 
-## usage
+## Usage
 
 ### `translate [-h] [-l [code]] [-v] source dest`
 
