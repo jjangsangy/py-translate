@@ -10,8 +10,8 @@ except ImportError:
     from urllib2 import quote
 
 from sys import stdin, stdout
-from multiprocessing.dummy import Pool as ThreadPool
 from functools import wraps, partial
+from multiprocessing.dummy import Pool as ThreadPool
 
 __all__ = 'coroutine', 'chunk', 'spool', 'source', 'set_task', 'write_stream'
 
@@ -116,6 +116,7 @@ def chunk(task):
             while len(task_queue) < MAX_WORK:
                 line = yield
                 task_queue.append(line)
+
             task.send(task_queue)
             task_queue = list()
 
@@ -132,20 +133,20 @@ def spool(iterable, maxsize=1500):
     :param iterable: Sends text stream for further processing
     :type iterable: Coroutine
     """
-    wordcount = 0
-    spool     = str()
+    words = 0
+    spool = str()
 
     try:
         while True:
 
-            while wordcount < maxsize:
-                stream = (yield)
+            while words < maxsize:
+                stream = yield
                 spool += stream
-                wordcount += len(quote(stream).encode('utf-8'))
+                words += len(quote(stream).encode('utf-8'))
 
             iterable.send(spool)
-            wordcount = 0
-            spool     = str()
+            words = 0
+            spool = str()
 
     except GeneratorExit:
         iterable.send(spool)
