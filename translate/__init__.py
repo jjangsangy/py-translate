@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
 '''
-A simple command line utility for translating text
-using Google Translate.
+"""
+py-translate
+============
+A simple command line utility for translating text using Google Translate.
+
+:copyright: (c) 2014 Sang Han
 '''
 
 from .translator import *

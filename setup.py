@@ -1,41 +1,40 @@
 # -*- coding: utf-8 -*-
-import translate
+"""
+py-translate
+============
+A simple command line utility for translating text using Google Translate.
 
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
-
-def read(path):
-    'Helper reader function to extact content from documents'
-    with open(path) as f:
-        return f.read()
-
-
-long_description = '\n\n'.join(
-    [
-        read('README.rst'),
-        read('HISTORY.rst')
-    ])
+:copyright: (c) 2014 Sang Han
+"""
+from translate import __version__, __license__
+from setuptools import setup
 
 setup(
-    name=translate.__title__,
-    description=translate.__doc__.strip(),
-    long_description=long_description,
-    author=translate.__author__,
-    license=translate.__license__,
+    name='py-translate',
+    description=(
+        'A simple translation command line utility'
+    ),
+    long_description='\n'.join(
+        [
+            open('README.rst').read(),
+            open('HISTORY.rst').read(),
+        ]
+    ),
+    author='Sang Han',
+    license=__license__,
     url='https://github.com/jjangsangy/py-translate',
-    download_url='https://github.com/jjangsangy/py-translate.git',
     author_email='jjangsangy@gmail.com',
     include_package_data=True,
-    packages=[translate.__name__],
-    version=translate.__version__,
+    packages=['translate'],
+    version=__version__,
+    install_requires=['argparse'],
     tests_require=['nose'],
+    zip_safe=False,
     entry_points={
         'console_scripts': [
             'translate = translate.__main__:main'
-            ]
-        },
+                ]
+            },
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
