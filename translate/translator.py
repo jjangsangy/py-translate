@@ -37,10 +37,10 @@ def push_url(site):
     text and metadata of the request body
 
     :param site: translator
-     :type site: Function
+    :type site: Function
 
     :return: HTTP Response
-     :rtype: Function
+    :rtype: Function
     '''
 
     @wraps(site)
@@ -86,16 +86,16 @@ def translator(source, target, phrase):
             '你好世界！'
 
     :param source: Language code for translation source
-     :type source: String
+    :type source: String
 
     :param target: Language code that source will be translate into
-     :type target: String
+    :type target: String
 
     :param phrase: Text body string that will be url encoded and translated
-     :type phrase: String
+    :type phrase: String
 
     :return: url
-     :rtype: String
+    :rtype: String
     """
     base   = 'http://translate.google.com/translate_a/t'
     params = urlencode(
@@ -134,10 +134,10 @@ def coroutine(func):
                 bar.close()
 
     :param func: Unprimed Generator
-     :type func: Function
+    :type func: Function
 
     :return: Initialized Coroutine
-     :rtype: Function
+    :rtype: Function
     """
 
     @wraps(func)
@@ -157,7 +157,7 @@ def coroutine(func):
 def write_stream(script):
     """
     :param script: Translated Text
-     :type script: Iterable
+    :type script: Iterable
 
     :return None:
     """
@@ -177,10 +177,10 @@ def set_task(source, dest):
     Task Setter Coroutine
 
     :param source: Source Language Code
-     :type source: String
+    :type source: String
 
     :param dest: Destination Language Code
-     :type dest: String
+    :type dest: String
     """
     pool, tasks = ThreadPool(MAX_WORK), []
     interpreter = partial(translator, source, dest)
@@ -201,7 +201,7 @@ def chunk(task):
     Once a queue has been built it is sent by copy and then destroyed.
 
     :param task: Task setter
-     :type task: Coroutine
+    :type task: Coroutine
     """
     task_queue = list()
 
@@ -257,7 +257,7 @@ def source(target):
     Coroutine starting point. Produces text stream and forwards to consumers
 
     :param target: Target coroutine consumer
-     :type target: Coroutine
+    :type target: Coroutine
     """
 
     if sys.stdin.isatty():

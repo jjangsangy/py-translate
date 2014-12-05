@@ -16,12 +16,23 @@ HTTP Delegation
 
 .. autofunction:: translate.push_url
 
-String Cache
+Stream Caching
 ----------------
 
 .. autofunction:: translate.source
-.. autofunction:: translate.spooler
-.. autofunction:: translate.text_sink
+.. autofunction:: translate.spool
+.. autofunction:: translate.chunk
+
+
+Multitasking
+-------------
+
+.. autofunction:: translate.set_task
+
+Writer
+-------
+
+.. autofunction:: translate.write_stream
 
 
 Language Code Generation
