@@ -7,6 +7,7 @@ Release History
 
 - Bug fixes
 - Decreased package size
+- Split `translator.py` into two seperate modules
 
 
 0.2.1 (2014-12-04)

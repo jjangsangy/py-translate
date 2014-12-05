@@ -125,7 +125,7 @@ def chunk(task):
 
 
 @coroutine
-def spool(iterable):
+def spool(iterable, maxsize=1500):
     """
     Consumes text streams and spools them together for more io efficient processes.
 
@@ -138,16 +138,12 @@ def spool(iterable):
     try:
         while True:
 
-            # Wind up Spool
-            while wordcount < 1500:
+            while wordcount < maxsize:
                 stream = (yield)
                 spool += stream
                 wordcount += len(quote(stream).encode('utf-8'))
 
-            else:
-                iterable.send(spool)
-
-            # Rewind Spool
+            iterable.send(spool)
             wordcount = 0
             spool     = str()
 

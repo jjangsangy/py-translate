@@ -50,6 +50,8 @@ $ python setup.py install
 
 ### `translate [-h] [-l [code]] [-v] source dest`
 
+### Arguments
+
 | __Positional__ |                                                       |
 |----------------|-------------------------------------------------------|
 | dest           | Destination language code                             |

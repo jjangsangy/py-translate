@@ -40,10 +40,11 @@ def command_line():
         metavar='code',
         dest='code',
         help=' '.join(
-            'Enumerate the name of country and language code pair.',
-            'Optionally specify output language'
+            [
+                'Enumerate the name of country and language code pair.',
+                'Optionally specify output language',
+            ])
         )
-    )
 
     # Preparse Language Code Flag
     language,_ = codes.parse_known_args()
