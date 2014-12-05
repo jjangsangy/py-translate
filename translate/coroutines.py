@@ -87,17 +87,18 @@ def set_task(translation_function, source, dest):
     :param dest: Destination Language Code
     :type dest: String
     """
-    pool, tasks = ThreadPool(MAX_WORK), []
+    tasks       = []
+    workers     = ThreadPool(MAX_WORK)
     interpreter = partial(translation_function, source, dest)
 
     try:
         while True:
             tasks = yield
-            write_stream(pool.map(interpreter, tasks))
+            write_stream(workers.map(interpreter, tasks))
 
     except GeneratorExit:
-        write_stream(pool.map(interpreter, tasks))
-        pool.close(); pool.join()
+        write_stream(workers.map(interpreter, tasks))
+        workers.close(); workers.join()
 
 @coroutine
 def chunk(task):
@@ -108,7 +109,7 @@ def chunk(task):
     :param task: Task setter
     :type task: Coroutine
     """
-    task_queue = list()
+    task_queue = []
 
     try:
         while True:
@@ -118,7 +119,7 @@ def chunk(task):
                 task_queue.append(line)
 
             task.send(task_queue)
-            task_queue = list()
+            task_queue = []
 
     except GeneratorExit:
         task.send(task_queue)
@@ -126,20 +127,23 @@ def chunk(task):
 
 
 @coroutine
-def spool(iterable, maxsize=1500):
+def spool(iterable, maxlen=1500):
     """
     Consumes text streams and spools them together for more io efficient processes.
 
     :param iterable: Sends text stream for further processing
     :type iterable: Coroutine
+
+    :param maxlen: Maximum query string size
+    :type maxlen: Integer
     """
     words = 0
-    spool = str()
+    spool = ''
 
     try:
         while True:
 
-            while words < maxsize:
+            while words < maxlen:
                 stream = yield
                 spool += stream
                 words += len(quote(stream).encode('utf-8'))
