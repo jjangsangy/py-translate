@@ -3,8 +3,10 @@
 coroutines
 ~~~~~~~~~~
 
-All functions definied within this file are essentially coroutines and
-therefore follow the coroutine pattern either as consumers, producers or
+All functions definied within this file are essentially coroutines or
+helper functions for working with coroutines.
+
+Therefore members follow the coroutine pattern either as consumers, producers or
 consumer/producers.
 
 """
