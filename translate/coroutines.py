@@ -120,20 +120,20 @@ def chunk(task):
     :param task: Task setter
     :type task: Coroutine
     """
-    task_queue = []
+    queue = []
 
     try:
         while True:
 
-            while len(task_queue) < MAX_WORK:
+            while len(queue) < MAX_WORK:
                 line = yield
-                task_queue.append(line)
+                queue.append(line)
 
-            task.send(task_queue)
-            task_queue = []
+            task.send(queue)
+            queue = []
 
     except GeneratorExit:
-        task.send(task_queue)
+        task.send(queue)
         task.close()
 
 @coroutine
