@@ -8,16 +8,25 @@ PYTHON = python$(VERSION)
 NOSE_FLAGS = -v
 NOSE = nosetests $(NOSE_FLAGS)
 
-.PHONY: clean wheel publish test
+env: env/bin/activate
+env/bin/activate: requirements.txt
+	test -d env || virtualenv --python=$(PYTHON) env
+	source env/bin/activate; pip install -r requirements.txt --upgrade
+	touch env/bin/activate
+
+.PHONY: clean wheel publish
 
 all:
 	$(PYTHON) setup.py build
 
+build: env
+	source env/bin/activate; python setup.py install
+
 install:
 	$(PIP) install -e .
 
-test:
-	$(NOSE)
+test: build
+	source env/bin/activate; pip install -r test_requirements.txt --upgrade; $(NOSE)
 
 wheel:
 	$(PYTHON) setup.py bdist_wheel
@@ -35,4 +44,5 @@ clean:
 	rm -rf build
 	rm -rf *egg-info
 	rm -rf dist
+	rm -rf env
 	if [ -f "$(SCRIPT)" ]; then rm "$(SCRIPT)"; fi

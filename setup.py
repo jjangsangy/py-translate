@@ -7,7 +7,7 @@ A simple translation command line utility
 :copyright: (c) 2014 Sang Han
 """
 
-from __version__ import __version__
+from version import __version__ as version
 from setuptools import setup
 
 setup(
@@ -27,7 +27,7 @@ setup(
     author_email='jjangsangy@gmail.com',
     include_package_data=True,
     packages=['translate'],
-    version=__version__,
+    version=version,
     install_requires=['six>=1.8', 'argparse'],
     tests_require=['nose'],
     zip_safe=False,

@@ -10,14 +10,11 @@ Therefore members follow the coroutine pattern either as consumers, producers or
 consumer/producers.
 
 """
-try:
-    from urllib.parse import quote
-except ImportError:
-    from urllib2 import quote
-
 from sys import stdin, stdout
 from functools import wraps, partial, reduce
 from multiprocessing.dummy import Pool as ThreadPool
+
+from six.moves.urllib.parse import quote
 
 __all__ = 'coroutine', 'chunk', 'spool', 'source', 'set_task', 'write_stream'
 
