@@ -61,7 +61,6 @@ def coroutine(func):
 
     return initialization
 
-
 def write_stream(script):
     """
     :param script: Translated Text
@@ -74,12 +73,13 @@ def write_stream(script):
     #))
 
     for trans in script:
+
         for line in trans['sentences']:
             stdout.write(line['trans'])
+
         stdout.write('\n')
 
     return None
-
 
 @coroutine
 def set_task(translation_function, source, dest):
@@ -108,8 +108,8 @@ def set_task(translation_function, source, dest):
             write_stream(workers.map(interpreter, tasks))
 
     except GeneratorExit:
-        write_stream(workers.map(interpreter, tasks))
-        workers.close(); workers.join()
+        workers.close()
+        workers.join()
 
 @coroutine
 def chunk(task):
@@ -136,7 +136,6 @@ def chunk(task):
         task.send(task_queue)
         task.close()
 
-
 @coroutine
 def spool(iterable, maxlen=1500):
     """
@@ -148,21 +147,25 @@ def spool(iterable, maxlen=1500):
     :param maxlen: Maximum query string size
     :type maxlen: Integer
     """
-    accumulator = lambda a, x: a + len(quote(x).encode('utf-8'))
-    words = 0
-    text = ''
+    words, text = 0, ''
+
+    accumulator = lambda a, x: (
+        a + len(quote(x).encode('utf-8'))
+            if isinstance(a, int) else
+        a + x
+    )
 
     try:
         while True:
 
             while words < maxlen:
                 stream = yield
-                text  += stream
+                text   = reduce(accumulator, stream, text)
                 words  = reduce(accumulator, stream, words)
 
             iterable.send(text)
-            words = 0
-            text = ''
+
+            words, text = 0, ''
 
     except GeneratorExit:
         iterable.send(text)
