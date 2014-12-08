@@ -68,10 +68,6 @@ def write_stream(script):
 
     :return None:
     """
-    # list(map(stdout.write,
-    #    (lines['trans'] for trans in script for lines in trans['sentences'])
-    #))
-
     for trans in script:
 
         for line in trans['sentences']:
@@ -98,14 +94,14 @@ def set_task(translation_function, source, dest):
     :param dest: Destination Language Code
     :type dest: String
     """
-    tasks       = []
-    workers     = ThreadPool(MAX_WORK)
-    interpreter = partial(translation_function, source, dest)
+    tasks     = []
+    workers   = ThreadPool(MAX_WORK)
+    translate = partial(translation_function, source, dest)
 
     try:
         while True:
             tasks = yield
-            write_stream(workers.map(interpreter, tasks))
+            write_stream(workers.map(translate, tasks))
 
     except GeneratorExit:
         workers.close()
@@ -170,7 +166,6 @@ def spool(iterable, maxlen=1500):
     except GeneratorExit:
         iterable.send(text)
         iterable.close()
-
 
 # TODO: Implement FileIO
 def source(target):
