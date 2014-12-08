@@ -10,7 +10,7 @@ except ImportError:
     from urllib2 import quote
 
 from sys import stdin, stdout
-from functools import wraps, partial
+from functools import wraps, partial, reduce
 from multiprocessing.dummy import Pool as ThreadPool
 
 __all__ = 'coroutine', 'chunk', 'spool', 'source', 'set_task', 'write_stream'
@@ -63,14 +63,12 @@ def write_stream(script):
 
     :return None:
     """
-    for trans in script:
 
-        for line in trans['sentences']:
-            stdout.write(line['trans'])
+    list(map(stdout.write,
+        (lines['trans'] for trans in script for lines in trans['sentences'])
+    ))
 
-        stdout.write('\n')
-
-    return None
+    stdout.write('\n')
 
 
 @coroutine
