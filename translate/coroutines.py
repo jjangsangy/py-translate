@@ -3,6 +3,10 @@
 coroutines
 ~~~~~~~~~~
 
+All functions definied within this file are essentially coroutines and
+therefore follow the coroutine pattern either as consumers, producers or
+consumer/producers.
+
 """
 try:
     from urllib.parse import quote
@@ -20,8 +24,8 @@ MAX_WORK = 10
 
 def coroutine(func):
     """
-    Initializes coroutine by calling it's next method. Used in a decorator fashion over functions that
-    generate coroutines.
+    Initializes coroutine essentially priming it to the yield statement.
+    Used as a decorator over functions that generate coroutines.
 
     .. code-block:: python
 
