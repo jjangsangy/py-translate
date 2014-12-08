@@ -131,7 +131,7 @@ BUY
 Documentation
 -------------
 
-Find the latest documentation http://pythonhosted.org//py-translate/
+Find the latest documentation http://pythonhosted.org/py-translate/
 
 
 [alice]: https://raw.githubusercontent.com/jjangsangy/py-translate/master/img/alice.gif

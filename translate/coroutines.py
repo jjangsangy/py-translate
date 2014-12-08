@@ -69,9 +69,14 @@ def write_stream(script):
 
     :return None:
     """
-    list(map(stdout.write,
-        (lines['trans'] for trans in script for lines in trans['sentences'])
-    ))
+    # list(map(stdout.write,
+    #    (lines['trans'] for trans in script for lines in trans['sentences'])
+    #))
+
+    for trans in script:
+        for line in trans['sentences']:
+            stdout.write(line['trans'])
+        stdout.write('\n')
 
     return None
 
