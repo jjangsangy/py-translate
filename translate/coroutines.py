@@ -61,6 +61,15 @@ def coroutine(func):
 
     return initialization
 
+
+def accumulator(init, update):
+    return (
+        init + len(quote(update).encode('utf-8'))
+            if isinstance(init, int) else
+        init + update
+    )
+
+
 def write_stream(script):
     """
     :param script: Translated Text
@@ -95,7 +104,7 @@ def set_task(translation_function, source, dest):
     :type dest: String
     """
     translator     = partial(translation_function, source, dest)
-    tasks, workers = None, ThreadPool(MAX_WORK)
+    tasks, workers = (), ThreadPool(MAX_WORK)
 
     try:
         while True:
@@ -115,17 +124,17 @@ def chunk(task):
     :param task: Task setter
     :type task: Coroutine
     """
-    queue = []
+    queue = ()
 
     try:
         while True:
 
             while len(queue) < MAX_WORK:
-                line = yield
-                queue.append(line)
+                line   = (yield)
+                queue += (line,)
 
             task.send(queue)
-            queue = []
+            queue = ()
 
     except GeneratorExit:
         task.send(queue)
@@ -143,12 +152,6 @@ def spool(iterable, maxlen=1500):
     :type maxlen: Integer
     """
     words, text = 0, ''
-
-    accumulator = lambda a, x: (
-        a + len(quote(x).encode('utf-8'))
-            if isinstance(a, int) else
-        a + x
-    )
 
     try:
         while True:
