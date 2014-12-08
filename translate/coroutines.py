@@ -94,14 +94,13 @@ def set_task(translation_function, source, dest):
     :param dest: Destination Language Code
     :type dest: String
     """
-    tasks     = []
-    workers   = ThreadPool(MAX_WORK)
-    translate = partial(translation_function, source, dest)
+    translator     = partial(translation_function, source, dest)
+    tasks, workers = None, ThreadPool(MAX_WORK)
 
     try:
         while True:
             tasks = yield
-            write_stream(workers.map(translate, tasks))
+            write_stream(workers.map(translator, tasks))
 
     except GeneratorExit:
         workers.close()
