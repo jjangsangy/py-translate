@@ -1,24 +1,32 @@
-init:
-	pip3 install -r requirements.txt
+SCRIPT := $(shell which translate)
+
+VERSION = 3
+
+PIP = pip$(VERSION)
+PYTHON = python$(VERSION)
+
+NOSE_FLAGS = -v
+NOSE = nosetests $(NOSE_FLAGS)
+
+.PHONY: clean wheel publish test
+
+all:
+	$(PYTHON) setup.py build
+
+install:
+	$(PIP) install -e .
 
 test:
-	nosetests -v
-
-.PHONY: clean
-
-build:
-	python3 setup.py build
-
-dist:
-	python3 setup.py sdist
+	$(NOSE)
 
 wheel:
-	python3 setup.py bdist_wheel
+	$(PYTHON) setup.py bdist_wheel
 
 publish:
 	pandoc README.md --from=markdown --to=rst -o README.rst
-	python3 setup.py sdist upload -r pypi
-	python3 setup.py bdist_wheel upload -r pypi
+	$(PYTHON) setup.py build nosetests
+	$(PYTHON) setup.py sdist upload -r pypi
+	$(PYTHON) setup.py bdist_wheel upload -r pypi
 
 clean:
 	rm -rf translate/*.pyc
@@ -27,3 +35,4 @@ clean:
 	rm -rf build
 	rm -rf *egg-info
 	rm -rf dist
+	if [ -f "$(SCRIPT)" ]; then rm "$(SCRIPT)"; fi

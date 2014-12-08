@@ -77,7 +77,7 @@ Release History
 - Name changed to py-translate
 - Distributed through PyPI and Wheel
 - More documentation and autoparsing for module functions
-- Separated into logical modules in a package rather than one executable __main__.py
+- Separated into logical modules in a package rather than one executable `__main__.py`
 
 0.0.0 (2014-03-31)
 --------------------

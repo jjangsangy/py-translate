@@ -1,13 +1,16 @@
-============
 py-translate
 ============
 
-|Documentation Status| |github| |travis| |pypi|
+|Documentation| |github| |travis| |pypi|
 
 A simple translation command line utility
 
 .. figure:: https://raw.githubusercontent.com/jjangsangy/py-translate/master/img/alice.gif
    :alt: Translate Lewis Carroll: Alice in Wonderland
+
+   Translate Lewis Carroll: Alice in Wonderland
+
+--------------
 
 The end goal is a simple application for translating text in the
 terminal. Text can be generated interactively or programmatically in the
@@ -31,7 +34,7 @@ Installation
 From PyPI with pip (easy)
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: sh
+.. code-block sh
 
     $ pip install py-translate
 
@@ -40,13 +43,13 @@ From Source at Github
 
 -  Clone the repository
 
-.. code-block:: sh
+.. code-block sh
 
     $ git clone https://github.com/jjangsangy/py-translate.git
 
 -  Install with setup.py
 
-.. code-block:: sh
+.. code-block sh
 
     $ python setup.py install
 
@@ -82,7 +85,7 @@ Examples
 
 -  Default will translate from english to target language
 
-.. code-block:: sh
+.. code-block sh
 
     $ translate zh-TW <<< 'Hello World!'
     你好世界！
@@ -90,10 +93,12 @@ Examples
 .. figure:: https://raw.githubusercontent.com/jjangsangy/py-translate/master/img/helloworld.gif
    :alt: Hello World
 
+   Hello World
+
 -  Just as easily specify a source language by providing it as first
    argument
 
-.. code-block:: sh
+.. code-block sh
 
     # Translate Hello from French to English
     $ translate fr en <<< 'Bonjour, comment allez-vous!'
@@ -102,7 +107,7 @@ Examples
 Redirect from File
 ~~~~~~~~~~~~~~~~~~
 
-.. code-block:: sh
+.. code-block sh
 
     $ translate zh-TW < 'alice.txt'
 
@@ -119,7 +124,7 @@ Redirect from File
 Chaining together Pipes
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: sh
+.. code-block sh
 
     # Multiple Chaining
     $ echo 'What is love?' | translate zh-TW | translate zh-TW ko | translate ko fr | translate fr en
@@ -128,7 +133,7 @@ Chaining together Pipes
 Be Creative!
 ~~~~~~~~~~~~
 
-.. code-block:: sh
+.. code-block sh
 
     # Grocery List
     $ cat << BUY | translate ko
@@ -150,7 +155,7 @@ Documentation
 
 Find the latest documentation http://pythonhosted.org//py-translate/
 
-.. |Documentation Status| image:: https://readthedocs.org/projects/py-translate/badge/?version=master
+.. |Documentation| image:: https://readthedocs.org/projects/py-translate/badge/?version=master
    :target: https://readthedocs.org/projects/py-translate/?badge=master
 
 .. |github| image:: https://badge.fury.io/gh/jjangsangy%2Fpy-translate.svg

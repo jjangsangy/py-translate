@@ -6,7 +6,8 @@ A simple translation command line utility
 
 :copyright: (c) 2014 Sang Han
 """
-from translate import __version__, __license__
+
+from __version__ import __version__
 from setuptools import setup
 
 setup(
@@ -21,13 +22,13 @@ setup(
         ]
     ),
     author='Sang Han',
-    license=__license__,
+    license='Apache License 2.0',
     url='https://github.com/jjangsangy/py-translate',
     author_email='jjangsangy@gmail.com',
     include_package_data=True,
     packages=['translate'],
     version=__version__,
-    install_requires=['argparse'],
+    install_requires=['six>=1.8', 'argparse'],
     tests_require=['nose'],
     zip_safe=False,
     entry_points={

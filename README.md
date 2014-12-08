@@ -1,11 +1,13 @@
 py-translate
 =============
 
-[![Documentation Status](https://readthedocs.org/projects/py-translate/badge/?version=master)](https://readthedocs.org/projects/py-translate/?badge=master) [![github](https://badge.fury.io/gh/jjangsangy%2Fpy-translate.svg)](http://badge.fury.io/gh/jjangsangy%2Fpy-translate) [![travis](https://travis-ci.org/jjangsangy/py-translate.svg?branch=master)](https://travis-ci.org/jjangsangy/py-translate) [![pypi](https://badge.fury.io/py/py-translate.svg)](http://badge.fury.io/py/py-translate)
+[![Documentation](https://readthedocs.org/projects/py-translate/badge/?version=master)](https://readthedocs.org/projects/py-translate/?badge=master) [![github](https://badge.fury.io/gh/jjangsangy%2Fpy-translate.svg)](http://badge.fury.io/gh/jjangsangy%2Fpy-translate) [![travis](https://travis-ci.org/jjangsangy/py-translate.svg?branch=master)](https://travis-ci.org/jjangsangy/py-translate) [![pypi](https://badge.fury.io/py/py-translate.svg)](http://badge.fury.io/py/py-translate)
 
 A simple translation command line utility
 
 ![Translate Lewis Carroll: Alice in Wonderland][alice]
+
+------------------------------------------------
 
 The end goal is a simple application for translating text in the terminal.
 Text can be generated interactively or programmatically in the
@@ -133,4 +135,5 @@ Find the latest documentation http://pythonhosted.org//py-translate/
 
 
 [alice]: https://raw.githubusercontent.com/jjangsangy/py-translate/master/img/alice.gif
+
 [hello]: https://raw.githubusercontent.com/jjangsangy/py-translate/master/img/helloworld.gif

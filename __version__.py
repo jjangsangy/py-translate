@@ -1,0 +1,1 @@
+translate/__version__.py
