@@ -18,7 +18,6 @@ from six.moves.urllib.parse import urlencode
 from .__version__ import __version__ as version
 from .__version__ import __build__ as build
 
-
 __all__ = 'push_url', 'translator'
 
 def push_url(site):
@@ -38,24 +37,29 @@ def push_url(site):
 
     @functools.wraps(site)
     def connection(*args, **kwargs):
+        """
+        Inner function that makes the http connection.
+        """
+        stream  = ''
+        req     = None
+        agent   = 'py-translate v{} {}'.format(version, build)
+        charset = 'utf-8'
 
-        req_stream = str()
-        req        = None
-
-        agent   = 'py-translate v{version} {build}'.format(**globals())
-        headers = {'User-Agent': agent}
+        headers = {
+              'User-Agent': agent,
+            'Content-Type': 'application/json; charset={}'.format(charset)
+        }
         url     = site(*args, **kwargs)
         request = Request(url, headers=headers)
 
         try:
-            req        = urlopen(request)
-            req_stream = req.read()
-            req_stream = req_stream.decode('utf-8')
+            req    = urlopen(request)
+            stream = req.read().decode(charset)
 
         finally:
             req.close()
 
-        return json.loads(req_stream)
+        return json.loads(stream)
 
     return connection
 

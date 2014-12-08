@@ -7,11 +7,14 @@ All functions definied within this file are essentially coroutines or
 helper functions for working with coroutines.
 
 Therefore members follow the coroutine pattern either as consumers, producers or
-consumer/producers.
-
+consumer/producers
 """
+
+from __future__ import print_function
+
 from sys import stdin, stdout
 from functools import wraps, partial, reduce
+from multiprocessing import cpu_count
 from multiprocessing.dummy import Pool as ThreadPool
 
 from six.moves.urllib.parse import quote
@@ -19,7 +22,7 @@ from six.moves.urllib.parse import quote
 __all__ = 'coroutine', 'chunk', 'spool', 'source', 'set_task', 'write_stream'
 
 # TODO: Get rid of this global variable
-MAX_WORK = 10
+MAX_WORK = cpu_count() ** 2
 
 def coroutine(func):
     """
@@ -66,18 +69,20 @@ def write_stream(script):
 
     :return None:
     """
-
     list(map(stdout.write,
         (lines['trans'] for trans in script for lines in trans['sentences'])
     ))
 
-    stdout.write('\n')
+    return None
 
 
 @coroutine
 def set_task(translation_function, source, dest):
     """
     Task Setter Coroutine
+
+    End point destination coroutine of a purely consumer type.
+    Delegates Text IO to the `write_stream` function.
 
     :param translation_function: Translator
     :type translation_function: Function
@@ -138,23 +143,24 @@ def spool(iterable, maxlen=1500):
     :param maxlen: Maximum query string size
     :type maxlen: Integer
     """
+    accumulator = lambda a, x: a + len(quote(x).encode('utf-8'))
     words = 0
-    spool = ''
+    text = ''
 
     try:
         while True:
 
             while words < maxlen:
                 stream = yield
-                spool += stream
-                words += len(quote(stream).encode('utf-8'))
+                text  += stream
+                words  = reduce(accumulator, stream, words)
 
-            iterable.send(spool)
+            iterable.send(text)
             words = 0
-            spool = str()
+            text = ''
 
     except GeneratorExit:
-        iterable.send(spool)
+        iterable.send(text)
         iterable.close()
 
 

@@ -14,6 +14,7 @@ def translation_table(language, filepath='supported_translations.json'):
 
     :param file: Path to location of json file
     :type file: str
+
     :return: language codes
     :rtype: dict
     '''
@@ -24,21 +25,18 @@ def translation_table(language, filepath='supported_translations.json'):
 
     with open(fullpath, 'rt') as fp:
         raw_data = json.load(fp).get(language, None)
+        assert(raw_data is not None)
 
-    assert(raw_data is not None)
-
-    table = {}
-    for code in raw_data:
-        table[code['language']]  = code['name']
-
-    return table
+    return dict((code['language'], code['name']) for code in raw_data)
 
 
-def print_table(lang):
+def print_table(language):
     '''
     Generates a formatted table of language codes
     '''
-    table = translation_table(lang)
+    table = translation_table(language)
+
     for code, name in table.items():
         print(u'{language:<8} {name:\u3000<20}'.format(name=name, language=code))
-    return
+
+    return None
