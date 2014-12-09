@@ -55,7 +55,7 @@ def push_url(site):
 
         try:
             req    = urlopen(request)
-            assert(req.status == 200)
+            assert(req.getcode() == 200)
             stream = req.read().decode(charset)
 
         finally:
