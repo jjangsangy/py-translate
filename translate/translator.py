@@ -42,6 +42,7 @@ def push_url(site):
         """
         stream  = ''
         req     = None
+
         agent   = 'py-translate v{} {}'.format(version, build)
         charset = 'utf-8'
 
@@ -54,6 +55,7 @@ def push_url(site):
 
         try:
             req    = urlopen(request)
+            assert(req.status == 200)
             stream = req.read().decode(charset)
 
         finally:

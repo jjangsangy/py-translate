@@ -66,6 +66,8 @@ def command_line():
     )
     parser.add_argument(
         'source',
+        nargs='?',
+        default=None,
         help='Source language code',
     )
     parser.add_argument(
