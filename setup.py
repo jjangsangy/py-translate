@@ -28,7 +28,7 @@ setup(
     include_package_data=True,
     packages=['translate'],
     version=version,
-    install_requires=['six>=1.8', 'argparse'],
+    install_requires=['argparse', 'requests'],
     tests_require=['nose'],
     zip_safe=False,
     entry_points={

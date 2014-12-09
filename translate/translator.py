@@ -12,15 +12,14 @@ to the the server.
 import json
 import functools
 
-from six.moves.urllib.request import urlopen, Request
-from six.moves.urllib.parse import urlencode
+from requests import Session, Request, codes
 
 from .__version__ import __version__ as version
 from .__version__ import __build__ as build
 
 __all__ = 'push_url', 'translator'
 
-def push_url(site):
+def push_url(request):
     '''
     Decorates a function returning the url of translation API.
     Creates and maintains HTTP connection state
@@ -35,33 +34,20 @@ def push_url(site):
     :rtype: Function
     '''
 
-    @functools.wraps(site)
+    @functools.wraps(request)
     def connection(*args, **kwargs):
         """
         Inner function that makes the http connection.
         """
-        stream  = ''
-        req     = None
+        content, sess = {}, Session()
 
-        agent   = 'py-translate v{} {}'.format(version, build)
-        charset = 'utf-8'
+        prepare  = sess.prepare_request(request(*args, **kwargs))
+        response = sess.send(prepare, timeout=5)
 
-        headers = {
-              'User-Agent': agent,
-            'Content-Type': 'application/json; charset={}'.format(charset)
-        }
-        url     = site(*args, **kwargs)
-        request = Request(url, headers=headers)
+        if response.status_code != codes.ok:
+            response.raise_for_status()
 
-        try:
-            req    = urlopen(request)
-            assert(req.getcode() == 200)
-            stream = req.read().decode(charset)
-
-        finally:
-            req.close()
-
-        return json.loads(stream)
+        return response.json()
 
     return connection
 
@@ -93,20 +79,19 @@ def translator(source, target, phrase):
     :param phrase: Text body string that will be url encoded and translated
     :type phrase: String
 
-    :return: url
-    :rtype: String
+    :return: Request Object
+    :rtype: Request
     """
-    base   = 'http://translate.google.com/translate_a/t'
-    params = urlencode(
-        {
-        'client': 'webapp',
-            'ie': 'utf-8',
-            'oe': 'utf-8',
-            'sl': source,
-            'tl': target,
-             'q': phrase,
-        }
-    )
-    url    = '?'.join([base, params])
 
-    return url
+    charset = 'utf-8'
+    base    = 'http://translate.google.com/translate_a/t'
+    agent   = 'py-translate v{} {}'.format(version, build)
+
+    headers = {'User-Agent': agent,
+               'Content-Type': 'application/json; charset={}'.format(charset)}
+
+    params  = {'client': 'webapp', 'ie': 'utf-8', 'oe': 'utf-8',
+                   'sl':   source, 'tl':  target,  'q': phrase, }
+
+    return Request('GET', url=base, params=params, headers=headers)
+

@@ -17,8 +17,6 @@ from functools import wraps, partial, reduce
 from multiprocessing import cpu_count
 from multiprocessing.dummy import Pool as ThreadPool
 
-from six.moves.urllib.parse import quote
-
 __all__ = 'coroutine', 'chunk', 'spool', 'source', 'set_task', 'write_stream'
 
 # TODO: Get rid of this global variable
@@ -64,7 +62,7 @@ def coroutine(func):
 
 def accumulator(init, update):
     return (
-        init + len(quote(update).encode('utf-8'))
+        init + len(update)
             if isinstance(init, int) else
         init + update
     )
@@ -81,7 +79,6 @@ def write_stream(script):
 
         for line in trans['sentences']:
             stdout.write(line['trans'])
-
         stdout.write('\n')
 
     return None
