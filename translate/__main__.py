@@ -17,6 +17,7 @@ limitations under the License.
 
 from sys import exit
 from argparse import ArgumentParser
+from functools import partial
 
 from .__version__ import __version__, __build__
 from .translator import translator
@@ -84,7 +85,9 @@ def main():
     '''
     args = command_line()
 
-    source(spool(chunk(set_task(translator, args.source, args.dest))))
+    translate = partial(translator, version=' '.join([__version__, __build__]))
+
+    source(spool(chunk(set_task(translate, args.source, args.dest))))
 
     return
 
