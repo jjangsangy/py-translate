@@ -137,11 +137,11 @@ Find the latest documentation http://pythonhosted.org/py-translate/
 Contribute
 ------------
 
-1. Fork us on [Github](https://github.com/jjangsangy/py-translate) and play with the code.
+1. Fork us on [Github](https://github.com/jjangsangy/py-translate) and play around your own copy.
 
-2. Find a bug? Implemented a new feature? Send a pull request and bug the maintainer until it gets merged and published.
+2. Find a bug? Implemented a new feature? Send a pull request to get it merged and published.
 
-3. Feel free to send an e-mail code maintainer for any questions or help regarding the codebase.
+3. Feel free to send an e-mail to the code maintainer for questions or help regarding the codebase.
 [jjangsangy@gmail.com](jjangsangy@gmail.com)
 
 
