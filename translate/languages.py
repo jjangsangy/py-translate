@@ -2,6 +2,8 @@
 from __future__ import print_function
 
 import json
+import operator
+
 from os.path import dirname, abspath, join, isfile
 
 __all__ = ['translation_table', 'print_table']
@@ -36,7 +38,9 @@ def print_table(language):
     '''
     table = translation_table(language)
 
-    for code, name in table.items():
-        print(u'{language:<8} {name:\u3000<20}'.format(name=name, language=code))
+    for code, name in sorted(table.items(), key=operator.itemgetter(0)):
+        print(u'{language:<8} {name:\u3000<20}'.format(
+            name=name, language=code
+        ))
 
     return None

@@ -15,8 +15,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
+import os
+
 from sys import exit
-from argparse import ArgumentParser
+from argparse import ArgumentParser, RawDescriptionHelpFormatter
 from functools import partial
 
 from .__version__ import __version__, __build__
@@ -26,15 +28,24 @@ from .languages import print_table, translation_table
 
 __all__ = []
 
+class TermWidthHelpFormatter(RawDescriptionHelpFormatter):
+
+    def __init__(self,  *args, **kwargs):
+        term = os.get_terminal_size()
+        width = term.columns
+        super(TermWidthHelpFormatter, self).__init__(
+            width=width, max_help_position=35, *args, **kwargs
+        )
+
 def command_line():
 
     description = 'A simple translation command line utility'
-    epilog      = ' '.join(sorted(translation_table('en').keys()))
     version     = ' '.join([__version__, __build__])
+    table       = sorted(translation_table('en').keys())
 
     codes = ArgumentParser(add_help=False)
     codes.add_argument(
-        '-l',
+        '-l', '--list',
         nargs='?',
         default=False,
         const='en',
@@ -58,7 +69,12 @@ def command_line():
         parents=[codes],
         prog='translate',
         description=description,
-        epilog=epilog
+        formatter_class=TermWidthHelpFormatter,
+    )
+    parser.add_argument(
+        '--translit',
+        action='store_true',
+        help='Print out the transliteration of the text',
     )
     parser.add_argument(
         '-v', '--version',
@@ -69,11 +85,16 @@ def command_line():
         'source',
         nargs='?',
         default=None,
+        choices=[None]+table,
         help='Source language code',
+        metavar='source',
     )
     parser.add_argument(
         'dest',
-        help='Destination language code'
+        type=str,
+        choices=table,
+        help='Destination language code',
+        metavar='target',
     )
 
     return parser.parse_args()
