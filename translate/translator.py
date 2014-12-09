@@ -9,13 +9,9 @@ module deals with the client side logic of pushing the translation request
 to the the server.
 """
 
-import json
 import functools
 
 from requests import Session, Request, codes
-
-from .__version__ import __version__ as version
-from .__version__ import __build__ as build
 
 __all__ = 'push_url', 'translator'
 
@@ -53,7 +49,7 @@ def push_url(request):
 
 
 @push_url
-def translator(source, target, phrase):
+def translator(source, target, phrase, version='0.0 test', charset='utf-8'):
     """
     Returns the url encoded string that will be pushed to the translation
     server for parsing.
@@ -83,9 +79,8 @@ def translator(source, target, phrase):
     :rtype: Request
     """
 
-    charset = 'utf-8'
     base    = 'http://translate.google.com/translate_a/t'
-    agent   = 'py-translate v{} {}'.format(version, build)
+    agent   = 'py-translate v{}'.format(version)
 
     headers = {'User-Agent': agent,
                'Content-Type': 'application/json; charset={}'.format(charset)}
@@ -94,4 +89,3 @@ def translator(source, target, phrase):
                    'sl':   source, 'tl':  target,  'q': phrase, }
 
     return Request('GET', url=base, params=params, headers=headers)
-
