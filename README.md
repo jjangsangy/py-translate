@@ -18,12 +18,20 @@ displayed on the terminal.
 Features
 ----------
 
+- Made for Python 3 but still works on Python 2
 - Fast and easy to install, easy to use
-- Implemented in `Python 3.4`, backwards compatible to `2.7`
-- Even supports `PyPy` and `PyPy 3k`
 - Supports translation from any language
 - Highly composable interface, the power of Unix pipes and filters.
 - Simple API and documentation
+
+Support
+--------
+
+- Code is tested and run against.
+- CPython 3.4, 3.3
+- CPython 2.7, 2.6
+- PyPy latest
+- PyPy3 latest
 
 Installation
 ------------
