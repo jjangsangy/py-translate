@@ -70,6 +70,7 @@ $ python setup.py install
 | -h, --help     | Show this help message and exit                       |
 | -l  _[code]_   | Enumerate the name of country and language code pair. |
 |                | [_Optionally specify output language format_]         |
+| --translit     | Print out the transliteration of the text             |
 | -v, --version  | Show program’s version number and exit                |
 
 Examples
@@ -93,6 +94,14 @@ $ translate fr en <<< 'Bonjour, comment allez-vous!'
 Hello, how are you?
 ```
 
+### Detect Language
+Omitting the source language will try to detect it based on the text
+
+```sh
+$ translate fr <<< 'I think therefore I am'
+Je pense donc je suis
+```
+
 ### Redirect from File
 
 ```sh
@@ -113,7 +122,7 @@ $ translate zh-TW < 'alice.txt'
 
 ```sh
 # Multiple Chaining
-$ echo 'What is love?' | translate zh-TW | translate zh-TW ko | translate ko fr | translate fr en
+$ echo 'What is love?' | translate en zh-TW | translate zh-TW ko | translate ko fr | translate fr en
 What is love?
 ```
 
@@ -134,6 +143,16 @@ BUY
 달걀
 빵
 시리얼
+```
+
+### Romanified Transliteration
+
+```sh
+$ translate --translit en ko <<< 'Want to fight!'
+ssaugo sip-eo!
+
+$ translate --translit en zh-TW <<< 'Kidding, we should be friends'
+Kāiwánxiào, wǒmen yīnggāi shì péngyǒu
 ```
 
 Documentation
