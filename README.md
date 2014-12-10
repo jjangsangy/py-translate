@@ -58,7 +58,7 @@ $ python setup.py install
 
 ## Usage
 
-### `translate [-h,--help] [-v, --version] [-l,--list [code]] [--translit] [source] dest`
+### `translate [--flags] [source] dest`
 
 ### Arguments
 
