@@ -17,8 +17,8 @@ setup(
     ),
     long_description='\n'.join(
         [
-            open('README.rst').read(),
-            open('HISTORY.rst').read(),
+            open('README.rst', 'rb').read().encode('utf-8'),
+            open('HISTORY.rst', 'rb').read().encode('utf-8'),
         ]
     ),
     author='Sang Han',
