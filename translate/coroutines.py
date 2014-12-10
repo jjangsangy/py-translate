@@ -76,7 +76,7 @@ def accumulator(init, update):
     )
 
 
-def write_stream(script):
+def write_stream(script, output):
     """
     :param script: Translated Text
     :type script: Iterable
@@ -86,13 +86,16 @@ def write_stream(script):
     for trans in script:
 
         for line in trans['sentences']:
-            stdout.write(line['trans'])
+            if line.get(output, None):
+                stdout.write(line[output])
+            else:
+                stdout.write(line['source'])
         stdout.write('\n')
 
     return None
 
 @coroutine
-def set_task(translation_function, source, dest):
+def set_task(translation_function, source, dest, translit=False):
     """
     Task Setter Coroutine
 
@@ -108,13 +111,13 @@ def set_task(translation_function, source, dest):
     :param dest: Destination Language Code
     :type dest: String
     """
-    translator     = partial(translation_function, source, dest)
-    tasks, workers = (), ThreadPool(MAX_WORK)
+    translator, out = partial(translation_function, source, dest), 'translit' if translit else 'trans'
+    tasks, workers  = (), ThreadPool(MAX_WORK)
 
     try:
         while True:
             tasks = yield
-            write_stream(workers.map(translator, tasks))
+            write_stream(workers.map(translator, tasks), out)
 
     except GeneratorExit:
         workers.close()
