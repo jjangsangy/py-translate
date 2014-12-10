@@ -17,10 +17,12 @@ from functools import wraps, partial, reduce
 from multiprocessing import cpu_count
 from multiprocessing.dummy import Pool as ThreadPool
 
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
 __all__ = 'coroutine', 'chunk', 'spool', 'source', 'set_task', 'write_stream'
 
 # TODO: Get rid of this global variable
-MAX_WORK = cpu_count() * 12
+MAX_WORK = cpu_count() * 8
 
 def coroutine(func):
     """
@@ -76,22 +78,19 @@ def accumulator(init, update):
     )
 
 
-def write_stream(script, output):
+def write_stream(trans, output):
     """
     :param script: Translated Text
     :type script: Iterable
 
     :return None:
     """
-    for trans in script:
+    for line in trans['sentences']:
+        if line.get(output, None):
+            stdout.write(line[output])
 
-        for line in trans['sentences']:
-            if line.get(output, None):
-                stdout.write(line[output])
-            else:
-                stdout.write(line['source'])
-        stdout.write('\n')
-        stdout.flush()
+    stdout.write('\n')
+    stdout.flush()
 
     return None
 
@@ -112,19 +111,27 @@ def set_task(translation_function, source, dest, translit=False):
     :param dest: Destination Language Code
     :type dest: String
     """
-    tasks     = tuple()
-    workers   = ThreadPool(MAX_WORK)
+    task      = tuple()
+    workers   = ThreadPoolExecutor(max_workers=MAX_WORK)
     translate = partial(translation_function, source, dest)
     output    = ('translit' if translit else 'trans')
+    url_futures = dict()
 
     try:
         while True:
-            tasks = yield
-            write_stream(workers.map(translate, tasks), output)
+            task = yield
+            url_futures.update([(workers.submit(translate, msg), msg) for msg in task])
 
     except GeneratorExit:
-        workers.close()
-        workers.join()
+
+        for future in as_completed(url_futures):
+            if not future.exception():
+                result = future.result()
+                write_stream(result, output)
+            else:
+                raise future.exception()
+
+        workers.shutdown(wait=True)
 
 @coroutine
 def chunk(task):

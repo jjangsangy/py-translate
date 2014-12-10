@@ -43,7 +43,7 @@ def push_url(request):
         sess.mount('https://', HTTPAdapter(max_retries=2))
 
         prepare  = sess.prepare_request(request(*args, **kwargs))
-        response = sess.send(prepare, timeout=(3.05, 5), verify=True)
+        response = sess.send(prepare, verify=True)
 
         if response.status_code != codes.ok:
             response.raise_for_status()
