@@ -61,6 +61,14 @@ def coroutine(func):
 
 
 def accumulator(init, update):
+    """
+    Generic accumulator function.
+
+    :param init:  Initial Value
+    :param update: Value to accumulate
+
+    :return: Combined Values
+    """
     return (
         init + len(update)
             if isinstance(init, int) else

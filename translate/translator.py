@@ -11,6 +11,7 @@ to the the server.
 
 import functools
 
+from requests.adapters import HTTPAdapter
 from requests import Session, Request, codes
 
 __all__ = 'push_url', 'translator'
@@ -35,10 +36,14 @@ def push_url(request):
         """
         Inner function that makes the http connection.
         """
-        content, sess = {}, Session()
+        content  = dict()
+        sess     = Session()
+
+        sess.mount('http://', HTTPAdapter(max_retries=2))
+        sess.mount('https://', HTTPAdapter(max_retries=2))
 
         prepare  = sess.prepare_request(request(*args, **kwargs))
-        response = sess.send(prepare, timeout=5)
+        response = sess.send(prepare, timeout=5, verify=True)
 
         if response.status_code != codes.ok:
             response.raise_for_status()
@@ -79,7 +84,7 @@ def translator(source, target, phrase, version='0.0 test', charset='utf-8'):
     :rtype: Request
     """
 
-    base    = 'http://translate.google.com/translate_a/t'
+    base    = 'https://translate.google.com/translate_a/t'
     agent   = 'py-translate v{}'.format(version)
 
     headers = {'User-Agent': agent,

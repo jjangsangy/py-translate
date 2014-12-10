@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Copyright: Sang Han 2014
+Copyright: 2014 Sang Han
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,8 +14,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-
-import os
 
 from sys import exit
 from argparse import ArgumentParser, RawDescriptionHelpFormatter
@@ -31,10 +29,8 @@ __all__ = []
 class TermWidthHelpFormatter(RawDescriptionHelpFormatter):
 
     def __init__(self,  *args, **kwargs):
-        term = os.get_terminal_size()
-        width = term.columns
         super(TermWidthHelpFormatter, self).__init__(
-            width=width, max_help_position=35, *args, **kwargs
+            width=120, max_help_position=35, *args, **kwargs
         )
 
 def command_line():
