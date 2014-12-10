@@ -212,13 +212,16 @@ htmlhelp_basename = 'py-translatedoc'
 # -- Options for LaTeX output ---------------------------------------------
 
 latex_elements = {
-    'classoptions': ',oneside',
-    'babel': '\\usepackage[english]{babel}',
-    'papersize': 'letterpaper',
-    'pointsize': '12pt',
+    'inputenc': '',
+    'utf8extra': '',
     'preamble': '''
-        \\hypersetup{unicode=true}
-        ''',
+\\hypersetup{unicode=true}
+\\usepackage{CJKutf8}
+\\usepackage[utf8]{inputenc}
+\\usepackage[T1]{fontenc}
+\\AtBeginDocument{\\begin{CJK}{UTF8}{STSong}}
+\\AtEndDocument{\end{CJK}}
+''',
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
