@@ -112,13 +112,15 @@ def set_task(translation_function, source, dest, translit=False):
     :param dest: Destination Language Code
     :type dest: String
     """
-    translator, out = partial(translation_function, source, dest), 'translit' if translit else 'trans'
-    tasks, workers  = (), ThreadPool(MAX_WORK)
+    tasks     = tuple()
+    workers   = ThreadPool(MAX_WORK)
+    translate = partial(translation_function, source, dest)
+    output    = ('translit' if translit else 'trans')
 
     try:
         while True:
             tasks = yield
-            write_stream(workers.map(translator, tasks), out)
+            write_stream(workers.map(translate, tasks), output)
 
     except GeneratorExit:
         workers.close()
@@ -152,7 +154,8 @@ def chunk(task):
 @coroutine
 def spool(iterable, maxlen=1500):
     """
-    Consumes text streams and spools them together for more io efficient processes.
+    Consumes text streams and spools them together for more io
+    efficient processes.
 
     :param iterable: Sends text stream for further processing
     :type iterable: Coroutine

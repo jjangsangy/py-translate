@@ -104,7 +104,10 @@ def main():
 
     translate = partial(translator, version=' '.join([__version__, __build__]))
 
-    source(spool(chunk(set_task(translate, args.source, args.dest, translit=args.translit))))
+    source(spool(chunk(set_task(translate,
+                                args.source,
+                                args.dest,
+                                translit=args.translit))))
 
     return
 
