@@ -58,20 +58,21 @@ $ python setup.py install
 
 ## Usage
 
-### `translate [-h] [-l [code]] [-v] source dest`
+### `translate [-h,--help] [-v, --version] [-l,--list [code]] [--translit] [source] dest`
 
 ### Arguments
 
-| __Positional__ |                                                       |
-|----------------|-------------------------------------------------------|
-| dest           | Destination language code                             |
-| source         | Source language code                                  |
-| __Optional__   |                                                       |
-| -h, --help     | Show this help message and exit                       |
-| -l  _[code]_   | Enumerate the name of country and language code pair. |
-|                | [_Optionally specify output language format_]         |
-| --translit     | Print out the transliteration of the text             |
-| -v, --version  | Show program’s version number and exit                |
+| __Positional__     |                                                       |
+|--------------------|-------------------------------------------------------|
+| dest               | Destination language code                             |
+| source             | Source language code                                  |
+| __Optional__       |                                                       |
+| -h,--help          | Show this help message and exit                       |
+| -v, --version      | Show program’s version number and exit                |
+| -l,--list _[code]_ | Enumerate the name of country and language code pair. |
+|                    | [_Optionally specify output language format_]         |
+| --translit         | Print out the transliteration of the text             |
+
 
 Examples
 --------
@@ -100,6 +101,16 @@ Omitting the source language will try to detect it based on the text
 ```sh
 $ translate fr <<< 'I think therefore I am'
 Je pense donc je suis
+```
+
+### Romanified Transliteration
+
+```sh
+$ translate --translit en ko <<< 'Want to fight!'
+ssaugo sip-eo!
+
+$ translate --translit en zh-TW <<< 'Kidding, we should be friends'
+Kāiwánxiào, wǒmen yīnggāi shì péngyǒu
 ```
 
 ### Redirect from File
@@ -145,16 +156,6 @@ BUY
 시리얼
 ```
 
-### Romanified Transliteration
-
-```sh
-$ translate --translit en ko <<< 'Want to fight!'
-ssaugo sip-eo!
-
-$ translate --translit en zh-TW <<< 'Kidding, we should be friends'
-Kāiwánxiào, wǒmen yīnggāi shì péngyǒu
-```
-
 Documentation
 -------------
 
@@ -164,7 +165,7 @@ Find the latest documentation http://pythonhosted.org/py-translate/
 Contribute
 ------------
 
-1. Fork us on [Github](https://github.com/jjangsangy/py-translate) and play around your own copy.
+1. Fork us on [Github](https://github.com/jjangsangy/py-translate).
 
 2. Find a bug? Implemented a new feature? Send a pull request to get it merged and published.
 
