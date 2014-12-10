@@ -36,8 +36,8 @@ def push_url(request):
         """
         Inner function that makes the http connection.
         """
-        content  = dict()
-        sess     = Session()
+        content = dict()
+        sess    = Session()
 
         sess.mount('http://',  HTTPAdapter(max_retries=2))
         sess.mount('https://', HTTPAdapter(max_retries=2))

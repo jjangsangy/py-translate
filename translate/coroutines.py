@@ -20,7 +20,7 @@ from multiprocessing.dummy import Pool as ThreadPool
 __all__ = 'coroutine', 'chunk', 'spool', 'source', 'set_task', 'write_stream'
 
 # TODO: Get rid of this global variable
-MAX_WORK = cpu_count() ** 2
+MAX_WORK = cpu_count() * 12
 
 def coroutine(func):
     """
@@ -91,6 +91,7 @@ def write_stream(script, output):
             else:
                 stdout.write(line['source'])
         stdout.write('\n')
+        stdout.flush()
 
     return None
 

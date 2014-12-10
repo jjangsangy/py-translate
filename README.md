@@ -1,7 +1,9 @@
 py-translate
 =============
 
-[![Documentation](https://readthedocs.org/projects/py-translate/badge/?version=master)](https://readthedocs.org/projects/py-translate/?badge=master) [![github](https://badge.fury.io/gh/jjangsangy%2Fpy-translate.svg)](http://badge.fury.io/gh/jjangsangy%2Fpy-translate) [![travis](https://travis-ci.org/jjangsangy/py-translate.svg?branch=master)](https://travis-ci.org/jjangsangy/py-translate) [![pypi](https://badge.fury.io/py/py-translate.svg)](http://badge.fury.io/py/py-translate)
+[![Documentation](https://readthedocs.org/projects/py-translate/badge/?version=master)](https://readthedocs.org/projects/py-translate/?badge=master)[![github](https://badge.fury.io/gh/jjangsangy%2Fpy-translate.svg)](http://badge.fury.io/gh/jjangsangy%2Fpy-translate) [![travis](https://travis-ci.org/jjangsangy/py-translate.svg?branch=master)](https://travis-ci.org/jjangsangy/py-translate) [![pypi](https://badge.fury.io/py/py-translate.svg)](http://badge.fury.io/py/py-translate)
+
+[![Wheel](https://pypip.in/wheel/py-translate/badge.svg)](https://pypi.python.org/pypi/py-translate/)
 
 A simple translation command line utility
 
@@ -23,15 +25,6 @@ Features
 - Supports translation from any language
 - Highly composable interface, the power of Unix pipes and filters.
 - Simple API and documentation
-
-Support
---------
-
-- Code is tested and run against.
-- CPython 3.4, 3.3
-- CPython 2.7, 2.6
-- PyPy latest
-- PyPy3 latest
 
 Installation
 ------------
@@ -62,11 +55,11 @@ $ python setup.py install
 
 ### Arguments
 
-| __Positional__     |                                                       |
+| **Positional**     |                                                       |
 |--------------------|-------------------------------------------------------|
 | dest               | Destination language code                             |
 | source             | Source language code                                  |
-| __Optional__       |                                                       |
+| **Optional**       |                                                       |
 | -h,--help          | Show this help message and exit                       |
 | -v, --version      | Show program’s version number and exit                |
 | -l,--list _[code]_ | Enumerate the name of country and language code pair. |
@@ -95,8 +88,8 @@ $ translate fr en <<< 'Bonjour, comment allez-vous!'
 Hello, how are you?
 ```
 
-### Detect Language
-Omitting the source language will try to detect it based on the text
+### Smart Language Detection
+Omitting the source language will try to detect it based on the text content
 
 ```sh
 $ translate fr <<< 'I think therefore I am'
@@ -156,6 +149,19 @@ BUY
 시리얼
 ```
 
+Support
+--------
+
+Here’s a list of Python platforms that are officially supported.
+
+- Python 3.4
+- Python 3.3
+- Python 3.2
+- Python 2.7
+- Python 2.6
+- PyPy 2 (Latest)
+- PyPy 3 (latest)
+
 Documentation
 -------------
 
@@ -176,3 +182,5 @@ Contribute
 [alice]: https://raw.githubusercontent.com/jjangsangy/py-translate/master/img/alice.gif
 
 [hello]: https://raw.githubusercontent.com/jjangsangy/py-translate/master/img/helloworld.gif
+
+[Documentation]: https://readthedocs.org/projects/py-translate/badge/?version=master
