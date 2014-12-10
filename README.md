@@ -76,10 +76,10 @@ $ python setup.py install
 Examples
 --------
 
-- Default will translate from english to target language
+Hello World from English to Traditional Chinese
 
 ```sh
-$ translate zh-TW <<< 'Hello World!'
+$ translate en zh-TW <<< 'Hello World!'
 你好世界！
 
 ```
