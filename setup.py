@@ -28,14 +28,14 @@ setup(
     include_package_data=True,
     packages=['translate'],
     version=version,
-    install_requires=['argparse', 'requests'],
+    install_requires=['futures', 'requests'],
     tests_require=['nose'],
     zip_safe=False,
     entry_points={
         'console_scripts': [
             'translate = translate.__main__:main'
-            ]
-        },
+        ]
+    },
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Console',

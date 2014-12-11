@@ -12,17 +12,17 @@ consumer/producers
 
 from __future__ import print_function
 
+import operator
+
 from sys import stdin, stdout
 from functools import wraps, partial, reduce
-from multiprocessing import cpu_count
+from collections import deque
+from multiprocessing import cpu_count, Queue
 from multiprocessing.dummy import Pool as ThreadPool
 
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import ThreadPoolExecutor
 
-__all__ = 'coroutine', 'chunk', 'spool', 'source', 'set_task', 'write_stream'
-
-# TODO: Get rid of this global variable
-MAX_WORK = cpu_count() * 8
+__all__ = 'coroutine', 'spool', 'source', 'set_task', 'write_stream'
 
 def coroutine(func):
     """
@@ -77,25 +77,24 @@ def accumulator(init, update):
         init + update
     )
 
-
-def write_stream(trans, output):
+def write_stream(script, output='trans'):
     """
     :param script: Translated Text
     :type script: Iterable
 
     :return None:
     """
-    for line in trans['sentences']:
+    for line in script['sentences']:
+
         if line.get(output, None):
             stdout.write(line[output])
 
     stdout.write('\n')
-    stdout.flush()
 
-    return None
 
+# TODO: Get rid of all this context crap
 @coroutine
-def set_task(translation_function, source, dest, translit=False):
+def set_task(translator, translit=False):
     """
     Task Setter Coroutine
 
@@ -105,58 +104,38 @@ def set_task(translation_function, source, dest, translit=False):
     :param translation_function: Translator
     :type translation_function: Function
 
-    :param source: Source Language Code
-    :type source: String
-
-    :param dest: Destination Language Code
-    :type dest: String
+    :param translit: Transliteration Switch
+    :type: Bool
     """
-    task      = tuple()
-    workers   = ThreadPoolExecutor(max_workers=MAX_WORK)
-    translate = partial(translation_function, source, dest)
-    output    = ('translit' if translit else 'trans')
-    url_futures = dict()
+    # Initialize Task Queue
+    task    = str()
+    queue   = deque()
+
+    # Callable Objects
+    first   = operator.itemgetter(0)
+    done    = operator.methodcaller('done')
+    result  = operator.methodcaller('result')
+
+    # Function Partial
+    output  = ('translit' if translit else 'trans')
+    stream  = partial(write_stream, output=output)
+
+    # Worker Thread Pool
+    maxwork = cpu_count() * 32
+    workers = ThreadPoolExecutor(maxwork)
 
     try:
         while True:
+
             task = yield
-            url_futures.update([(workers.submit(translate, msg), msg) for msg in task])
+            queue.append(workers.submit(translator, task))
+
+            while queue and done(first(queue)):
+                stream(result(queue.pop()))
 
     except GeneratorExit:
-
-        for future in as_completed(url_futures):
-            if not future.exception():
-                result = future.result()
-                write_stream(result, output)
-            else:
-                raise future.exception()
-
         workers.shutdown(wait=True)
-
-@coroutine
-def chunk(task):
-    """
-    Chunk text into a queue and send by copy to a task setter coroutine.
-    Once a queue has been built it is sent by copy and then destroyed.
-
-    :param task: Task setter
-    :type task: Coroutine
-    """
-    queue = ()
-
-    try:
-        while True:
-
-            while len(queue) < MAX_WORK:
-                line   = (yield)
-                queue += (line,)
-
-            task.send(queue)
-            queue = ()
-
-    except GeneratorExit:
-        task.send(queue)
-        task.close()
+        list(map(stream,(map(result,queue))))
 
 @coroutine
 def spool(iterable, maxlen=1500):
@@ -197,11 +176,7 @@ def source(target):
     :type target: Coroutine
     """
 
-    if stdin.isatty():
-        # target.send(args.file)
-        return
-
     for line in stdin:
         target.send(line)
 
-    target.close()
+    return target.close()

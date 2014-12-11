@@ -21,7 +21,7 @@ from functools import partial
 
 from .__version__ import __version__, __build__
 from .translator import translator
-from .coroutines import chunk, spool, source, set_task
+from .coroutines import spool, source, set_task
 from .languages import print_table, translation_table
 
 __all__ = []
@@ -100,16 +100,11 @@ def main():
     '''
     Main Entry point for translator and argument parser
     '''
-    args = command_line()
+    args      = command_line()
+    translate = partial(translator, args.source, args.dest,
+                        version=' '.join([__version__, __build__]))
 
-    translate = partial(translator, version=' '.join([__version__, __build__]))
-
-    source(spool(chunk(set_task(translate,
-                                args.source,
-                                args.dest,
-                                translit=args.translit))))
-
-    return
+    return source(spool(set_task(translate, translit=args.translit)))
 
 if __name__ == '__main__':
     exit(main())
