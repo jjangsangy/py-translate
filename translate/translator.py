@@ -10,13 +10,14 @@ to the the server.
 """
 
 import functools
+import requests
 
+from requests import Request, Session
 from requests.adapters import HTTPAdapter
-from requests import Session, Request, codes
 
 __all__ = 'push_url', 'translator'
 
-def push_url(request):
+def push_url(interface):
     '''
     Decorates a function returning the url of translation API.
     Creates and maintains HTTP connection state
@@ -24,28 +25,27 @@ def push_url(request):
     Returns a dict response object from the server containing the translated
     text and metadata of the request body
 
-    :param site: translator
-    :type site: Function
-
-    :return: HTTP Response
-    :rtype: Function
+    :param interface: Callable Request Interface
+    :type interface: Function
     '''
 
-    @functools.wraps(request)
+    @functools.wraps(interface)
     def connection(*args, **kwargs):
         """
-        Inner function that makes the http connection.
+        Extends and wraps a HTTP interface.
+
+        :return: Response Content
+        :rtype: Dictionary
         """
-        content = dict()
-        sess    = Session()
+        session = Session()
+        session.mount('http://',  HTTPAdapter(max_retries=2))
+        session.mount('https://', HTTPAdapter(max_retries=2))
 
-        sess.mount('http://',  HTTPAdapter(max_retries=2))
-        sess.mount('https://', HTTPAdapter(max_retries=2))
+        request  = Request(**interface(*args, **kwargs))
+        prepare  = session.prepare_request(request)
+        response = session.send(prepare, verify=True)
 
-        prepare  = sess.prepare_request(request(*args, **kwargs))
-        response = sess.send(prepare, verify=True)
-
-        if response.status_code != codes.ok:
+        if response.status_code != requests.codes.ok:
             response.raise_for_status()
 
         return response.json()
@@ -80,17 +80,20 @@ def translator(source, target, phrase, version='0.0 test', charset='utf-8'):
     :param phrase: Text body string that will be url encoded and translated
     :type phrase: String
 
-    :return: Request Object
-    :rtype: Request
+    :return: Request Interface
+    :rtype: Dictionary
     """
 
-    base    = 'https://translate.google.com/translate_a/t'
-    agent   = 'py-translate v{}'.format(version)
+    url     = 'https://translate.google.com/translate_a/t'
+    agent   = 'User-Agent',   'py-translate v{}'.format(version)
+    content = 'Content-Type', 'application/json; charset={}'.format(charset)
 
-    headers = {'User-Agent': agent,
-               'Content-Type': 'application/json; charset={}'.format(charset)}
-
-    params  = {'client': 'webapp', 'ie': 'utf-8', 'oe': 'utf-8',
+    params  = {'client': 'webapp', 'ie': 'UTF-8', 'oe': 'UTF-8',
                    'sl':   source, 'tl':  target,  'q': phrase, }
 
-    return Request('GET', url=base, params=params, headers=headers)
+    request = {'method': 'GET',
+                  'url': url,
+               'params': params,
+              'headers': dict([agent, content])}
+
+    return request

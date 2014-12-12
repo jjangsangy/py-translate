@@ -13,12 +13,10 @@ consumer/producers
 from __future__ import print_function
 
 import operator
+import sys
 
-from sys import stdin, stdout
 from functools import wraps, partial, reduce
-from collections import deque
-from multiprocessing import cpu_count, Queue
-from multiprocessing.dummy import Pool as ThreadPool
+from multiprocessing import cpu_count
 
 from concurrent.futures import ThreadPoolExecutor
 
@@ -84,12 +82,18 @@ def write_stream(script, output='trans'):
 
     :return None:
     """
-    for line in script['sentences']:
+    printer   = partial(print, file=sys.stdout, end='')
+    sentences = script.get('sentences', None)
 
-        if line.get(output, None):
-            stdout.write(line[output])
+    assert(sentences is not None)
+    assert(output in sentences[0])
 
-    stdout.write('\n')
+    for line in sentences:
+        printer(line[output])
+    printer('\n')
+
+    return
+
 
 
 # TODO: Get rid of all this context crap
@@ -109,7 +113,7 @@ def set_task(translator, translit=False):
     """
     # Initialize Task Queue
     task    = str()
-    queue   = deque()
+    queue   = list()
 
     # Callable Objects
     first   = operator.itemgetter(0)
@@ -149,7 +153,8 @@ def spool(iterable, maxlen=1500):
     :param maxlen: Maximum query string size
     :type maxlen: Integer
     """
-    words, text = 0, ''
+    words = int()
+    text  = str()
 
     try:
         while True:
@@ -160,14 +165,14 @@ def spool(iterable, maxlen=1500):
                 words  = reduce(accumulator, stream, words)
 
             iterable.send(text)
-
-            words, text = 0, ''
+            words = int()
+            text  = str()
 
     except GeneratorExit:
         iterable.send(text)
         iterable.close()
 
-# TODO: Implement FileIO
+
 def source(target):
     """
     Coroutine starting point. Produces text stream and forwards to consumers
@@ -176,7 +181,7 @@ def source(target):
     :type target: Coroutine
     """
 
-    for line in stdin:
+    for line in sys.stdin:
         target.send(line)
 
     return target.close()
