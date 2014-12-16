@@ -14,9 +14,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
+import sys
 
-from sys import exit
-from argparse import ArgumentParser, RawDescriptionHelpFormatter
+from argparse import ArgumentParser, RawDescriptionHelpFormatter, FileType, REMAINDER
 from functools import partial
 
 from .__version__ import __version__, __build__
@@ -81,7 +81,6 @@ def command_line():
         'source',
         nargs='?',
         default=None,
-        choices=[None]+table,
         help='Source language code',
         metavar='source',
     )
@@ -91,6 +90,14 @@ def command_line():
         choices=table,
         help='Destination language code',
         metavar='target',
+    )
+    parser.add_argument(
+        'text',
+        nargs='?',
+        default=sys.stdin,
+        type=FileType('r', encoding='UTF-8'),
+        help='Text file',
+        metavar='file',
     )
 
     return parser.parse_args()
@@ -104,7 +111,7 @@ def main():
     translate = partial(translator, args.source, args.dest,
                         version=' '.join([__version__, __build__]))
 
-    return source(spool(set_task(translate, translit=args.translit)))
+    return source(spool(set_task(translate, translit=args.translit)), args.text)
 
 if __name__ == '__main__':
-    exit(main())
+    sys.exit(main())

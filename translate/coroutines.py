@@ -75,6 +75,7 @@ def accumulator(init, update):
         init + update
     )
 
+
 def write_stream(script, output='trans'):
     """
     :param script: Translated Text
@@ -91,7 +92,7 @@ def write_stream(script, output='trans'):
         printer(line[output])
     printer('\n')
 
-    return
+    return sys.stdout.flush()
 
 
 
@@ -172,15 +173,14 @@ def spool(iterable, maxlen=1200):
         iterable.close()
 
 
-def source(target):
+def source(target, inputstream=sys.stdin):
     """
     Coroutine starting point. Produces text stream and forwards to consumers
 
     :param target: Target coroutine consumer
     :type target: Coroutine
     """
-
-    for line in sys.stdin:
+    for line in inputstream:
 
         while len(line) > 500:
             init, sep, line = line.partition(' ')
@@ -188,5 +188,7 @@ def source(target):
             target.send(''.join([init, sep]))
 
         target.send(line)
+
+    inputstream.close()
 
     return target.close()

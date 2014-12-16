@@ -88,7 +88,7 @@ def translator(source, target, phrase, version='0.0 test', charset='utf-8'):
     agent   = 'User-Agent',   'py-translate v{}'.format(version)
     content = 'Content-Type', 'application/text; charset={}'.format(charset)
 
-    params  = {'client': 'webapp', 'ie': 'UTF-8', 'oe': 'UTF-8',
+    params  = {'client': 'webapp', 'ie': charset, 'oe': charset,
                    'sl':   source, 'tl':  target,  'q': phrase, }
 
     request = {'method': 'GET',
