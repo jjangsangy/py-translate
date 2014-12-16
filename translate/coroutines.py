@@ -85,7 +85,6 @@ def write_stream(script, output='trans'):
     printer   = partial(print, file=sys.stdout, end='')
     sentences = script.get('sentences', None)
 
-    assert(sentences is not None)
     assert(output in sentences[0])
 
     for line in sentences:
@@ -142,7 +141,7 @@ def set_task(translator, translit=False):
         list(map(stream,(map(result,queue))))
 
 @coroutine
-def spool(iterable, maxlen=1500):
+def spool(iterable, maxlen=1200):
     """
     Consumes text streams and spools them together for more io
     efficient processes.
@@ -182,6 +181,12 @@ def source(target):
     """
 
     for line in sys.stdin:
+
+        while len(line) > 500:
+            init, sep, line = line.partition(' ')
+            assert(len(init) <= 500)
+            target.send(''.join([init, sep]))
+
         target.send(line)
 
     return target.close()

@@ -84,9 +84,9 @@ def translator(source, target, phrase, version='0.0 test', charset='utf-8'):
     :rtype: Dictionary
     """
 
-    url     = 'https://translate.google.com/translate_a/t'
+    url     = 'https://translate.google.com/translate_a/t?'
     agent   = 'User-Agent',   'py-translate v{}'.format(version)
-    content = 'Content-Type', 'application/json; charset={}'.format(charset)
+    content = 'Content-Type', 'application/text; charset={}'.format(charset)
 
     params  = {'client': 'webapp', 'ie': 'UTF-8', 'oe': 'UTF-8',
                    'sl':   source, 'tl':  target,  'q': phrase, }
