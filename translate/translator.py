@@ -11,6 +11,7 @@ to the the server.
 
 import functools
 import requests
+import codecs
 
 from requests import Request, Session
 from requests.adapters import HTTPAdapter

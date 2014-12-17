@@ -89,7 +89,12 @@ def write_stream(script, output='trans'):
     assert(output in sentences[0])
 
     for line in sentences:
-        printer(line[output])
+        # I hate you unicode I hate you I hate you I hate you
+        if isinstance(line[output], str):
+            printer(line[output])
+        else:
+            printer(line[output].encode('UTF-8'))
+
     printer('\n')
 
     return sys.stdout.flush()

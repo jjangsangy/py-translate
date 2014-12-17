@@ -95,7 +95,7 @@ def command_line():
         'text',
         nargs='?',
         default=sys.stdin,
-        type=FileType('r', encoding='UTF-8'),
+        type=FileType('r'),
         help='Text file',
         metavar='file',
     )
