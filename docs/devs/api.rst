@@ -21,7 +21,9 @@ Stream Caching
 
 .. autofunction:: translate.source
 .. autofunction:: translate.spool
-.. autofunction:: translate.chunk
+.. autofunction:: translate.set_task
+.. autofunction:: translate.write_stream
+.. autofunction:: translate.accumulator
 
 
 Multitasking

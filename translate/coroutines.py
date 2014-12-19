@@ -20,7 +20,7 @@ from multiprocessing import cpu_count
 
 from concurrent.futures import ThreadPoolExecutor
 
-__all__ = 'coroutine', 'spool', 'source', 'set_task', 'write_stream'
+__all__ = 'coroutine', 'spool', 'source', 'set_task', 'write_stream', 'accumulator'
 
 def coroutine(func):
     """

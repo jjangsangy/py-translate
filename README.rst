@@ -8,6 +8,9 @@ A simple translation command line utility
 .. figure:: https://raw.githubusercontent.com/jjangsangy/py-translate/master/img/alice.gif
    :alt: Translate Lewis Carroll: Alice in Wonderland
 
+   Translate Lewis Carroll: Alice in Wonderland
+
+--------------
 
 The end goal is a simple application for translating text in the
 terminal. Text can be generated interactively or programmatically in the
@@ -18,15 +21,14 @@ displayed on the terminal.
 Features
 --------
 
-- Made for Python 3 but still works on Python 2
-- Fast and easy to install, easy to use
-- Supports translation from any language
-- Highly composable interface, the power of Unix pipes and filters.
-- Simple API and documentation
+-  Made for Python 3 but still works on Python 2
+-  Fast and easy to install, easy to use
+-  Supports translation from any language
+-  Highly composable interface, the power of Unix pipes and filters.
+-  Simple API and documentation
 
 Installation
 ------------
-
 
 From PyPI with pip (easy)
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -35,17 +37,16 @@ From PyPI with pip (easy)
 
     $ pip install py-translate
 
-
 From Source at Github
 ~~~~~~~~~~~~~~~~~~~~~
 
-Clone the repository
+-  Clone the repository
 
 .. code:: sh
 
     $ git clone https://github.com/jjangsangy/py-translate.git
 
-Install with setup.py
+-  Install with setup.py
 
 .. code:: sh
 
@@ -60,25 +61,25 @@ Usage
 Arguments
 ~~~~~~~~~
 
-+----------------------+---------------------------------------------------------+
-| **Positional**       |                                                         |
-+======================+=========================================================+
-| dest                 | Destination language code                               |
-+----------------------+---------------------------------------------------------+
-| source               | Source language code                                    |
-+----------------------+---------------------------------------------------------+
-| **Optional**         |                                                         |
-+----------------------+---------------------------------------------------------+
-| -h,--help            | Show this help message and exit                         |
-+----------------------+---------------------------------------------------------+
-| -v, --version        | Show program’s version number and exit                  |
-+----------------------+---------------------------------------------------------+
-| -l,--list *[code]*   | Enumerate the name of country and language code pair.   |
-+----------------------+---------------------------------------------------------+
-|                      | [*Optionally specify output language format*\ ]         |
-+----------------------+---------------------------------------------------------+
-| --translit           | Print out the transliteration of the text               |
-+----------------------+---------------------------------------------------------+
++------------------+-------------------------------------------------------+
+| **Positional**   |                                                       |
++==================+=======================================================+
+| dest             | Destination language code                             |
++------------------+-------------------------------------------------------+
+| source           | Source language code                                  |
++------------------+-------------------------------------------------------+
+| **Optional**     |                                                       |
++------------------+-------------------------------------------------------+
+| -h,--help        | Show this help message and exit                       |
++------------------+-------------------------------------------------------+
+| -v, --version    | Show program’s version number and exit                |
++------------------+-------------------------------------------------------+
+| -l,--list [code] | Enumerate the name of country and language code pair. |
++------------------+-------------------------------------------------------+
+|                  | [ Optionally specify output language format ]         |
++------------------+-------------------------------------------------------+
+| --translit       | Print out the transliteration of the text             |
++------------------+-------------------------------------------------------+
 
 Examples
 --------
@@ -93,7 +94,9 @@ Hello World from English to Traditional Chinese
 .. figure:: https://raw.githubusercontent.com/jjangsangy/py-translate/master/img/helloworld.gif
    :alt: Hello World
 
-- Just as easily specify a source language by providing it as first
+   Hello World
+
+-  Just as easily specify a source language by providing it as first
    argument
 
 .. code:: sh
@@ -175,45 +178,43 @@ Support
 
 Here’s a list of Python platforms that are officially supported.
 
-- Python 3.4
-- Python 3.3
-- Python 3.2
-- Python 2.7
-- Python 2.6
-- PyPy 2 (Latest)
-- PyPy 3 (latest)
+-  Python 3.4
+-  Python 3.3
+-  Python 3.2
+-  Python 2.7
+-  Python 2.6
+-  PyPy 2 (Latest)
+-  PyPy 3 (latest)
 
 Documentation
 -------------
 
 Find the latest documentation http://pythonhosted.org/py-translate/
 
-
 Contribute
 ----------
 
 1. Fork us on `Github <https://github.com/jjangsangy/py-translate>`__.
-2. Find a bug? Implemented a new feature? Send a pull request to get it merged and published.
-3. Feel free to send an e-mail to the code maintainer for questions or help regarding the codebase.
 
-`jjangsangy@gmail.com <jjangsangy@gmail.com>`__
+2. Find a bug? Implemented a new feature? Send a pull request to get it
+   merged and published.
+
+3. Feel free to send an e-mail to the code maintainer for questions or
+   help regarding the codebase.
+   `jjangsangy@gmail.com <jjangsangy@gmail.com>`__
 
 
 .. |Documentation| image:: https://readthedocs.org/projects/py-translate/badge/?version=master
    :target: https://readthedocs.org/projects/py-translate/?badge=master
 
-
 .. |github| image:: https://badge.fury.io/gh/jjangsangy%2Fpy-translate.svg
    :target: http://badge.fury.io/gh/jjangsangy%2Fpy-translate
-
 
 .. |travis| image:: https://travis-ci.org/jjangsangy/py-translate.svg?branch=master
    :target: https://travis-ci.org/jjangsangy/py-translate
 
-
 .. |pypi| image:: https://badge.fury.io/py/py-translate.svg
    :target: http://badge.fury.io/py/py-translate
-
 
 .. |Wheel| image:: https://pypip.in/wheel/py-translate/badge.svg
    :target: https://pypi.python.org/pypi/py-translate/

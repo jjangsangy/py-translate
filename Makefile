@@ -32,7 +32,6 @@ wheel:
 	$(PYTHON) setup.py bdist_wheel
 
 publish:
-	pandoc README.md --from=markdown --to=rst -o README.rst
 	$(PYTHON) setup.py build nosetests
 	$(PYTHON) setup.py sdist upload -r pypi
 	$(PYTHON) setup.py bdist_wheel upload -r pypi
