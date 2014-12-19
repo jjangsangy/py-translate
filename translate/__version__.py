@@ -1,2 +1,2 @@
-__version__ = '0.2.3'
-__build__ = 'release'
+__version__ = '1.0.0'
+__build__ = 'beta'

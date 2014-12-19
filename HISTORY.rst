@@ -2,6 +2,19 @@
 Release History
 =================
 
+1.0.0 (2014-12-18)
+------------------
+- Bug fix with lines longer than 1000 chars
+- Fixed another unicode bug
+- Improved Python 2/3 Compatability
+- Implemented text transliteration where available
+- Implemented simple File IO
+- Better utilization of thread pools using futures module.
+- Vendorized dependencies
+- Swapped transport API from urllib2 with Requests
+- SSL/TLS integration for secure web requests
+
+
 0.2.3 (2014-12-08)
 -------------------
 - Bug fix with double output
