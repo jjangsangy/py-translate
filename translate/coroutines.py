@@ -12,15 +12,15 @@ consumer/producers
 
 from __future__ import print_function
 
-import operator
 import sys
 
 from functools import wraps, partial, reduce
-from multiprocessing import cpu_count
+from multiprocessing import cpu_count, Queue
 
 from concurrent.futures import ThreadPoolExecutor
 
 __all__ = 'coroutine', 'spool', 'source', 'set_task', 'write_stream', 'accumulator'
+
 
 def coroutine(func):
     """
@@ -86,7 +86,7 @@ def write_stream(script, output='trans'):
     printer   = partial(print, file=sys.stdout, end='')
     sentences = script.get('sentences', None)
 
-    assert(output in sentences[0])
+    assert output in sentences[0]
 
     for line in sentences:
         # I hate you unicode I hate you I hate you I hate you
@@ -97,7 +97,7 @@ def write_stream(script, output='trans'):
 
     printer('\n')
 
-    return sys.stdout.flush()
+    return
 
 
 
@@ -120,34 +120,25 @@ def set_task(translator, translit=False):
     task    = str()
     queue   = list()
 
-    # Callable Objects
-    first   = operator.itemgetter(0)
-    done    = operator.methodcaller('done')
-    result  = operator.methodcaller('result')
-
     # Function Partial
     output  = ('translit' if translit else 'trans')
     stream  = partial(write_stream, output=output)
 
     # Worker Thread Pool
-    maxwork = cpu_count() * 32
+    maxwork = cpu_count() * 16
     workers = ThreadPoolExecutor(maxwork)
 
     try:
         while True:
 
             task = yield
-            queue.append(workers.submit(translator, task))
-
-            while queue and done(first(queue)):
-                stream(result(queue.pop()))
+            queue.append(task)
 
     except GeneratorExit:
-        workers.shutdown(wait=True)
-        list(map(stream,(map(result,queue))))
+        list(map(stream, workers.map(translator, queue)))
 
 @coroutine
-def spool(iterable, maxlen=1200):
+def spool(iterable, maxlen=1250):
     """
     Consumes text streams and spools them together for more io
     efficient processes.
@@ -187,9 +178,9 @@ def source(target, inputstream=sys.stdin):
     """
     for line in inputstream:
 
-        while len(line) > 500:
+        while len(line) > 600:
             init, sep, line = line.partition(' ')
-            assert(len(init) <= 500)
+            assert len(init) <= 600
             target.send(''.join([init, sep]))
 
         target.send(line)
