@@ -15,7 +15,7 @@ from __future__ import print_function
 import sys
 
 from functools import wraps, partial, reduce
-from multiprocessing import cpu_count, Queue
+from multiprocessing import cpu_count
 
 from concurrent.futures import ThreadPoolExecutor
 
