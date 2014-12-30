@@ -2,6 +2,12 @@
 Release History
 =================
 
+1.0.1 (2014-12-30)
+------------------
+- More efficient task processing using `map` over `submit`.
+- Seperated IO in coroutine exception blocks.
+- Bug Fixes and Improvements.
+
 1.0.0 (2014-12-18)
 ------------------
 - Bug fix with lines longer than 1000 chars
