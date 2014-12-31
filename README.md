@@ -47,6 +47,12 @@ $ git clone https://github.com/jjangsangy/py-translate.git
 $ python setup.py install
 ```
 
+### If all else fails use `sudo`, but only if you must
+
+```sh
+$ sudo python setup.py install
+```
+
 ## Usage
 
 ### `translate [--flags] [source] dest`
