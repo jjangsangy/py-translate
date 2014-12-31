@@ -13,6 +13,7 @@ consumer/producers
 from __future__ import print_function
 
 import sys
+import operator
 
 from functools import wraps, partial, reduce
 from multiprocessing import cpu_count
@@ -83,13 +84,14 @@ def write_stream(script, output='trans'):
 
     :return None:
     """
-    sentences = script.get('sentences', None)
-    output    = output if sentences[0][output] else 'trans'
-    printer   = partial(print, file=sys.stdout, end='')
+    first    = operator.itemgetter(0)
+    sentence = script.get('sentences', None)
+    output   = output if first(sentence).get(output, None) else 'trans'
+    printer  = partial(print, file=sys.stdout, end='')
 
-    assert output in sentences[0]
+    assert output in first(sentence)
 
-    for line in sentences:
+    for line in sentence:
 
         if isinstance(line[output], str):
             printer(line[output])
