@@ -83,13 +83,14 @@ def write_stream(script, output='trans'):
 
     :return None:
     """
-    printer   = partial(print, file=sys.stdout, end='')
     sentences = script.get('sentences', None)
+    output    = output if sentences[0][output] else 'trans'
+    printer   = partial(print, file=sys.stdout, end='')
 
     assert output in sentences[0]
 
     for line in sentences:
-        # I hate you unicode I hate you I hate you I hate you
+
         if isinstance(line[output], str):
             printer(line[output])
         else:
