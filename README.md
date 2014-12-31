@@ -27,7 +27,7 @@ Features
 Installation
 ------------
 
-### From PyPI with pip (easy)
+### From PyPI with `pip`
 
 ```sh
 $ pip install py-translate
