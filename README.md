@@ -38,7 +38,7 @@ $ pip install py-translate
 - Clone the repository
 
 ```sh
-$ git clone https://github.com/jjangsangy/py-translate.git
+$ git clone https://github.com/jjangsangy/py-translate.git && cd py-translate
 ```
 
 - Install with setup.py
