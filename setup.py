@@ -2,7 +2,7 @@
 """
 py-translate
 ============
-A simple translation command line utility
+A Translation Tool for Humans
 
 :copyright: (c) 2014 Sang Han
 """
@@ -12,9 +12,7 @@ from setuptools import setup
 
 setup(
     name='py-translate',
-    description=(
-        'A simple translation command line utility'
-    ),
+    description='A Translation Tool for Humans',
     long_description='\n'.join(
         [
             open('README.rst', 'rb').read().decode('utf-8'),

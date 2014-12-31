@@ -35,7 +35,7 @@ class TermWidthHelpFormatter(RawDescriptionHelpFormatter):
 
 def command_line():
 
-    description = 'A simple translation command line utility'
+    description = 'A Translation Tool for Humans'
     version     = ' '.join([__version__, __build__])
     table       = sorted(translation_table('en').keys())
 

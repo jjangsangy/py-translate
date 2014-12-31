@@ -3,7 +3,7 @@
 """
 py-translate
 ============
-A simple command line utility for translating text using Google Translate.
+A Translation Tool for Humans
 '''
 
 from .translator import *

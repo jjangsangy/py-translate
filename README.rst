@@ -3,7 +3,7 @@ py-translate
 
 |Documentation| |github| |travis| |pypi| |Wheel|
 
-A simple translation command line utility
+A Translation Tool for Humans
 
 .. figure:: https://raw.githubusercontent.com/jjangsangy/py-translate/master/img/alice.gif
    :alt: Translate Lewis Carroll: Alice in Wonderland
