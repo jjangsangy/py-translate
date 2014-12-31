@@ -100,7 +100,7 @@ def write_stream(script, output='trans'):
 
     printer('\n')
 
-    return
+    return sys.stdout.flush()
 
 
 
