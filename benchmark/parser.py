@@ -1,6 +1,8 @@
 from __future__ import print_function
 
-def reader(benchmark='output.txt'):
+from numpy import mean
+
+def reader(benchmark):
 
     with open(benchmark, 'rt') as bench:
         raw = bench.read()
@@ -10,7 +12,7 @@ def reader(benchmark='output.txt'):
 
 def parsed():
     init    = dict()
-    values  = reader()
+    values  = reader('raw.txt')
     mapping = init.fromkeys([key for key, value in values], ())
 
     for value in values:
@@ -26,8 +28,13 @@ def parsed():
 def main():
     bench = parsed()
 
-    for k,v in sorted(bench.items()):
-        print(k, list(v), sep='\t')
+    for key,value in sorted(bench.items()):
+
+        print(key, '{:2.2f}s\t/ {}\t{:2.2f}s'.format(
+                sum(value),
+                len(value),
+                mean(value),
+        ), sep='\t')
 
 
 if __name__ == '__main__':

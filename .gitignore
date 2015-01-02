@@ -28,7 +28,7 @@
 *.sql
 *.sqlite
 *.key
-benchmark/output.txt
+benchmark/*.txt
 # }}}
 
 # OS generated files/folders {{{

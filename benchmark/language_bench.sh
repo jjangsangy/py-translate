@@ -53,15 +53,16 @@ done
 # ===============================================================================
 function main()
 {
-    local alice="../texts/alice.txt" source="en" output="output.txt"
+    local input="../texts/alice.txt"
+    local output="raw.txt"
+    local source="en"
 
     for target in "${codes[@]}"; do
     {
-        printf "%s" "${target}" | tee -a "${output}"
-
+        printf "%s" "${target}" >> "${output}"
         {
-            time translate "${source}" "${target}" "${alice}" > /dev/null
-        } |& grep 'real' | sed 's/real//' | tee -a "${output}"
+            time translate "${source}" "${target}" < "${input}"
+        } 2> >(grep 'real' | sed 's/real//' | tee -a "${output}")
 
     }
 
