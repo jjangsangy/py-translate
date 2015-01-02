@@ -128,7 +128,7 @@ def set_task(translator, translit=False):
     stream  = partial(write_stream, output=output)
 
     # Worker Thread Pool
-    maxwork = cpu_count() * 16
+    maxwork = cpu_count() * 8
     workers = ThreadPoolExecutor(maxwork)
 
     try:
