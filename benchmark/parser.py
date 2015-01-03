@@ -1,6 +1,8 @@
+# -*- coding: utf-8 -*- #
+
 from __future__ import print_function
 
-from numpy import mean
+from numpy import mean, std
 
 def reader(benchmark):
 
@@ -18,23 +20,33 @@ def parsed():
     for value in values:
 
         [[mins], [secs,_]] = [i.split('s') for i in value[1].split('m')]
-        [ time,   key    ] = [float(mins) * 60 + float(secs),  value[0]]
+        [(time), (keys)  ] = [float(mins) * 60 + float(secs),  value[0]]
 
-        mapping[key] += (time,)
+        mapping[keys] += (time,)
 
     return mapping
 
 
 def main():
     bench = parsed()
+    flat  = [x for l in bench.values() for x in l]
+    fmt   = '{}\t{:2.2f}s\t ÷  {}\t{:2.2f}s'
 
-    for key,value in sorted(bench.items()):
+    print("Code\tSum\t Runs\tMean")
+    for keys,value in sorted(bench.items()):
 
-        print(key, '{:2.2f}s\t/ {}\t{:2.2f}s'.format(
-                sum(value),
-                len(value),
-                mean(value),
-        ), sep='\t')
+        print(fmt.format(
+             keys,
+             sum(value),
+             len(value),
+            mean(value))
+        )
+
+    print()
+    print("Total Time:\t{:2.2f}s".format(sum(flat)))
+    print("Sample Size:\t{}".format(len(flat)))
+    print("Average:\t{:2.2f}s".format(mean(flat)))
+    print("Standard Dev:\t{:2.2f}s".format(std(flat)))
 
 
 if __name__ == '__main__':

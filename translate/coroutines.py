@@ -16,8 +16,6 @@ import sys
 import operator
 
 from functools import wraps, partial, reduce
-from multiprocessing import cpu_count
-
 from concurrent.futures import ThreadPoolExecutor
 
 __all__ = 'coroutine', 'spool', 'source', 'set_task', 'write_stream', 'accumulator'
@@ -126,10 +124,7 @@ def set_task(translator, translit=False):
     # Function Partial
     output  = ('translit' if translit else 'trans')
     stream  = partial(write_stream, output=output)
-
-    # Worker Thread Pool
-    maxwork = cpu_count() * 16
-    workers = ThreadPoolExecutor(maxwork)
+    workers = ThreadPoolExecutor(max_workers=8)
 
     try:
         while True:
