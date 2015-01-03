@@ -2,6 +2,13 @@
 Release History
 =================
 
+1.0.2 (2015-01-02)
+------------------
+- Happy New Year
+- Created quick benchmarking suite
+- Optimized thread utilization
+- Bug fixes and better IO performance
+
 1.0.1 (2014-12-30)
 ------------------
 - More efficient task processing using `map` over `submit`.
