@@ -7,12 +7,7 @@ except ImportError:
 import os
 import sys
 
-from nose.tools import *
-
-sys.path.insert(0, os.path.abspath('..'))
-
 from ..languages import translation_table, print_table
-
 
 
 class TestLanguages(unittest.TestCase):

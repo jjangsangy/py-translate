@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 '''
-"""
 py-translate
 ============
 A Translation Tool for Humans
@@ -9,6 +8,7 @@ A Translation Tool for Humans
 from .translator import *
 from .languages import *
 from .coroutines import *
+from .tests import TestTranslator, TestLanguages
 
 from .__version__ import __version__
 from .__version__ import __build__

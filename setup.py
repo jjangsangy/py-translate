@@ -7,8 +7,10 @@ A Translation Tool for Humans
 :copyright: (c) 2014 Sang Han
 """
 
-from version import __version__ as version
-from setuptools import setup
+from version import __version__, __release__, __build__
+
+from setuptools import setup, find_packages
+from setuptools.command.test import test as TestCommand
 
 setup(
     name='py-translate',
@@ -24,10 +26,12 @@ setup(
     url='https://github.com/jjangsangy/py-translate',
     author_email='jjangsangy@gmail.com',
     include_package_data=True,
-    packages=['translate'],
-    version=version,
-    install_requires=['futures', 'requests'],
-    tests_require=['nose'],
+    packages=find_packages(exclude=['*tests']),
+    version=__version__,
+    setup_requires=['futures', 'requests'],
+    test_suite='translate.tests',
+    cmdclass={'tests': TestCommand},
+    platforms='any',
     zip_safe=False,
     entry_points={
         'console_scripts': [

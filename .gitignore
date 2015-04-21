@@ -42,16 +42,6 @@ Thumbs.db
 Icon*
 # }}}
 
-# Distribution files/folders {{{
-docs/_build
-.env
-dist/*
-build/*
-*egg-info
-*.whl
-env/**
-# }}}
-
 # Repository specific files {{{
 texts/**
 .idea/**

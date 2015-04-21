@@ -1,1 +1,1 @@
-translate/__version__.py
+exec(open('translate/__version__.py').read())

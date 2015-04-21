@@ -11,12 +11,13 @@ to the the server.
 
 import functools
 import requests
-import codecs
+import re
+import json
 
 from requests import Request, Session
 from requests.adapters import HTTPAdapter
 
-__all__ = 'push_url', 'translator'
+__all__ = ['push_url', 'translator']
 
 def push_url(interface):
     '''
@@ -49,10 +50,11 @@ def push_url(interface):
         if response.status_code != requests.codes.ok:
             response.raise_for_status()
 
-        return response.json()
+        cleanup = re.subn(r',(?=,)', '', response.content.decode('utf-8'))[0]
+
+        return json.loads(cleanup.replace(r'\xA0', r' ').replace('[,', '[1,'), encoding='UTF-8')
 
     return connection
-
 
 @push_url
 def translator(source, target, phrase, version='0.0 test', charset='utf-8'):
@@ -85,12 +87,12 @@ def translator(source, target, phrase, version='0.0 test', charset='utf-8'):
     :rtype: Dictionary
     """
 
-    url     = 'https://translate.google.com/translate_a/t?'
+    url     = 'https://translate.google.com/translate_a/single'
     agent   = 'User-Agent',   'py-translate v{}'.format(version)
-    content = 'Content-Type', 'application/text; charset={}'.format(charset)
+    content = 'Content-Type', 'application/json; charset={}'.format(charset)
 
-    params  = {'client': 'webapp', 'ie': charset, 'oe': charset,
-                   'sl':   source, 'tl':  target,  'q': phrase, }
+    params  = {'client': 'a', 'ie': charset, 'oe': charset,
+                   'dt': 't', 'sl':  source, 'tl':  target,  'q': phrase}
 
     request = {'method': 'GET',
                   'url': url,

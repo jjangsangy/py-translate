@@ -7,8 +7,8 @@ python:
     - '3.4'
     - '3.3'
     - '2.7'
-    - pypy
-    - pypy3
+    - 'pypy'
+    - 'pypy3'
 
 install:
     - pip install -r requirements.txt
@@ -16,7 +16,7 @@ install:
     - python setup.py install
 
 script:
-    - nosetests -v
+    python setup.py test
 
 deploy:
   provider: pypi

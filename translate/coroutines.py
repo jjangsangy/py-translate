@@ -18,7 +18,7 @@ import operator
 from functools import wraps, partial, reduce
 from concurrent.futures import ThreadPoolExecutor
 
-__all__ = 'coroutine', 'spool', 'source', 'set_task', 'write_stream', 'accumulator'
+__all__ = ['coroutine', 'spool', 'source', 'set_task', 'write_stream', 'accumulator']
 
 
 def coroutine(func):
@@ -63,6 +63,22 @@ def accumulator(init, update):
     """
     Generic accumulator function.
 
+    .. code-block:: python
+
+        # Simplest Form
+        >>> a = 'this' + ' '
+        >>> b = 'that'
+        >>> c = functools.reduce(accumulator, a, b)
+        >>> c
+        'this that'
+
+        # The type of the initial value determines output type.
+        >>> a = 5
+        >>> b = Hello
+        >>> c = functools.reduce(accumulator, a, b)
+        >>> c
+        10
+
     :param init:  Initial Value
     :param update: Value to accumulate
 
@@ -80,21 +96,18 @@ def write_stream(script, output='trans'):
     :param script: Translated Text
     :type script: Iterable
 
-    :return None:
+    :param output: Output Type (either 'trans' or 'translit')
+    :type output: String
     """
     first    = operator.itemgetter(0)
-    sentence = script.get('sentences', None)
-    output   = output if first(sentence).get(output, None) else 'trans'
+    sentence, _ = script
     printer  = partial(print, file=sys.stdout, end='')
 
-    assert output in first(sentence)
-
     for line in sentence:
-
-        if isinstance(line[output], str):
-            printer(line[output])
+        if isinstance(first(line), str):
+            printer(first(line))
         else:
-            printer(line[output].encode('UTF-8'))
+            printer(first(line).encode('UTF-8'))
 
     printer('\n')
 
@@ -115,7 +128,7 @@ def set_task(translator, translit=False):
     :type translation_function: Function
 
     :param translit: Transliteration Switch
-    :type: Bool
+    :type translit: Boolean
     """
     # Initialize Task Queue
     task    = str()
@@ -173,6 +186,9 @@ def source(target, inputstream=sys.stdin):
 
     :param target: Target coroutine consumer
     :type target: Coroutine
+
+    :param inputstream: Input Source
+    :type inputstream: BufferedTextIO Object
     """
     for line in inputstream:
 
