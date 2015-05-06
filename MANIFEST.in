@@ -6,3 +6,4 @@ include translate/etc/supported_translations.json
 include version.py
 
 recursive-include translate *.py
+recursive-exclude texts *
