@@ -29,7 +29,7 @@ install:
 	$(PIP) install -e .
 
 test: build
-	source env/bin/activate; \
+	source venv/bin/activate; \
 	 $(PIP) install -r test_requirements.txt --upgrade; \
 	 $(PYTHON) setup.py $(TEST)
 
