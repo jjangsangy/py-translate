@@ -1,5 +1,5 @@
-py-translate
-=============
+py-translate (Deprecated)
+=========================
 
 > This library has been deprecated due to changes in Google Terms of Agreement.
 > Please use the [Google Cloud Translation API](https://cloud.google.com/translate/docs/)
